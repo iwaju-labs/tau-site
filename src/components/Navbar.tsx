@@ -4,7 +4,7 @@ export default function Navbar() {
 			<div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
 				<a href="/" className="flex items-center gap-2">
 					<img src="/tau-assets/tau-logo-transparent.png" alt="Tau" className="h-7 w-auto invert" />
-					<span className="text-sm font-bold tracking-widest text-white uppercase">tau</span>
+					<span className="text-sm font-bold -ml-2 text-white">tau</span>
 				</a>
 				<nav className="flex items-center gap-8 text-sm text-zinc-400">
 					<a href="#features" className="hover:text-white transition">Features</a>
