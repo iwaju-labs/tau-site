@@ -4,7 +4,7 @@
 
 This document outlines the plan for building the **usetau.app** marketing and distribution site. The site serves as the primary acquisition, conversion, and download point for the Tau desktop app.
 
-**Goal**: Visitor lands → understands the value → pays → gets license key → downloads from GitHub Releases → activates in app.
+**Goal**: Visitor lands → understands the value → pays → gets license key → downloads from Cloudflare R2 → activates in app.
 
 ---
 
@@ -18,7 +18,7 @@ This document outlines the plan for building the **usetau.app** marketing and di
 | Payments | [Lemon Squeezy](https://lemonsqueezy.com) | Built-in license key API, handles VAT globally |
 | Email | [Resend](https://resend.com) | Simple transactional email, great DX |
 | Hosting | [Vercel](https://vercel.com) | Free tier, easy deploys, native Bun support |
-| Binary hosting | GitHub Releases | Free, reliable, public |
+| Binary hosting | [Cloudflare R2](https://developers.cloudflare.com/r2/) | Free egress, custom domain, public URLs, works with private source repo |
 
 > **Why Lemon Squeezy over raw Stripe?** It has a built-in License Keys API that handles key generation, activation limits, and device counts — saving weeks of backend work.
 
@@ -132,7 +132,7 @@ See [Pricing Tiers](#pricing-tiers) below.
 
 1. User selects a tier and pays via Lemon Squeezy checkout
 2. Lemon Squeezy automatically generates a license key and sends it via their built-in email
-3. User downloads Tau from GitHub Releases
+3. User downloads Tau from `downloads.usetau.app`
 4. On first launch, user enters their license key in the app
 5. App calls Lemon Squeezy's License Validation API to activate
 6. Lemon Squeezy tracks how many devices the key has been activated on (enforces tier limits)
@@ -170,16 +170,43 @@ App Launch
 
 ---
 
-## GitHub Releases Setup
+## Cloudflare R2 Setup
 
-- Tag each release with semver: `v1.0.0`, `v1.1.0`, etc.
-- Upload Windows installer as a release asset: `Tau-Windows-1.0.0-Setup.exe`
-- The download button on the site links directly to the latest release asset
-- Future: add Mac/Linux builds when ready
+> R2 is used instead of GitHub Releases because the `tau` source repo is private — GitHub Release download URLs on private repos require authentication and break public download links.
 
-**Direct asset URL format:**
+- Create an R2 bucket in your Cloudflare account (e.g. `tau-releases`)
+- Connect a custom domain: `downloads.usetau.app`
+- Upload builds as public objects with a consistent naming convention:
+  - `Tau-Setup-1.0.0.exe` (Windows installer)
+  - `Tau-1.0.0.dmg` (macOS disk image)
+- Also maintain a `latest` pointer — either via a fixed alias path or a `latest.json` manifest for `electron-updater`
+
+**Public download URL format:**
 ```
-https://github.com/iwaju-labs/tau/releases/latest/download/Tau-Windows-{version}-Setup.exe
+https://downloads.usetau.app/Tau-Setup-{version}.exe
+https://downloads.usetau.app/Tau-{version}.dmg
+```
+
+**Auto-update manifest (for `electron-updater`):**
+```
+https://downloads.usetau.app/latest.yml        # Windows
+https://downloads.usetau.app/latest-mac.yml    # macOS
+```
+
+### CI/CD Upload (GitHub Actions)
+
+Your private `tau` repo's release workflow uploads to R2 using the Cloudflare R2 action or `rclone`:
+
+```yaml
+- name: Upload to R2
+  uses: ryand56/r2-upload-action@latest
+  with:
+    r2-account-id: ${{ secrets.CF_ACCOUNT_ID }}
+    r2-access-key-id: ${{ secrets.CF_R2_ACCESS_KEY }}
+    r2-secret-access-key: ${{ secrets.CF_R2_SECRET_KEY }}
+    r2-bucket: tau-releases
+    source-dir: dist/
+    destination-dir: ./
 ```
 
 ---
@@ -197,7 +224,7 @@ Lemon Squeezy Checkout
 The `/thank-you` page should include:
 1. Confirmation message
 2. Instructions to check email for license key
-3. Prominent download button → GitHub Release
+3. Prominent download button → `downloads.usetau.app` (Mac or Windows, detected via user agent)
 4. How to activate: "Open Tau → Settings → Enter License Key"
 
 ---
@@ -239,9 +266,14 @@ The `/thank-you` page should include:
 - [ ] Feature gating tied to license tier
 
 ### Distribution
-- [ ] GitHub Release created with production build
-- [ ] Download link on site points to release asset
-- [ ] Version bump process documented
+- [ ] Cloudflare R2 bucket created (`tau-releases`)
+- [ ] Custom domain configured (`downloads.usetau.app`)
+- [ ] GitHub Actions workflow in `tau` repo uploads builds to R2 on release
+- [ ] Windows build uploaded: `Tau-Setup-{version}.exe`
+- [ ] macOS build uploaded: `Tau-{version}.dmg`
+- [ ] `latest.yml` / `latest-mac.yml` manifests uploaded for `electron-updater`
+- [ ] Download links on site point to `downloads.usetau.app`
+- [ ] OS detection on site/thank-you page serves correct download (Mac vs Windows)
 
 ### Pre-launch
 - [ ] Test full flow: pay → receive key → download → activate
@@ -252,8 +284,8 @@ The `/thank-you` page should include:
 
 ## Future Considerations
 
-- **Mac support** — add macOS build to GitHub Releases, update site download button
-- **Auto-updates** — `electron-updater` checking GitHub Releases for new versions
+- **Mac support** — macOS `.dmg` already planned in R2 setup; add notarization step to CI/CD
+- **Auto-updates** — `electron-updater` pointing to `downloads.usetau.app` for update manifests
 - **Affiliate program** — Lemon Squeezy has built-in affiliate support
 - **Upgrade flow** — allow Solo users to upgrade to Pro (Lemon Squeezy supports this)
 - **Analytics** — add Plausible or Fathom (privacy-friendly) to track conversion
