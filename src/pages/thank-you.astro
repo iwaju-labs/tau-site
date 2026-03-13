@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.tsx';
+import ThankYou from '../components/ThankYou.tsx';
+import Footer from '../components/Footer.tsx';
+---
+
+<Layout title="Thank You - Tau" description="Thanks for your purchase! Download Tau and get started.">
+	<Navbar client:load />
+    <div class="pt-20">
+	    <ThankYou client:load />
+    </div>
+	<Footer />
+</Layout>

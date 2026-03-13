@@ -1,20 +1,20 @@
 const tiers = [
 	{
 		name: 'Solo',
-		price: '$19',
+		price: '€9.99',
 		description: 'Best for personal use',
 		activations: '1 device',
 		cta: 'Buy Solo',
-		href: '#', // Replace with Lemon Squeezy checkout URL
+		href: '/api/checkout?plan=solo',
 		highlight: false,
 	},
 	{
 		name: 'Pro',
-		price: '$39',
+		price: '€17.99',
 		description: 'Best for creators with multiple machines',
 		activations: 'Up to 3 devices',
 		cta: 'Buy Pro',
-		href: '#', // Replace with Lemon Squeezy checkout URL
+		href: '/api/checkout?plan=pro',
 		highlight: true,
 	},
 ];
