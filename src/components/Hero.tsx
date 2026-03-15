@@ -8,7 +8,7 @@ export default function Hero() {
 				className="pointer-events-none invert -mb-4 select-none w-48 opacity-100 animate-[breathe_4s_ease-in-out_infinite]"
 			/>
 			<h1 className="max-w-3xl text-5xl font-bold tracking-tight text-white sm:text-7xl">
-				Take control of your time.
+				Stop making boring timelapses
 			</h1>
 			<p className="mt-6 max-w-xl text-lg text-zinc-400">
 				Tau lets you record, edit, and export timelapses that people actually want to watch — with smart overlays, filters, and one-click export.
@@ -27,10 +27,7 @@ export default function Hero() {
 					Download
 				</a>
 			</div>
-			{/* Hero visual: replace with demo video or GIF */}
-			<div className="mt-16 w-full max-w-4xl bg-zinc-900 aspect-video flex items-center justify-center text-zinc-600 text-sm border border-zinc-800">
-				Demo video / screenshot placeholder
-			</div>
+			<img src="/tau-assets/tau-demo.gif" alt="a demo timelapse created in tau" className="mt-16 w-full max-w-4xl aspect-video flex items-center justify-center border border-white" />
 		</section>
 	);
 }

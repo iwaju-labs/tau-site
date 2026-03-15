@@ -6,8 +6,7 @@ export default function Footer() {
 				<nav className="flex flex-wrap gap-6 text-sm text-zinc-400">
 					<a href="#pricing" className="hover:text-white transition">Pricing</a>
 					<a href="#faq" className="hover:text-white transition">FAQ</a>
-					<a href="https://downloads.usetau.app/Tau-Setup-latest.exe" className="hover:text-white transition">Download</a>
-					<a href="mailto:hello@usetau.app" className="hover:text-white transition">Contact</a>
+					<a href="https://www.twitter.com/_dngi" className="hover:text-white transition">Contact</a>
 					<a href="/privacy" className="hover:text-white transition">Privacy</a>
 					<a href="/terms" className="hover:text-white transition">Terms</a>
 				</nav>

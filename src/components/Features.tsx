@@ -4,33 +4,28 @@ import type { LucideIcon } from 'lucide-react';
 const features: { icon: LucideIcon; title: string; description: string }[] = [
 	{
 		icon: Video,
-		title: 'Record from camera or screen',
-		description: "Capture your work directly — whether it's a coding session, design process, or art piece.",
+		title: 'Record from any camera',
+		description: "Capture your work directly — whether it's a coding session, design process, or art piece. MacOS users can use iPhones as a camera input",
 	},
 	{
 		icon: Timer,
 		title: 'Smart timer overlays',
-		description: 'Add clock, stopwatch, or custom font overlays so viewers always know how long things took.',
+		description: 'Add clock, stopwatch, custom font and many other overlays to give your timelapses personality.',
 	},
 	{
 		icon: Scissors,
 		title: 'Minimal editor',
-		description: 'Trim, add music, and export without the bloat of a full video editor.',
+		description: 'Trim and export without the bloat of a full video editor.',
 	},
-	{
-		icon: Wand2,
-		title: 'Filters & templates',
-		description: 'Fisheye, colour correction, and more — make every timelapse look intentional.',
-	},
-	{
-		icon: Tag,
-		title: 'Shareable work card',
-		description: '"Worked 4 hours on landing page" — one exportable moment, ready to post.',
-	},
+	// {
+	// 	icon: Wand2,
+	// 	title: 'Filters & templates',
+	// 	description: 'Fisheye, colour correction, and more — make every timelapse look intentional.',
+	// },
 	{
 		icon: FileVideo,
-		title: 'Export to MP4',
-		description: 'One click to a clean MP4, ready for Twitter, YouTube, or wherever you share.',
+		title: 'Export to multiple formats',
+		description: 'One click to MP4, GIF, WEBM ready for Twitter, YouTube, or wherever you share.',
 	},
 ];
 

@@ -1,7 +1,7 @@
 const faqs = [
 	{
 		q: 'Is there a free trial?',
-		a: "Not yet — but we're considering a limited free tier. For now, the one-time price is low enough to be a safe bet.",
+		a: "No. I believe that the single purchase model and current pricing is fair.",
 	},
 	{
 		q: 'What platforms are supported?',
