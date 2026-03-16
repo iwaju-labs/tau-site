@@ -1,3 +1,5 @@
+import { FaApple, FaWindows } from 'react-icons/fa';
+
 export default function Hero() {
 	return (
 		<section className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center overflow-hidden">
@@ -16,17 +18,23 @@ export default function Hero() {
 			<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
 				<a
 					href="#pricing"
-					className="bg-white px-8 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-200 transition"
+					className="bg-white px-10 py-4 text-base font-bold text-zinc-900 hover:bg-zinc-200 transition shadow-lg shadow-white/10"
 				>
-					Buy Now
-				</a>
-				<a
-					href="https://downloads.usetau.app/Tau-Setup-latest.exe"
-					className="border border-zinc-700 px-8 py-3 text-sm font-semibold text-zinc-100 hover:border-zinc-400 transition"
-				>
-					Download
+					Get Tau Now
 				</a>
 			</div>
+			
+			<div className="mt-6 flex justify-center items-center gap-6 text-zinc-500">
+				<div className="flex items-center gap-2" title="Available for macOS">
+					<FaApple className="h-6 w-6" />
+					<span className="text-sm font-medium">macOS</span>
+				</div>
+				<div className="flex items-center gap-2" title="Available for Windows">
+					<FaWindows className="h-5 w-5" />
+					<span className="text-sm font-medium">Windows</span>
+				</div>
+			</div>
+
 			<img src="/tau-assets/tau-demo.gif" alt="a demo timelapse created in tau" className="mt-16 w-full max-w-4xl aspect-video flex items-center justify-center border border-white" />
 		</section>
 	);

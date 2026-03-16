@@ -1,4 +1,5 @@
-import { CheckCircle2, Download, Key, Monitor, Apple } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
+import { FaApple, FaWindows } from 'react-icons/fa';
 
 export default function ThankYou() {
 	return (
@@ -21,14 +22,14 @@ export default function ThankYou() {
 						href="/api/download?os=windows"
 						className="flex items-center justify-center gap-3 bg-white px-6 py-4 text-sm font-bold text-zinc-900 hover:bg-zinc-200 transition group"
 					>
-                        <Monitor className="h-5 w-5" />
+                        <FaWindows className="h-5 w-5" />
                         Download for Windows
 					</a>
 					<a
 						href="/api/download?os=mac"
 						className="flex items-center justify-center gap-3 border border-zinc-700 px-6 py-4 text-sm font-bold text-zinc-100 hover:border-zinc-400 transition"
 					>
-                        <Apple className="h-5 w-5" />
+                        <FaApple className="h-6 w-6" />
                         Download for Mac
 					</a>
 				</div>
