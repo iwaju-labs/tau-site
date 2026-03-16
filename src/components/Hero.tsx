@@ -17,7 +17,7 @@ export default function Hero() {
 			</p>
 			<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
 				<a
-					href="#pricing"
+					href="/#pricing"
 					className="bg-white px-10 py-4 text-base font-bold text-zinc-900 hover:bg-zinc-200 transition shadow-lg shadow-white/10"
 				>
 					Get Tau Now
