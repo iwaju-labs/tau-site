@@ -1,12 +1,34 @@
 import type { APIRoute } from 'astro';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ request, redirect }) => {
+// Create a new ratelimiter, that allows 10 requests per 10 seconds
+const ratelimit = new Ratelimit({
+  redis: new Redis({
+    url: import.meta.env.UPSTASH_REDIS_REST_URL || process.env.UPSTASH_REDIS_REST_URL || '',
+    token: import.meta.env.UPSTASH_REDIS_REST_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '',
+  }),
+  limiter: Ratelimit.slidingWindow(10, "10 s"),
+  analytics: true,
+});
+
+export const GET: APIRoute = async ({ request, redirect, clientAddress }) => {
   const url = new URL(request.url);
   const os = url.searchParams.get('os'); // 'windows' or 'mac'
 
   try {
+    // Only attempt rate limiting if the env vars are available
+    if (import.meta.env.UPSTASH_REDIS_REST_URL || process.env.UPSTASH_REDIS_REST_URL) {
+      // Use client IP as the identifier. clientAddress is provided by Astro.
+      const identifier = clientAddress || request.headers.get("x-forwarded-for") || 'anonymous';
+      const { success } = await ratelimit.limit(`download_${identifier}`);
+
+      if (!success) {
+        return new Response('Too many requests, please try again later.', { status: 429 });
+      }
+    }
     let ymlUrl = '';
     
     if (os === 'mac') {
@@ -27,9 +49,9 @@ export const GET: APIRoute = async ({ request, redirect }) => {
     
     // Parse the path line out of the YAML using Regex (efficient, no libraries needed)
     // latest.yml typically contains a line like: "path: Tau-Setup-1.0.0.exe"
-    const pathMatch = ymlText.match(/^path:\s*(.+)$/m);
+    const pathMatch = /^path:\s*(.+)$/m.exec(ymlText);
     
-    if (pathMatch && pathMatch[1]) {
+    if (pathMatch?.[1]) {
       const filename = pathMatch[1].trim();
       const downloadUrl = `https://releases.trytau.app/${filename}`;
       

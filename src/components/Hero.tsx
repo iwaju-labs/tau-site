@@ -35,7 +35,7 @@ export default function Hero() {
 				</div>
 			</div>
 
-			<img src="/tau-assets/tau-demo.gif" alt="a demo timelapse created in tau" className="mt-16 w-full max-w-4xl aspect-video flex items-center justify-center border border-white" />
+			<video src="/tau-assets/tau-demo-improved.mp4" autoPlay loop muted playsInline className="mt-16 w-full max-w-4xl aspect-video flex items-center justify-center border border-white" />
 		</section>
 	);
 }

@@ -21,11 +21,15 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
-		<!-- OG -->
+		<!-- OG & Twitter -->
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content="/og-image.png" />
+		<meta property="og:image" content="/tau-assets/tau-twitter-image.png" />
 		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="/tau-assets/tau-twitter-image.png" />
 	</head>
 	<body class="bg-zinc-950 text-zinc-100 antialiased">
 		<slot />
