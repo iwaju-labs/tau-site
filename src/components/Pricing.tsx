@@ -36,11 +36,14 @@ export default function Pricing() {
 					>
 						<h3 className="text-lg font-semibold">{tier.name}</h3>
 						<p className={`mt-1 text-sm ${tier.highlight ? 'text-zinc-600' : 'text-zinc-400'}`}>{tier.description}</p>
-						<div className="mt-6 text-5xl font-bold">{tier.price}</div>
+						<div className="mt-6 flex items-baseline gap-1">
+							<span className="text-5xl font-bold">{tier.price}</span>
+						</div>
 						<p className={`mt-2 text-sm ${tier.highlight ? 'text-zinc-600' : 'text-zinc-400'}`}>{tier.activations}</p>
+						<p className="mt-1 text-xs text-zinc-500">+ applicable taxes</p>
 						<a
 							href={tier.href}
-							className={`mt-8 py-3 text-center text-sm font-semibold transition ${tier.highlight ? 'bg-zinc-900 text-white hover:bg-zinc-700' : 'bg-white text-zinc-900 hover:bg-zinc-200'}`}
+							className={`mt-4 py-3 text-center text-sm font-semibold transition ${tier.highlight ? 'bg-zinc-900 text-white hover:bg-zinc-700' : 'bg-white text-zinc-900 hover:bg-zinc-200'}`}
 						>
 							{tier.cta}
 						</a>
