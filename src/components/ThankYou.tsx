@@ -18,14 +18,14 @@ export default function ThankYou() {
 
 				<div className="mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2">
 					<a
-						href="https://downloads.usetau.app/Tau-Setup-latest.exe"
+						href="/api/download?os=windows"
 						className="flex items-center justify-center gap-3 bg-white px-6 py-4 text-sm font-bold text-zinc-900 hover:bg-zinc-200 transition group"
 					>
                         <Monitor className="h-5 w-5" />
                         Download for Windows
 					</a>
 					<a
-						href="https://downloads.usetau.app/Tau-latest.dmg"
+						href="/api/download?os=mac"
 						className="flex items-center justify-center gap-3 border border-zinc-700 px-6 py-4 text-sm font-bold text-zinc-100 hover:border-zinc-400 transition"
 					>
                         <Apple className="h-5 w-5" />
