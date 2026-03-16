@@ -10,10 +10,43 @@ import { Content as ChangelogContent } from '../../CHANGELOG.md';
 	<main class="pt-32 pb-24 px-6 min-h-screen">
 		<div class="mx-auto max-w-3xl">
 			
-			<div class="prose prose-invert prose-zinc max-w-none">
+			<div class="markdown-content max-w-none">
 				<ChangelogContent />
 			</div>
 		</div>
 	</main>
 	<Footer />
 </Layout>
+
+<style is:global>
+	.markdown-content h1 {
+		@apply text-4xl font-bold tracking-tight text-white mb-8;
+	}
+	.markdown-content h2 {
+		@apply text-2xl font-semibold text-white mt-12 mb-4;
+	}
+	.markdown-content h3 {
+		@apply text-xl font-medium text-white mt-8 mb-3;
+	}
+	.markdown-content p {
+		@apply text-zinc-400 mb-6 leading-relaxed text-lg;
+	}
+	.markdown-content ul {
+		@apply list-disc list-outside text-zinc-400 mb-6 space-y-2 ml-5 text-lg marker:text-zinc-600;
+	}
+	.markdown-content li {
+		@apply pl-1;
+	}
+	.markdown-content a {
+		@apply text-white hover:underline decoration-zinc-500 underline-offset-4;
+	}
+	.markdown-content code {
+		@apply bg-zinc-900 px-1.5 py-0.5 rounded text-sm font-mono text-zinc-300 border border-zinc-800;
+	}
+	.markdown-content pre {
+		@apply bg-zinc-900 p-4 rounded-xl border border-zinc-800 overflow-x-auto mb-6;
+	}
+	.markdown-content pre code {
+		@apply bg-transparent px-0 py-0 border-none text-sm;
+	}
+</style>
