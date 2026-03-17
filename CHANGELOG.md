@@ -1,6 +1,9 @@
 # Changelog
 
 All notable changes to Tau will be documented in this file.
+## [1.0.6] - 2026-03-17
+- fixed a critical issue with timelapse capture
+- we all good 🫡
 ## [1.0.5] - 2026-03-17
 - performance updates
 ## [1.0.4] - 2026-03-17
