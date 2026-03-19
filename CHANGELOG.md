@@ -1,6 +1,9 @@
 # Changelog
 
-All notable changes to Tau will be documented in this file.
+All notable changes to Tau will be documented here
+## [1.0.8] - 2026-03-19
+- update system rework (better UI/UX)
+- assets missing are now found
 ## [1.0.7] - 2026-03-17
 - improvements made to update flow
 ## [1.0.6] - 2026-03-17
