@@ -1,6 +1,8 @@
 # Changelog
 
 All notable changes to Tau will be documented here
+## [1.1.0] 2026-03-20
+- unlimited duration option added
 ## [1.0.9] - 2026-03-20
 - fixed issue with iMessage overlay export
 ## [1.0.8] - 2026-03-19
