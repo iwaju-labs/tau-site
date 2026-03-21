@@ -1,6 +1,10 @@
 # Changelog
 
 All notable changes to Tau will be documented here
+## [1.1.1] 2026-03-21
+- fixed an issue with macOS auto-update
+  - the wrong update artifact was being used
+- improved UX by adding a progress bar in-app for updates
 ## [1.1.0] 2026-03-20
 - unlimited duration option added
 ## [1.0.9] - 2026-03-20
