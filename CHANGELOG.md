@@ -1,6 +1,18 @@
 # Changelog
 
 All notable changes to Tau will be documented here
+## [1.2.1] 2026-03-21
+- fixed issue with auto-download flow on both mac/windows
+- fixed watermark causing export to break
+## [1.2.0] 2026-03-21
+### new features
+- multi-overlay select
+- drag to reposition overlay items
+  - toggle snap for draggable items
+### bug fixes
+- fixed watermark breaking export on windows
+- fixed progress bar overlay not appearing correctly
+- fixed a critical error that stopped timelapses being exported on all devices
 ## [1.1.1] 2026-03-21
 - fixed an issue with macOS auto-update
   - the wrong update artifact was being used
