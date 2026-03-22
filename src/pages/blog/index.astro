@@ -27,12 +27,12 @@ function readingTime(body: string) {
             href={`/blog/${post.id}`}
             class="group flex gap-5 border border-zinc-800 rounded-2xl p-4 hover:border-zinc-600 transition-colors items-center"
           >
-            <div class="w-32 h-24 shrink-0 rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
+            <div class="w-40 aspect-video shrink-0 rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
               {post.data.heroImage ? (
                 <img
                   src={post.data.heroImage}
                   alt={post.data.title}
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-contain"
                 />
               ) : (
                 <div class="w-full h-full flex items-center justify-center text-zinc-700">

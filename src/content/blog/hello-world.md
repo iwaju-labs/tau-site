@@ -4,6 +4,7 @@ description: "Welcome to the Tau blog, where I'll share updates, tips, and behin
 pubDate: 2026-03-22
 author: "dom"
 tags: ["updates", "announcement"]
+heroImage: "blogs/blog-og-images/welcome-to-tau.jpg"
 ---
 
 Welcome to the Tau blog! This is where I'll share product updates, timelapse tips, and everything going on behind the scenes with Tau.
