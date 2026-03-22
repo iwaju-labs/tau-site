@@ -16,40 +16,51 @@ const posts = (await getCollection('blog')).sort(
       <h1 class="text-4xl font-bold tracking-tight text-white mb-3">Blog</h1>
       <p class="text-zinc-400 text-lg mb-16">Updates and thoughts from the Tau team.</p>
 
-      <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-4">
         {posts.map((post) => (
           <a
             href={`/blog/${post.id}`}
-            class="group block border border-zinc-800 rounded-2xl p-6 hover:border-zinc-600 transition-colors"
+            class="group flex gap-5 border border-zinc-800 rounded-2xl p-4 hover:border-zinc-600 transition-colors items-center"
           >
-            <div class="flex items-center gap-3 text-sm text-zinc-500 mb-3">
-              <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
-              {post.data.author && (
-                <>
-                  <span>·</span>
-                  <span>{post.data.author}</span>
-                </>
+            <div class="w-32 h-24 shrink-0 rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
+              {post.data.heroImage ? (
+                <img
+                  src={post.data.heroImage}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center text-zinc-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 19.5h18M3.75 4.5h16.5A.75.75 0 0121 5.25v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 18.75V5.25A.75.75 0 013.75 4.5z" />
+                  </svg>
+                </div>
               )}
             </div>
-            <h2 class="text-xl font-semibold text-white mb-2 group-hover:text-zinc-200 transition-colors">
-              {post.data.title}
-            </h2>
-            <p class="text-zinc-400 leading-relaxed">{post.data.description}</p>
-            {post.data.tags && post.data.tags.length > 0 && (
-              <div class="flex gap-2 mt-4 flex-wrap">
-                {post.data.tags.map((tag) => (
-                  <span class="text-xs text-zinc-500 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-full">
-                    {tag}
+
+            <div class="flex flex-col gap-1.5 min-w-0">
+              <h2 class="text-base font-semibold text-white group-hover:text-zinc-200 transition-colors leading-snug">
+                {post.data.title}
+              </h2>
+              <p class="text-sm text-zinc-400 leading-relaxed line-clamp-2">{post.data.description}</p>
+              <div class="flex items-center gap-3 text-xs text-zinc-500 mt-0.5">
+                {post.data.author && (
+                  <span class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                    {post.data.author}
                   </span>
-                ))}
+                )}
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
               </div>
-            )}
+            </div>
           </a>
         ))}
       </div>
