@@ -82,7 +82,7 @@ export default function OrbitSection({
 
 	return (
 		<section
-			className="relative flex flex-col items-center justify-center pt-4 pb-4 px-6 overflow-hidden hidden sm:block"
+			className="hidden sm:flex flex-col items-center justify-center pt-4 pb-4 px-6 overflow-hidden relative"
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}
 		>
