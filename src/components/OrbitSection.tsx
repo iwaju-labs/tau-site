@@ -98,6 +98,8 @@ export default function OrbitSection({
 					}}>
 						<video
 							src={mainVideoSrc}
+							preload='none'
+							poster='/tau-assets/demo-preload-poster.png'
 							autoPlay
 							loop
 							muted
