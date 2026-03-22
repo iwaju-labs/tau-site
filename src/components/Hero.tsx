@@ -2,7 +2,7 @@ import { FaApple, FaWindows } from 'react-icons/fa';
 
 export default function Hero() {
 	return (
-		<section className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center overflow-hidden">
+		<section className="relative flex flex-col items-center justify-center px-6 pt-32 pb-2 text-center overflow-hidden">
 			<img
 				src="/tau-assets/tau-logo-transparent.png"
 				alt=""
@@ -35,7 +35,6 @@ export default function Hero() {
 				</div>
 			</div>
 
-			<video src="/tau-assets/tau-demo-improved.mp4" autoPlay loop muted playsInline className="mt-16 w-full max-w-4xl aspect-video flex items-center justify-center border border-white" />
 		</section>
 	);
 }

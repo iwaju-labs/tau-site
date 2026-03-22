@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.tsx';
 import Hero from '../components/Hero.tsx';
+import OrbitSection from '../components/OrbitSection.tsx';
 import Features from '../components/Features.tsx';
 import Pricing from '../components/Pricing.tsx';
 import FAQ from '../components/FAQ.tsx';
@@ -11,6 +12,7 @@ import Footer from '../components/Footer.tsx';
 <Layout>
 	<Navbar />
 	<Hero />
+	<OrbitSection client:load />
 	<Features />
 	<Pricing />
 	<FAQ />
