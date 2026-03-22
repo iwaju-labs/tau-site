@@ -7,6 +7,7 @@ export default function Footer() {
 					<a href="/#pricing" className="hover:text-white transition">Pricing</a>
 					<a href="/#faq" className="hover:text-white transition">FAQ</a>
 					<a href="https://www.twitter.com/_dngi" className="hover:text-white transition">Contact</a>
+					<a href="/blog" className="hover:text-white transition">Blog</a>
 					<a href="/changelog" className="hover:text-white transition">Changelog</a>
 					<a href="/privacy" className="hover:text-white transition">Privacy</a>
 					<a href="/terms" className="hover:text-white transition">Terms</a>

@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.tsx';
+import Footer from '../../components/Footer.tsx';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blog - Tau" description="Updates, tips, and behind-the-scenes from the Tau team.">
+  <Navbar client:load />
+  <main class="pt-32 pb-24 px-6 min-h-screen">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="text-4xl font-bold tracking-tight text-white mb-3">Blog</h1>
+      <p class="text-zinc-400 text-lg mb-16">Updates and thoughts from the Tau team.</p>
+
+      <div class="flex flex-col gap-8">
+        {posts.map((post) => (
+          <a
+            href={`/blog/${post.id}`}
+            class="group block border border-zinc-800 rounded-2xl p-6 hover:border-zinc-600 transition-colors"
+          >
+            <div class="flex items-center gap-3 text-sm text-zinc-500 mb-3">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+              {post.data.author && (
+                <>
+                  <span>·</span>
+                  <span>{post.data.author}</span>
+                </>
+              )}
+            </div>
+            <h2 class="text-xl font-semibold text-white mb-2 group-hover:text-zinc-200 transition-colors">
+              {post.data.title}
+            </h2>
+            <p class="text-zinc-400 leading-relaxed">{post.data.description}</p>
+            {post.data.tags && post.data.tags.length > 0 && (
+              <div class="flex gap-2 mt-4 flex-wrap">
+                {post.data.tags.map((tag) => (
+                  <span class="text-xs text-zinc-500 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
