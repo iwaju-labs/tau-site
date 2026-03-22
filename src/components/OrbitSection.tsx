@@ -13,7 +13,7 @@ interface OrbitSectionProps {
 const ORBIT_RADIUS_X = 460;
 const ORBIT_RADIUS_Y = 70;
 const RING_Y_OFFSET = 110;   // px from scene center to each ring's center
-const DEGREES_PER_MS = 0.036; // ~10s per orbit
+const DEGREES_PER_MS = 0.018; // ~10s per orbit (orbit speed)
 
 const DEFAULT_SATELLITES: Satellite[] = [
 	// top ring (first half)
