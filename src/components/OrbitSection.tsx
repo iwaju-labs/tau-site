@@ -82,11 +82,11 @@ export default function OrbitSection({
 
 	return (
 		<section
-			className="hidden sm:flex flex-col items-center justify-center pt-4 pb-4 px-6 overflow-hidden relative"
+			className="hidden sm:block relative pt-4 pb-4 px-6 overflow-hidden"
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}
 		>
-			<div className="relative" style={{ width: '1200px', height: '580px' }}>
+			<div className="relative mx-auto" style={{ width: '1200px', height: '580px' }}>
 				{/* Main video — z-index 10, satellites cross above (>10) and below (<10) */}
 				<div
 					className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -122,6 +122,7 @@ export default function OrbitSection({
 						<img
 							src={sat.src}
 							alt={sat.alt}
+							loading='lazy'
 							draggable={false}
 							onContextMenu={e => e.preventDefault()}
 							className="w-48 aspect-video rounded-md border border-white/10 shadow-2xl shadow-black/70 select-none"
