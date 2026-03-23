@@ -25,6 +25,7 @@ const readingTime = Math.max(1, Math.round(words / 200));
   ogImage={post.data.heroImage}
   pubDate={post.data.pubDate.toISOString()}
   type="article"
+  author={post.data.author}
 >
   <Navbar client:load />
 
