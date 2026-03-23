@@ -1,33 +1,6 @@
-import { Video, Timer, Scissors, Wand2, Tag, FileVideo } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { features } from '../data/features';
 
-const features: { icon: LucideIcon; title: string; description: string }[] = [
-	{
-		icon: Video,
-		title: 'Record from any camera',
-		description: "Capture your work directly — whether it's a coding session, design process, or art piece. MacOS users can use iPhones as a camera input",
-	},
-	{
-		icon: Timer,
-		title: 'Smart timer overlays',
-		description: 'Add clock, stopwatch, custom font and many other overlays to give your timelapses personality.',
-	},
-	{
-		icon: Scissors,
-		title: 'Minimal editor',
-		description: 'Trim and export without the bloat of a full video editor.',
-	},
-	// {
-	// 	icon: Wand2,
-	// 	title: 'Filters & templates',
-	// 	description: 'Fisheye, colour correction, and more — make every timelapse look intentional.',
-	// },
-	{
-		icon: FileVideo,
-		title: 'Export to multiple formats',
-		description: 'One click to MP4, GIF, WEBM ready for Twitter, YouTube, or wherever you share.',
-	},
-];
+const rows = [features.slice(0, 2), features.slice(2, 4)];
 
 export default function Features() {
 	return (
@@ -36,14 +9,38 @@ export default function Features() {
 				<h2 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
 					Everything you need all in one place.
 				</h2>
-				<div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-					{features.map((f) => (
-						<div key={f.title} className="border border-zinc-800 bg-zinc-900 p-6">
-							<f.icon className="size-6 text-zinc-400" />
-							<h3 className="mt-4 text-lg font-semibold text-white">{f.title}</h3>
-							<p className="mt-2 text-sm text-zinc-400">{f.description}</p>
+				<div className="mt-16 rounded-2xl border border-zinc-800 overflow-hidden divide-y divide-zinc-800">
+					{rows.map((row) => (
+						<div
+							key={row[0].slug}
+							className="grid grid-cols-1 sm:grid-cols-2 divide-y divide-zinc-800 sm:divide-y-0 sm:divide-x sm:divide-zinc-800"
+						>
+							{row.map((f) => {
+								const Icon = f.icon;
+								return (
+									<div
+										key={f.slug}
+										className="flex flex-col p-8 transition-shadow hover:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]"
+									>
+										<Icon className="size-6 text-zinc-400" />
+										<h3 className="mt-4 text-lg font-semibold text-white">{f.title}</h3>
+										<p className="mt-2 text-sm text-zinc-400 flex-1">{f.description}</p>
+										<a
+											href={`/features/${f.slug}`}
+											className="mt-5 text-xs text-zinc-500 hover:text-white transition self-start"
+										>
+											Learn more →
+										</a>
+									</div>
+								);
+							})}
 						</div>
 					))}
+				</div>
+				<div className="mt-10 text-center">
+					<a href="/features" className="text-sm text-zinc-400 hover:text-white transition">
+						View all features →
+					</a>
 				</div>
 			</div>
 		</section>
