@@ -1,7 +1,7 @@
 ---
 title: "Hello from Tau"
 description: "Welcome to the Tau blog, where I'll share updates, tips, and behind the scenes looks at building Tau."
-pubDate: 2026-03-22
+pubDate: 2026-03-21
 author: "dom"
 tags: ["updates", "announcement"]
 heroImage: "blogs/blog-og-images/welcome-to-tau.jpg"
