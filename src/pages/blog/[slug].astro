@@ -27,6 +27,13 @@ const readingTime = Math.max(1, Math.round(words / 200));
   type="article"
 >
   <Navbar client:load />
+
+  <!-- TOC: fixed sidebar, only visible on xl+ when there's room beside max-w-3xl -->
+  <nav id="toc" class="fixed top-36 hidden xl:flex flex-col gap-1 w-52" style="left: max(1.5rem, calc(50% - 26rem - 13.5rem))">
+    <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">On this page</p>
+    <ul id="toc-list" class="space-y-0.5 text-sm border-l border-zinc-800 pl-3"></ul>
+  </nav>
+
   <main class="pt-32 pb-24 px-6 min-h-screen">
     <div class="mx-auto max-w-3xl">
       <a href="/blog" class="text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-10 inline-block">
@@ -66,10 +73,86 @@ const readingTime = Math.max(1, Math.round(words / 200));
         </div>
       )}
 
+      <div class="markdown-content -my-2">
+        <h1>{post.data.title}</h1>
+      </div>
+
+      <!-- Inline TOC: only visible below xl -->
+      <nav id="toc-inline" class="xl:hidden mb-8 border border-zinc-800 rounded-lg px-5 py-4 hidden">
+        <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-3">On this page</p>
+        <ul id="toc-inline-list" class="space-y-1 text-sm border-l border-zinc-800 pl-3"></ul>
+      </nav>
+
       <article class="markdown-content max-w-none">
+        <p>
+          {post.data.description}
+        </p>
         <Content />
       </article>
     </div>
   </main>
   <Footer />
 </Layout>
+
+<script>
+  const headings = Array.from(
+    document.querySelectorAll<HTMLHeadingElement>('.markdown-content h2, .markdown-content h3')
+  );
+  const toc = document.getElementById('toc');
+  const tocList = document.getElementById('toc-list');
+  const tocInline = document.getElementById('toc-inline');
+  const tocInlineList = document.getElementById('toc-inline-list');
+
+  if (headings.length < 2) {
+    toc?.remove();
+    tocInline?.remove();
+  } else {
+    // Assign IDs and populate both lists
+    headings.forEach((h) => {
+      if (!h.id) {
+        h.id = h.textContent!
+          .toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .trim()
+          .replace(/\s+/g, '-');
+      }
+
+      const linkClass =
+        h.tagName === 'H3'
+          ? 'block pl-3 text-zinc-600 hover:text-zinc-300 transition-colors py-0.5 leading-snug'
+          : 'block text-zinc-500 hover:text-zinc-200 transition-colors py-0.5 leading-snug';
+
+      for (const list of [tocList, tocInlineList]) {
+        if (!list) continue;
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${h.id}`;
+        a.textContent = h.textContent;
+        a.dataset.tocId = h.id;
+        a.className = linkClass;
+        li.appendChild(a);
+        list.appendChild(li);
+      }
+    });
+
+    // Show inline TOC now that it's populated
+    tocInline?.classList.remove('hidden');
+
+    // Highlight active heading on scroll (both lists)
+    const allLinks = document.querySelectorAll<HTMLAnchorElement>('a[data-toc-id]');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          allLinks.forEach((l) => l.classList.remove('!text-white'));
+          document.querySelectorAll<HTMLAnchorElement>(`a[data-toc-id="${entry.target.id}"]`)
+            .forEach((l) => l.classList.add('!text-white'));
+        });
+      },
+      { rootMargin: '-20% 0px -70% 0px' }
+    );
+
+    headings.forEach((h) => observer.observe(h));
+  }
+</script>

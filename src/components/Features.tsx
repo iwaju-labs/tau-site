@@ -34,7 +34,7 @@ export default function Features() {
 		<section id="features" className="py-24 px-6">
 			<div className="mx-auto max-w-5xl">
 				<h2 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
-					Everything you need. Nothing you don't.
+					Everything you need all in one place.
 				</h2>
 				<div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 					{features.map((f) => (

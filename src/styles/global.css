@@ -19,6 +19,10 @@
 	font-family: 'Inter', sans-serif;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 .markdown-content h1 {
 	font-size: 2.25rem;
 	line-height: 2.5rem;
@@ -89,6 +93,13 @@
 	border: 1px solid #27272a;
 	overflow-x: auto;
 	margin-bottom: 1.5rem;
+}
+.markdown-content img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 80%;
+	border-radius: 0.5rem;
 }
 .markdown-content pre code {
 	background-color: transparent;
