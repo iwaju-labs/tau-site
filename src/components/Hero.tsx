@@ -7,6 +7,8 @@ export default function Hero() {
 				src="/tau-assets/tau-logo-transparent.png"
 				alt=""
 				aria-hidden="true"
+				width="192"
+				height="192"
 				className="pointer-events-none invert -mb-4 select-none w-48 opacity-100 animate-[breathe_4s_ease-in-out_infinite]"
 			/>
 			<h1 className="max-w-3xl text-5xl font-bold tracking-tight text-white sm:text-7xl">

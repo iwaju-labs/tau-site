@@ -22,6 +22,7 @@ export interface Feature {
 	title: string;
 	description: string;
 	overview: string;
+	tags: string[];
 	benefits: FeatureBenefit[];
 	howToUse: FeatureStep[];
 	faq: FeatureFAQ[];
@@ -36,6 +37,7 @@ export const features: Feature[] = [
 			"Capture your work directly — whether it's a coding session, design process, or art piece. MacOS users can use iPhones as a camera input.",
 		overview:
 			'Tau works with any camera your system recognises — built-in webcam, USB camera, or on macOS, your iPhone via Continuity Camera. Pick your source, set your frame rate, and start recording. No drivers, no setup friction.',
+		tags: ['recording', 'camera', 'setup'],
 		benefits: [
 			{
 				title: 'Any camera source',
@@ -110,6 +112,7 @@ export const features: Feature[] = [
 			'Add clock, stopwatch, custom font and many other overlays to give your timelapses personality.',
 		overview:
 			'Timer overlays let you show elapsed time, current time, or a countdown directly in your timelapse. Customise the font, size, colour, and position — then let Tau burn it into the final export automatically.',
+		tags: ['overlays', 'customization', 'design'],
 		benefits: [
 			{
 				title: 'Multiple overlay types',
@@ -187,6 +190,7 @@ export const features: Feature[] = [
 		description: 'Trim and export without the bloat of a full video editor.',
 		overview:
 			"Tau's editor is designed for one thing: getting your timelapse trimmed and out the door. Drag the handles to set your in and out points, preview the result, and export. No timeline tracks, no keyframes, no distractions.",
+		tags: ['editor', 'editing', 'tutorial'],
 		benefits: [
 			{
 				title: 'Trim in seconds',
@@ -260,6 +264,7 @@ export const features: Feature[] = [
 			'One click to MP4, GIF, WEBM ready for Twitter, YouTube, or wherever you share.',
 		overview:
 			'When your timelapse is ready, Tau exports it to the format that works best for where you\'re sharing. MP4 for broad compatibility, GIF for quick social shares, WEBM for the web — all handled with a single click.',
+		tags: ['export', 'formats', 'sharing'],
 		benefits: [
 			{
 				title: 'MP4 for universal sharing',

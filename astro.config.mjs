@@ -7,6 +7,8 @@ import react from '@astrojs/react';
 
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
+import { rehypeInternalLinks } from './src/plugins/rehypeInternalLinks.ts';
+import { internalLinks } from './src/data/internalLinks.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,6 +16,16 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()]
+  },
+
+  markdown: {
+    rehypePlugins: [
+      [rehypeInternalLinks, internalLinks],
+    ],
+  },
+
+  build: {
+    inlineStylesheets: 'always',
   },
 
   integrations: [react(), sitemap()],

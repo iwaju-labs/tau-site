@@ -8,11 +8,15 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post },
+    props: { post, allPosts: posts },
   }));
 }
 
-const { post } = Astro.props;
+const { post, allPosts } = Astro.props;
+const relatedPosts = allPosts
+  .filter((p) => p.id !== post.id && p.data.tags?.some((t) => post.data.tags?.includes(t)))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
 const { Content } = await render(post);
 
 const words = (post.body ?? '').trim().split(/\s+/).length;
@@ -90,6 +94,25 @@ const readingTime = Math.max(1, Math.round(words / 200));
         </p>
         <Content />
       </article>
+
+      {relatedPosts.length > 0 && (
+        <aside class="mt-20 border-t border-zinc-800 pt-12">
+          <h2 class="text-lg font-semibold text-white">Related posts</h2>
+          <ul class="mt-6 grid gap-4 sm:grid-cols-3">
+            {relatedPosts.map((p) => (
+              <li>
+                <a
+                  href={`/blog/${p.id}`}
+                  class="flex flex-col gap-2 border border-zinc-800 bg-zinc-900 p-4 hover:border-zinc-600 transition"
+                >
+                  <span class="text-sm font-medium text-white leading-snug">{p.data.title}</span>
+                  <span class="text-xs text-zinc-500 leading-relaxed line-clamp-2">{p.data.description}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
     </div>
   </main>
   <Footer />
