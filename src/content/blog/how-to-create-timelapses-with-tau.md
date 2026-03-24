@@ -2,8 +2,8 @@
 title: "How To Create Timelapses With Tau"
 description: "A step by step guide to getting started with Tau, and creating beautiful timelapses that you cant make anywhere else."
 pubDate: "2026-03-22"
-author: "dom"
-tags: ["tutorial", "timelapse", "how to"]
+author: "dom (@_dngi)"
+tags: ["tutorial", "timelapse", "how to", "record", "tau"]
 heroImage: "/blogs/blog-og-images/how-to-create-timelapse.jpg"
 ---
 
