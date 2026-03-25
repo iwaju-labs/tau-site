@@ -1,6 +1,14 @@
 # Changelog
 
 All notable changes to Tau will be documented here
+## [1.2.2] 2026-03-24
+### changes
+- updates to timelapse setup ui
+- added a 3 second countdown before recording begins
+### bug fixes
+- only a camera's supported resolutions will be shown in timelapse setup
+- watermark preview now uses frames from the timelapse and not a placeholder
+- fixed bug where camera would not work after switching cameras
 ## [1.2.1] 2026-03-21
 - fixed issue with auto-download flow on both mac/windows
 - fixed watermark causing export to break
