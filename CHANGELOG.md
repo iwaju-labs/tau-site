@@ -1,6 +1,17 @@
 # Changelog
 
 All notable changes to Tau will be documented here
+## [1.3.0] 2026-03-27
+### new features
+- trim feature in the editor
+- audio attachment in the editor
+- more customizability with overlays in the editor 🎨
+### changes
+- ui: using better/more accurate icons to represent different functions
+- changed rendering method to be more accurate
+### bug fixes
+- fixed bug where dragging to reposition overlays didnt work
+- fixed bug where x, y positioning of overlays was misrepresented in the preview
 ## [1.2.2] 2026-03-24
 ### changes
 - updates to timelapse setup ui
