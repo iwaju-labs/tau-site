@@ -23,11 +23,11 @@ export default function WhyTau() {
 		<section className="py-24 px-6">
 			<div className="mx-auto max-w-4xl">
 				<h2 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
-					Why not just use OBS?
+					Why not just use anything else?
 				</h2>
 				<p className="mt-4 text-center text-zinc-400 max-w-xl mx-auto">
-					OBS is for streamers. CapCut is for editors. Your phone is for scrolling.
-					Tau is built for one thing — capturing and sharing your process.
+					<span className='font-bold'>OBS</span> is for streamers. <span className='font-bold'>CapCut</span> is for editors. Your phone is for scrolling.
+					Tau is built to do one thing better than the rest — capturing and sharing your process.
 				</p>
 				<div className="mt-12 border border-zinc-800 overflow-hidden">
 					<table className="w-full text-sm">

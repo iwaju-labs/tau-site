@@ -11,14 +11,14 @@ export default function Hero() {
 				height="192"
 				className="pointer-events-none invert -mb-4 select-none w-48 opacity-100 animate-[breathe_4s_ease-in-out_infinite]"
 			/>
-			<h1 className="max-w-3xl text-5xl font-bold tracking-tight text-white sm:text-7xl">
-				Stop making boring timelapses
+			<h1 className="max-w-3xl text-5xl font-bold tracking-tight text-white sm:text-7xl select-none">
+				Stop making <span className='text-red-700'>boring</span> timelapses
 			</h1>
 			<p className="mt-3 text-sm text-zinc-500 tracking-wide">
-				You spent hours on that. Show people in seconds.
+				You spent hours on it. Show people in seconds.
 			</p>
 			<p className="mt-6 max-w-xl text-lg text-zinc-400">
-				Tau lets you record, edit, and export timelapses that people actually want to watch — with smart overlays, filters, and one-click export.
+				Tau lets you record, edit, and export timelapses that people actually want to watch — with smart overlays/filters, and one-click export.
 			</p>
 			<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
 				<a
