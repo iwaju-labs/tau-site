@@ -14,6 +14,9 @@ export default function Hero() {
 			<h1 className="max-w-3xl text-5xl font-bold tracking-tight text-white sm:text-7xl">
 				Stop making boring timelapses
 			</h1>
+			<p className="mt-3 text-sm text-zinc-500 tracking-wide">
+				You spent hours on that. Show people in seconds.
+			</p>
 			<p className="mt-6 max-w-xl text-lg text-zinc-400">
 				Tau lets you record, edit, and export timelapses that people actually want to watch — with smart overlays, filters, and one-click export.
 			</p>

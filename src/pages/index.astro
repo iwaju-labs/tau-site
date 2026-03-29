@@ -2,7 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.tsx';
 import Hero from '../components/Hero.tsx';
-import OrbitSection from '../components/OrbitSection.tsx';
+import DemoSection from '../components/DemoSection.tsx';
+import ComparisonSection from '../components/ComparisonSection.tsx';
+import WhyTau from '../components/WhyTau.tsx';
+import Testimonials from '../components/Testimonials.tsx';
 import Features from '../components/Features.tsx';
 import Pricing from '../components/Pricing.tsx';
 import FAQ from '../components/FAQ.tsx';
@@ -12,7 +15,10 @@ import Footer from '../components/Footer.tsx';
 <Layout>
 	<Navbar />
 	<Hero />
-	<OrbitSection client:load />
+	<DemoSection client:load />
+	<ComparisonSection client:load />
+	<WhyTau />
+	<Testimonials client:load />
 	<Features />
 	<Pricing />
 	<FAQ />

@@ -5,6 +5,11 @@
 	50%       { transform: scale(1.08); }
 }
 
+@keyframes marquee {
+	0%   { transform: translateX(0); }
+	100% { transform: translateX(-50%); }
+}
+
 @keyframes border-glow {
 	0%, 100% {
 		box-shadow: 0 0 0 1.5px rgba(255,255,255,0.85), 0 0 24px 4px rgba(255,255,255,0.12);
