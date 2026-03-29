@@ -1,3 +1,5 @@
+import { Star, UserCircle } from 'lucide-react';
+
 interface Testimonial {
 	quote: string;
 	author?: string;
@@ -39,24 +41,33 @@ export default function Testimonials() {
 	const duration = `${copiesPerHalf * 20}s`; // 20s per copy-width → consistent speed
 
 	return (
-		<section className="py-24 overflow-hidden">
+		<section className="py-24 overflow-hidden marquee-section">
 			<p className="text-center text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-10">
-				What people are saying
+				testimonials.
 			</p>
 			<div
-				className="flex gap-6"
+				className="flex gap-6 marquee-track"
 				style={{
-					animation: `marquee ${duration} linear infinite`,
+					'--marquee-duration': duration,
 					width: 'max-content',
-				}}
+					willChange: 'transform',
+				} as React.CSSProperties}
 			>
 				{repeated.map((t, i) => (
 					<div
 						key={i}
 						className="w-72 shrink-0 border border-zinc-800 bg-zinc-900 p-6 rounded-md"
 					>
+						<div className="flex gap-0.5 mb-3">
+							{Array.from({ length: 5 }).map((_, j) => (
+								<Star key={j} size={12} className="text-yellow-400" fill="currentColor" strokeWidth={0} />
+							))}
+						</div>
 						<p className="text-sm text-zinc-300 leading-relaxed">"{t.quote}"</p>
-						<p className="mt-4 text-xs text-zinc-500">— {t.author}</p>
+						<div className="mt-4 flex items-center gap-2">
+							<UserCircle size={20} className="text-zinc-600" />
+							<p className="text-xs text-zinc-500">— {t.author}</p>
+						</div>
 					</div>
 				))}
 			</div>
