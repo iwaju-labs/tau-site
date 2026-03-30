@@ -13,10 +13,26 @@ export async function getStaticPaths() {
 }
 
 const { post, allPosts } = Astro.props;
-const relatedPosts = allPosts
-  .filter((p) => p.id !== post.id && p.data.tags?.some((t) => post.data.tags?.includes(t)))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 3);
+
+const TITLE_KEYWORDS = ["timelapse", "tutorial", "mac", "tau", "record", "productivity", "camera"];
+const DEFAULT_TAGS = ["tau"];
+
+function getEffectiveTags(p: typeof post): string[] {
+  const existing = (p.data.tags ?? []).map((t) => t.toLowerCase());
+  const fromTitle = TITLE_KEYWORDS.filter((kw) => p.data.title.toLowerCase().includes(kw));
+  return Array.from(new Set([...DEFAULT_TAGS, ...existing, ...fromTitle]));
+}
+
+const currentTags = getEffectiveTags(post);
+const otherPosts = allPosts
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const tagMatches = otherPosts.filter((p) =>
+  getEffectiveTags(p).some((t) => currentTags.includes(t))
+);
+
+const relatedPosts = (tagMatches.length > 0 ? tagMatches : otherPosts).slice(0, 3);
 const { Content } = await render(post);
 
 const words = (post.body ?? '').trim().split(/\s+/).length;
@@ -97,7 +113,7 @@ const readingTime = Math.max(1, Math.round(words / 200));
         <Content />
       </article>
 
-      {relatedPosts.length > 0 && (
+      {otherPosts.length > 0 && (
         <aside class="mt-20 border-t border-zinc-800 pt-12">
           <h2 class="text-lg font-semibold text-white">Related posts</h2>
           <ul class="mt-6 grid gap-4 sm:grid-cols-3">
@@ -105,10 +121,27 @@ const readingTime = Math.max(1, Math.round(words / 200));
               <li>
                 <a
                   href={`/blog/${p.id}`}
-                  class="flex flex-col gap-2 border border-zinc-800 bg-zinc-900 p-4 hover:border-zinc-600 transition"
+                  class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900 overflow-hidden hover:border-zinc-600 transition-colors"
                 >
-                  <span class="text-sm font-medium text-white leading-snug">{p.data.title}</span>
-                  <span class="text-xs text-zinc-500 leading-relaxed line-clamp-2">{p.data.description}</span>
+                  <div class="aspect-video w-full bg-zinc-800 overflow-hidden">
+                    {p.data.heroImage ? (
+                      <img
+                        src={p.data.heroImage}
+                        alt={p.data.title}
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div class="w-full h-full flex items-center justify-center text-zinc-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 19.5h18M3.75 4.5h16.5A.75.75 0 0121 5.25v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 18.75V5.25A.75.75 0 013.75 4.5z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div class="flex flex-col gap-1.5 p-4">
+                    <span class="text-sm font-semibold text-white leading-snug group-hover:text-zinc-200 transition-colors">{p.data.title}</span>
+                    <span class="text-xs text-zinc-500 leading-relaxed line-clamp-2">{p.data.description}</span>
+                  </div>
                 </a>
               </li>
             ))}
