@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to Tau will be documented here
+## [1.3.1] 2026-03-31
+### new features
+- introduced a home screen to access recent projects
+- users now have the option to delete frames from permanent projects after export to save storage
+### bug fixes
+- fixed issue with consistency between overlays in preview and reposition mode
+- issues with keyboard shortcuts resolved
 ## [1.3.0] 2026-03-27
 ### new features
 - trim feature in the editor
