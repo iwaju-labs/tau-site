@@ -67,26 +67,6 @@ export const POST: APIRoute = async ({ request }) => {
       
       console.log(`[Polar Webhook] Generating license key with limit: ${limitActivations}`);
 
-      // We need to fetch the benefit ID that corresponds to "License Key" for this organization 
-      // OR we can correct this logic: Polar automatically creates license keys IF the product has a "License Key" benefit attached.
-      // IF you attached a "License Key" benefit to your Product in the Polar Dashboard, you DO NOT need to manually create one here!
-      //
-      // However, if you haven't set up Benefits, we must create a standalone license key manually.
-      // Let's assume you haven't set up Benefits yet and do it manually for maximum control.
-      
-      /* 
-         Since the SDK for manual creation might be tricky without a benefit query first, 
-         the *BEST* way is to rely on Polar's "Benefit" system.
-         
-         BUT, since you asked to do it manually/backend-side, here is the manual creation.
-      */
-      
-      // NOTE: There isn't a simple "create arbitrary key" in the public API without a Benefit. 
-      // The standard flow is: Product -> Benefit (License Key) -> Auto-generated on purchase.
-      
-      // If we cannot create one manually easily, we should log that we expect one to be auto-generated.
-      // Let's check if the order payload already has the license key?
-      // Usually, it's sent in a separate `benefit_grant.created` webhook.
       
       console.log('[Polar Webhook] To fully automate this, ensure your Polar Product has a "License Key" benefit attached.');
       console.log('[Polar Webhook] If attached, listen for "benefit_grant.created" instead of "order.created" to get the key.');
