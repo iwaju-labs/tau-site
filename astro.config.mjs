@@ -13,6 +13,7 @@ import { internalLinks } from './src/data/internalLinks.ts';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://trytau.app',
+  trailingSlash: 'never',
 
   vite: {
     plugins: [tailwindcss()]
