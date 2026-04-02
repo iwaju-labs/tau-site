@@ -85,7 +85,7 @@ export const features: Feature[] = [
 			{
 				question: 'Can I use multiple cameras at the same time?',
 				answer:
-					'Not currently — Tau records from one source per session. If you need multiple angles, record separate sessions and combine in the editor.',
+					'Not currently. Tau records from one source per session. If you need multiple angles, record separate sessions and combine in the editor.',
 			},
 			{
 				question: 'Does Tau work on Windows?',
@@ -100,7 +100,7 @@ export const features: Feature[] = [
 			{
 				question: 'Can I record my screen instead of a camera?',
 				answer:
-					'Yes. Screen capture is available as a source alongside camera inputs.',
+					'Not currently. I plan on working on that once the camera-based features are stable.',
 			},
 		],
 	},
@@ -117,7 +117,7 @@ export const features: Feature[] = [
 			{
 				title: 'Multiple overlay types',
 				description:
-					'Choose from a running stopwatch, live clock, or custom countdown. Each overlay type serves a different storytelling purpose.',
+					'Choose from a running stopwatch, live clock, or custom countdown. Each overlay type serves a different storytelling purpose. Will be adding more, and always open to suggestions.',
 			},
 			{
 				title: 'Custom fonts and styles',
@@ -145,9 +145,9 @@ export const features: Feature[] = [
 				description: 'Navigate to the Overlays section in the recording settings.',
 			},
 			{
-				title: 'Enable your timer overlay',
+				title: 'Select an Overlay and add it to the Export',
 				description:
-					'Toggle on Stopwatch, Clock, or Countdown and configure the starting value if needed.',
+					'Click on your desired overlay and it\'ll appear in the preview',
 			},
 			{
 				title: 'Customise appearance',
@@ -155,16 +155,16 @@ export const features: Feature[] = [
 					'Adjust font, size, colour, and position using the overlay controls.',
 			},
 			{
-				title: 'Record and export',
+				title: 'Add to export',
 				description:
-					'The overlay will be embedded into your exported timelapse automatically.',
+					'The overlay will be embedded into your exported after attaching it to your recording.',
 			},
 		],
 		faq: [
 			{
 				question: 'Can I add more than one overlay at a time?',
 				answer:
-					'You can combine a timer overlay with other overlay types. Check the Overlays panel for everything that\'s available in your version of Tau.',
+					'Yes you can try multiple combinations of overlays. Check the Overlays panel for everything that\'s available in your version of Tau.',
 			},
 			{
 				question: 'Can I change the font?',
@@ -203,14 +203,13 @@ export const features: Feature[] = [
 					'Your original recording is never touched. Trim points are applied at export time, so you can always re-edit.',
 			},
 			{
+				title: 'Attach audio',
+				description: 'Attach any audio file, and choose the start point. Tau will handle the rest and ensure the duration matches your timelapse.'
+			},
+			{
 				title: 'Instant preview',
 				description:
 					'Play back the trimmed clip before committing to an export. What you see is exactly what you\'ll get.',
-			},
-			{
-				title: 'Nothing unnecessary',
-				description:
-					'No timeline layers, no effect racks, no project files. Just the clip and the controls you actually need.',
 			},
 		],
 		howToUse: [
@@ -223,6 +222,10 @@ export const features: Feature[] = [
 				title: 'Set your trim points',
 				description:
 					'Drag the left handle to set the start point and the right handle to set the end point.',
+			},
+			{
+				title: 'Add your audio',
+				description: 'Add the audio file you wish to be in the final video'
 			},
 			{
 				title: 'Preview the result',
@@ -321,7 +324,7 @@ export const features: Feature[] = [
 			{
 				question: 'Can I control the output file size?',
 				answer:
-					'Yes. The quality slider in the export dialog lets you trade off file size against visual quality.',
+					'Yes. The quality option in the export dialog lets you trade off file size against visual quality.',
 			},
 			{
 				question: 'Does GIF export support transparency?',
