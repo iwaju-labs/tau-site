@@ -1,6 +1,15 @@
 # Changelog
 
 All notable changes to Tau will be documented here
+## [1.3.2] 2026-04-03
+### new features
+- added aspect ratio support
+  - in addition to 16:9, Tau now supports recording and export for 1:1, 4:3, and 9:16
+- audio fade-in/out
+- added frame rate selection to setup screen
+- new overlay: camera HUD 📹
+### bug fixes
+- reduced export failure rate
 ## [1.3.1] 2026-03-31
 ### new features
 - introduced a home screen to access recent projects
