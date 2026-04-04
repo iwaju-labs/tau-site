@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
 const { post, allPosts } = Astro.props;
 
-const TITLE_KEYWORDS = ["timelapse", "tutorial", "mac", "tau", "record", "productivity", "camera"];
+const TITLE_KEYWORDS = ["timelapse", "timelapse video", "video timelapse", "iphone timelapse", "tutorial", "mac", "tau", "record", "productivity", "camera"];
 const DEFAULT_TAGS = ["tau"];
 
 function getEffectiveTags(p: typeof post): string[] {
@@ -49,14 +49,14 @@ const readingTime = Math.max(1, Math.round(words / 200));
 >
   <Navbar client:load />
 
-  <!-- TOC: fixed sidebar, only visible on xl+ when there's room beside max-w-3xl -->
-  <nav id="toc" class="fixed top-36 hidden xl:flex flex-col gap-1 w-52" style="left: max(1.5rem, calc(50% - 26rem - 13.5rem))">
-    <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">On this page</p>
-    <ul id="toc-list" class="space-y-0.5 text-sm border-l border-zinc-800 pl-3"></ul>
-  </nav>
-
   <main class="pt-32 pb-24 px-6 min-h-screen">
-    <div class="mx-auto max-w-3xl">
+    <div class="mx-auto max-w-3xl xl:max-w-6xl xl:flex xl:gap-12">
+      <!-- TOC: sticky sidebar, only visible on xl+ -->
+      <nav id="toc" class="sticky top-36 hidden xl:flex flex-col gap-1 w-52 shrink-0 self-start">
+        <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">On this page</p>
+        <ul id="toc-list" class="space-y-0.5 text-sm border-l border-zinc-800 pl-3"></ul>
+      </nav>
+      <div class="max-w-3xl w-full">
       <a href="/blog" class="text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-10 inline-block">
         ← Back to blog
       </a>
@@ -148,6 +148,7 @@ const readingTime = Math.max(1, Math.round(words / 200));
           </ul>
         </aside>
       )}
+      </div>
     </div>
   </main>
   <Footer />
@@ -213,5 +214,6 @@ const readingTime = Math.max(1, Math.round(words / 200));
     );
 
     headings.forEach((h) => observer.observe(h));
+
   }
 </script>

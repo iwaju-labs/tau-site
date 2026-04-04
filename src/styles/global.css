@@ -43,7 +43,7 @@ body::before {
 	inset: 0;
 	background-image: url('/tau-assets/tau-bg.svg');
 	background-size: 800px 800px;
-	opacity: 0.03;
+	opacity: 0.009;
 	pointer-events: none;
 	z-index: -1;
 }

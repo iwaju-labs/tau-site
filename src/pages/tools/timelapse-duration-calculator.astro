@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.tsx';
+import Footer from '../../components/Footer.tsx';
+---
+
+<Layout
+  title="Timelapse Duration Calculator - Free Tool | Tau"
+  description="Free timelapse calculator — enter your video length, FPS, and interval to find out how much real time your timelapse represents."
+>
+  <Navbar client:load />
+
+  <main class="pt-32 pb-24 px-6 min-h-screen">
+    <div class="mx-auto max-w-xl">
+      <a href="/blog/free-tool-timelapse-duration-calculator" class="text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-10 inline-block">
+        ← Back to article
+      </a>
+
+      <h1 class="text-4xl font-bold tracking-tight text-white mb-3">Timelapse Duration Calculator</h1>
+      <p class="text-zinc-400 mb-10">Enter your timelapse details to find out how much real time it represents.</p>
+
+      <form id="calc-form" class="space-y-6">
+        <!-- Video Length -->
+        <div>
+          <label for="video-length" class="block text-sm font-medium text-zinc-400 mb-2">Video length (seconds)</label>
+          <input
+            id="video-length"
+            type="number"
+            min="0.1"
+            step="any"
+            placeholder="e.g. 10"
+            class="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-zinc-600 transition"
+            required
+          />
+        </div>
+
+        <!-- FPS -->
+        <div>
+          <label for="fps" class="block text-sm font-medium text-zinc-400 mb-2">Frames per second (FPS)</label>
+          <div class="flex gap-2 mb-2">
+            <button type="button" data-fps="24" class="fps-preset rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm text-zinc-400 hover:border-zinc-600 hover:text-white transition">24</button>
+            <button type="button" data-fps="30" class="fps-preset rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm text-zinc-400 hover:border-zinc-600 hover:text-white transition">30</button>
+            <button type="button" data-fps="60" class="fps-preset rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm text-zinc-400 hover:border-zinc-600 hover:text-white transition">60</button>
+          </div>
+          <input
+            id="fps"
+            type="number"
+            min="1"
+            step="any"
+            placeholder="e.g. 30"
+            class="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-zinc-600 transition"
+            required
+          />
+        </div>
+
+        <!-- Interval -->
+        <div>
+          <label for="interval" class="block text-sm font-medium text-zinc-400 mb-2">Capture interval (seconds between frames)</label>
+          <input
+            id="interval"
+            type="number"
+            min="0.1"
+            step="any"
+            placeholder="e.g. 2"
+            class="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-zinc-600 transition"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-white px-6 py-3.5 text-base font-bold text-zinc-900 hover:bg-zinc-200 transition shadow-lg shadow-white/10"
+        >
+          Calculate
+        </button>
+      </form>
+
+      <!-- Result -->
+      <div id="result" class="mt-8 hidden rounded-lg border border-zinc-800 bg-zinc-900 p-6">
+        <p class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">Result</p>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-zinc-400">Total frames</span>
+            <span id="out-frames" class="text-lg font-semibold text-white tabular-nums"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-zinc-400">Real recording time</span>
+            <span id="out-time" class="text-lg font-semibold text-white tabular-nums"></span>
+          </div>
+        </div>
+        <p class="text-xs text-zinc-600 mt-4">Formula: Video Length &times; FPS &times; Interval = Real Time</p>
+      </div>
+
+      <p class="mt-12 text-sm text-zinc-600 text-center">
+        Built by <a href="https://www.trytau.app" class="text-zinc-400 hover:text-white transition underline underline-offset-4 decoration-zinc-700">Tau</a> — the timelapse recorder that remembers all this for you.
+      </p>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const form = document.getElementById('calc-form') as HTMLFormElement;
+  const videoLengthInput = document.getElementById('video-length') as HTMLInputElement;
+  const fpsInput = document.getElementById('fps') as HTMLInputElement;
+  const intervalInput = document.getElementById('interval') as HTMLInputElement;
+  const resultDiv = document.getElementById('result') as HTMLElement;
+  const outFrames = document.getElementById('out-frames') as HTMLElement;
+  const outTime = document.getElementById('out-time') as HTMLElement;
+
+  // FPS preset buttons
+  document.querySelectorAll<HTMLButtonElement>('.fps-preset').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      fpsInput.value = btn.dataset.fps!;
+      document.querySelectorAll('.fps-preset').forEach((b) => {
+        b.classList.remove('!border-zinc-500', '!text-white');
+      });
+      btn.classList.add('!border-zinc-500', '!text-white');
+    });
+  });
+
+  function formatDuration(totalSeconds: number): string {
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60);
+    const s = Math.round(totalSeconds % 60);
+    const parts: string[] = [];
+    if (h > 0) parts.push(`${h}h`);
+    if (m > 0) parts.push(`${m}m`);
+    if (s > 0 || parts.length === 0) parts.push(`${s}s`);
+    return parts.join(' ');
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const videoLength = parseFloat(videoLengthInput.value);
+    const fps = parseFloat(fpsInput.value);
+    const interval = parseFloat(intervalInput.value);
+
+    if (isNaN(videoLength) || isNaN(fps) || isNaN(interval)) return;
+
+    const totalFrames = Math.round(videoLength * fps);
+    const realTimeSeconds = videoLength * fps * interval;
+
+    outFrames.textContent = totalFrames.toLocaleString();
+    outTime.textContent = formatDuration(realTimeSeconds);
+    resultDiv.classList.remove('hidden');
+  });
+</script>

@@ -12,6 +12,7 @@ const sections = [
 		label: 'Resources',
 		links: [
 			{ href: '/blog', label: 'Blog' },
+			{ href: '/tools/timelapse-duration-calculator', label: 'Timelapse Duration Calculator'}
 		],
 	},
 	{
