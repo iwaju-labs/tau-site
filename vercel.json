@@ -1,4 +1,17 @@
 {
+    "redirects": [
+        {
+            "source": "/:path(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.trytau.app"
+                }
+            ],
+            "destination": "https://trytau.app/:path",
+            "permanent": true
+        }
+    ],
     "headers": [
         {
             "source": "/(.*)",
