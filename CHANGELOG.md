@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to Tau will be documented here
+## [1.4.0]
+### new features
+- added new **IMPORT** feature
+  - edit existing video timelapses
+  - get accurate edits using the video duration, fps, and interval
+### other
+- ux improvements
 ## [1.3.3] 2026-04-07
 - added a new watermark option
 - ux improvements
