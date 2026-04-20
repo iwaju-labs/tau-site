@@ -19,7 +19,7 @@ const {
 	author,
 } = Astro.props
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
 const ogImageAbsolute = new URL(ogImage, Astro.site).toString();
 
 const pathSegments = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean);
