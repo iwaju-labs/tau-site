@@ -10,9 +10,30 @@ import Features from '../components/Features.tsx';
 import Pricing from '../components/Pricing.tsx';
 import FAQ from '../components/FAQ.tsx';
 import Footer from '../components/Footer.tsx';
+import { faqs } from '../data/faqs';
+
+const keywords = [
+	// Core product
+	'timelapse app', 'timelapse software', 'timelapse recorder', 'timelapse editor',
+	'timelapse recording software', 'timelapse recording app', 'timelapse creator', 'timelapse maker',
+	// Platform-specific (high intent)
+	'timelapse app for mac', 'timelapse app for windows', 'best timelapse app',
+	'how to record timelapse on mac', 'how to make a timelapse on mac',
+	// High-volume trending (from search data)
+	'video timelapse', 'timelapse video', 'timelapse camera', 'camera timelapse',
+	'construction timelapse', 'timelapse photography', 'ai timelapse',
+	// Long-tail / feature-specific
+	'timelapse with overlays', 'screen timelapse', 'timelapse for windows',
+];
 ---
 
-<Layout>
+<Layout
+	title="Tau — Timelapse Recorder & Editor for Mac & Windows"
+	description="Create stunning timelapses on macOS and Windows. Record, edit, and export with customizable overlays, filters, and smooth editing tools. Download free today."
+	keywords={keywords}
+	jsonLdSchema="software"
+	faqItems={faqs}
+>
 	<Navbar />
 	<Hero />
 	<DemoSection client:load />

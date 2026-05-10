@@ -15,6 +15,7 @@ tags: [
 "timelapse video"
 ]
 heroImage: "/blogs/blog-og-images/free-tool-timelapse-duration-calculator.jpg"
+category: mofu
 ---
 
 ## How Long Does Your Timelapse Capture?

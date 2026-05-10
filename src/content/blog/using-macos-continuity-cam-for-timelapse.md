@@ -4,6 +4,7 @@ description: "A tutorial for macOS users of Tau, to help them get the most out o
 pubDate: "2026-03-24"
 author: "dom (@_dngi)"
 tags: ["macOS", "Tau", "Tau App", "Continuity Camera", "Timelapse", "iPhone as Webcam", "Mac Productivity", "Tutorial"]
+category: tofu
 heroImage: "/blogs/blog-og-images/using-continuity-camera.jpg"
 ---
 

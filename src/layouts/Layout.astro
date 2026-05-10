@@ -8,6 +8,9 @@ interface Props {
 	pubDate?: string;
 	type?: string;
 	author?: string;
+	keywords?: string[];
+	jsonLdSchema?: 'website' | 'software';
+	faqItems?: { q: string; a: string }[];
 }
 
 const {
@@ -17,6 +20,9 @@ const {
 	pubDate,
 	type = 'website',
 	author,
+	keywords,
+	jsonLdSchema = 'website',
+	faqItems,
 } = Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
@@ -57,6 +63,20 @@ const jsonLd = type === 'article'
 			url: 'https://trytau.app',
 		},
 	}
+	: jsonLdSchema === 'software'
+	? {
+		'@context': 'https://schema.org',
+		'@type': 'SoftwareApplication',
+		name: 'Tau',
+		applicationCategory: 'MultimediaApplication',
+		operatingSystem: 'macOS, Windows',
+		description,
+		url: 'https://trytau.app',
+		offers: [
+			{ '@type': 'Offer', price: '19', priceCurrency: 'USD', name: 'Solo' },
+			{ '@type': 'Offer', price: '29', priceCurrency: 'USD', name: 'Pro' },
+		],
+	}
 	: {
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
@@ -64,6 +84,25 @@ const jsonLd = type === 'article'
 		url: 'https://trytau.app',
 		description,
 	};
+
+const organizationLd = jsonLdSchema === 'software' ? {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'Tau',
+	url: 'https://trytau.app',
+	logo: { '@type': 'ImageObject', url: 'https://trytau.app/tau-assets/tau-logo.png' },
+	sameAs: ['https://twitter.com/_dngi'],
+} : null;
+
+const faqLd = faqItems && faqItems.length > 0 ? {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: faqItems.map(item => ({
+		'@type': 'Question',
+		name: item.q,
+		acceptedAnswer: { '@type': 'Answer', text: item.a },
+	})),
+} : null;
 ---
 
 <!doctype html>
@@ -79,6 +118,7 @@ const jsonLd = type === 'article'
 		<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" /></noscript>
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		{keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
 		<title>{title}</title>
 		<!-- Canonical -->
 		<link rel="canonical" href={canonicalURL} />
@@ -98,6 +138,8 @@ const jsonLd = type === 'article'
 		<meta name="twitter:image" content={ogImageAbsolute} />
 		<!-- JSON-LD -->
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+		{organizationLd && <script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />}
+		{faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
 		{breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 		<script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="8bcfcf1e-3021-4d02-9b43-6a7534e4b9d7"></script>
 	</head>

@@ -4,6 +4,7 @@ description: "Welcome to the Tau blog, where I'll share updates, tips, and behin
 pubDate: 2026-03-21
 author: "dom"
 tags: ["updates", "announcement"]
+category: tofu
 heroImage: "/blogs/blog-og-images/welcome-to-tau.jpg"
 ---
 

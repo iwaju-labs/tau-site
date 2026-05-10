@@ -45,6 +45,18 @@ export default defineConfig({
         if (item.url.startsWith('https://trytau.app/blog/')) {
           return { ...item, changefreq: ChangeFreqEnum.MONTHLY, priority: 0.7 };
         }
+        // Features index
+        if (item.url === 'https://trytau.app/features') {
+          return { ...item, changefreq: ChangeFreqEnum.MONTHLY, priority: 0.75, lastmod: new Date().toISOString() };
+        }
+        // Individual feature pages — high-intent, keyword-rich
+        if (item.url.startsWith('https://trytau.app/features/')) {
+          return { ...item, changefreq: ChangeFreqEnum.MONTHLY, priority: 0.8 };
+        }
+        // Free tools — high-intent landing pages
+        if (item.url.startsWith('https://trytau.app/tools/')) {
+          return { ...item, changefreq: ChangeFreqEnum.MONTHLY, priority: 0.75 };
+        }
         // Changelog
         if (item.url === 'https://trytau.app/changelog') {
           return { ...item, changefreq: ChangeFreqEnum.WEEKLY, priority: 0.6, lastmod: new Date().toISOString() };

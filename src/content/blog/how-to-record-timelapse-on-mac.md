@@ -4,6 +4,7 @@ description: "Learn how to create a timelapse on Mac using built-in tools, OBS, 
 pubDate: "2026-03-30"
 author: "dom (@_dngi)"
 tags: ["timelapse mac", "mac timelapse", "screen timelapse", "timelapse tutorial", "productivity videos"]
+category: tofu
 heroImage: "/blogs/blog-og-images/how-to-create-timelapse-mac.jpg"
 ---
 
