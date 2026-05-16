@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
+import { notifyDownload } from '../../lib/discord';
 
 export const prerender = false;
 
@@ -54,8 +55,8 @@ export const GET: APIRoute = async ({ request, redirect, clientAddress }) => {
     if (pathMatch?.[1]) {
       const filename = pathMatch[1].trim();
       const downloadUrl = `https://releases.trytau.app/${filename}`;
-      
-      // Redirect the user's browser straight to the Cloudflare R2 file
+
+      notifyDownload({ os: os ?? 'unknown', filename }).catch(() => {});
       return redirect(downloadUrl, 302);
     } else {
       console.error('Could not parse path from yml:', ymlText);

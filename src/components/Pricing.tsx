@@ -80,10 +80,10 @@ export default function Pricing() {
 					<h3 className="text-lg font-semibold text-white">Solo</h3>
 					<p className="mt-1 text-sm text-zinc-400">Best for personal use</p>
 
-					<div className="mt-6 flex items-baseline gap-2">
+					<div className="mt-6">
 						<span className="text-5xl font-bold text-white">{data.solo}</span>
 						{nextPrices && (
-							<span className="text-sm text-zinc-500 line-through">{nextPrices.solo}</span>
+							<p className="mt-1.5 text-xs text-amber-400">↑ Rises to {nextPrices.solo} next tier</p>
 						)}
 					</div>
 					<p className="mt-2 text-sm text-zinc-400">1 device</p>
@@ -98,15 +98,8 @@ export default function Pricing() {
 						))}
 					</ul>
 
-					<a
-						href="/api/checkout?plan=solo"
-						className="mt-8 py-3 text-center text-sm font-semibold bg-white text-zinc-900 hover:bg-zinc-200 transition"
-					>
-						Buy Solo
-					</a>
-
 					{data.spotsLeft !== null && capacity !== null && fillPct !== null && (
-						<div className="mt-5">
+						<div className="mt-8">
 							<div className="flex items-center gap-1.5 text-xs text-zinc-400 mb-1.5">
 								<span className="relative flex h-2 w-2">
 									<span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-50 animate-ping" />
@@ -122,20 +115,28 @@ export default function Pricing() {
 							</div>
 						</div>
 					)}
+
+					<a
+						href="/api/checkout?plan=solo"
+						className="mt-4 py-3 text-center text-sm font-semibold bg-white text-zinc-900 hover:bg-zinc-200 transition"
+					>
+						Buy Solo — {data.solo}
+					</a>
 				</div>
 
 				{/* Pro */}
 				<div className="border border-white bg-white text-zinc-900 p-8 flex flex-col relative overflow-hidden rounded-2xl">
-					<span className="absolute top-4 right-4 bg-zinc-900 text-white text-xs font-bold px-3 py-1">
-						Best Deal
-					</span>
+					<div className="absolute top-4 right-4 text-right">
+						<span className="bg-zinc-900 text-white text-xs font-bold px-3 py-1 block">Best Value</span>
+						<span className="text-zinc-500 text-xs mt-0.5 block">3 devices · less than 2×</span>
+					</div>
 					<h3 className="text-lg font-semibold">Pro</h3>
 					<p className="mt-1 text-sm text-zinc-600">Best for creators with multiple machines</p>
 
-					<div className="mt-6 flex items-baseline gap-2">
+					<div className="mt-6">
 						<span className="text-5xl font-bold">{data.pro}</span>
 						{nextPrices && (
-							<span className="text-sm text-zinc-400 line-through">{nextPrices.pro}</span>
+							<p className="mt-1.5 text-xs text-amber-600">↑ Rises to {nextPrices.pro} next tier</p>
 						)}
 					</div>
 					<p className="mt-2 text-sm text-zinc-600">Up to 3 devices</p>
@@ -150,15 +151,8 @@ export default function Pricing() {
 						))}
 					</ul>
 
-					<a
-						href="/api/checkout?plan=pro"
-						className="mt-8 py-3 text-center text-sm font-semibold bg-zinc-900 text-white hover:bg-zinc-700 transition"
-					>
-						Buy Pro
-					</a>
-
 					{data.spotsLeft !== null && capacity !== null && fillPct !== null && (
-						<div className="mt-5">
+						<div className="mt-8">
 							<div className="flex items-center gap-1.5 text-xs text-zinc-500 mb-1.5">
 								<span className="relative flex h-2 w-2">
 									<span className="absolute inline-flex h-full w-full rounded-full bg-zinc-900 opacity-50 animate-ping" />
@@ -174,6 +168,13 @@ export default function Pricing() {
 							</div>
 						</div>
 					)}
+
+					<a
+						href="/api/checkout?plan=pro"
+						className="mt-4 py-3 text-center text-sm font-semibold bg-zinc-900 text-white hover:bg-zinc-700 transition"
+					>
+						Buy Pro — {data.pro}
+					</a>
 				</div>
 			</div>
 		</section>

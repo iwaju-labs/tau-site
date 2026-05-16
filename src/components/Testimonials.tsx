@@ -1,33 +1,37 @@
-import { Star, UserCircle } from 'lucide-react';
+import { Star, BadgeCheck } from 'lucide-react';
 
 interface Testimonial {
 	quote: string;
 	author?: string;
+	verified?: boolean;
 }
 
-// Add your testimonials here
 const testimonials: Testimonial[] = [
-	// { quote: "...", author: "..." },
 	{
-		quote: "Sooo clean!",
-		author: "Comment on X"
+		quote: "I'm using it to record my study sessions, and it helps me stay focused. I also love how customizable it is!",
+		author: "Tau user",
+		verified: true,
 	},
 	{
 		quote: "It's so easy to use. I don't know how to edit, so being able to manage everything here is amazing!",
-		author: "Tau user"
+		author: "Tau user",
+		verified: true,
 	},
 	{
 		quote: "Love the widget saying the time and the progress bar",
-		author: "Comment on X"
+		author: "Comment on X",
+		verified: false,
+	},
+	{
+		quote: "Sooo clean!",
+		author: "Comment on X",
+		verified: false,
 	},
 	{
 		quote: "cleannn UI damn",
-		author: "Comment on X"
+		author: "Comment on X",
+		verified: false,
 	},
-	{
-		quote: "I'm using it to record my study sessions, and it helps me stay focused. I also love how customizable it is!",
-		author: "Tau user"
-	}
 ];
 
 export default function Testimonials() {
@@ -55,7 +59,7 @@ export default function Testimonials() {
 			>
 				{repeated.map((t, i) => (
 					<div
-						key={i}
+						key={`${t.quote}-${i}`}
 						className="w-72 shrink-0 border border-zinc-800 bg-zinc-900 p-6 rounded-md"
 					>
 						<div className="flex gap-0.5 mb-3">
@@ -65,8 +69,13 @@ export default function Testimonials() {
 						</div>
 						<p className="text-sm text-zinc-300 leading-relaxed">"{t.quote}"</p>
 						<div className="mt-4 flex items-center gap-2">
-							<UserCircle size={20} className="text-zinc-600" />
-							<p className="text-xs text-zinc-500">— {t.author}</p>
+							{t.verified
+								? <BadgeCheck size={15} className="text-blue-400 shrink-0" />
+								: <span className="text-zinc-600 text-xs font-bold shrink-0">𝕏</span>
+							}
+							<p className="text-xs text-zinc-500">
+								{t.verified ? <span className="text-zinc-400">{t.author}</span> : t.author}
+							</p>
 						</div>
 					</div>
 				))}

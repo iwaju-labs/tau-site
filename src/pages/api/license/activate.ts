@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { Polar } from '@polar-sh/sdk';
+import { notifyLicenseActivation } from '../../../lib/discord';
 
 export const prerender = false;
 
@@ -34,6 +35,9 @@ export const POST: APIRoute = async ({ request }) => {
       label,
       conditions: conditions || {},
     });
+
+    const keyMasked = key.length > 8 ? `${key.slice(0, 4)}…${key.slice(-4)}` : key;
+    notifyLicenseActivation({ keyMasked, label }).catch(() => {});
 
     return new Response(JSON.stringify(result), {
       status: 200,

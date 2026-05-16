@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Polar } from '@polar-sh/sdk';
 import { getPricingTier } from '../../lib/redis';
+import { notifyCheckout } from '../../lib/discord';
 
 export const prerender = false;
 
@@ -46,6 +47,7 @@ export const GET: APIRoute = async ({ request, redirect }) => {
       successUrl: successUrl,
     });
 
+    notifyCheckout({ plan, tierIndex }).catch(() => {});
     return redirect(checkout.url);
   } catch (error) {
     console.error('Polar checkout error:', error);

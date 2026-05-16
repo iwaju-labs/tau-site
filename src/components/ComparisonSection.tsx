@@ -1,7 +1,3 @@
-// TODO: Add your comparison assets to /public/tau-assets/
-// comparison-before.mp4 — plain timelapse without Tau
-// comparison-after.mp4  — timelapse made with Tau
-
 export default function ComparisonSection() {
 	return (
 		<section className="py-24 px-6">
