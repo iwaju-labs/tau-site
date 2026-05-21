@@ -5,7 +5,6 @@ pubDate: 2026-03-21
 author: "dom"
 tags: ["updates", "announcement"]
 category: tofu
-heroImage: "/blogs/blog-og-images/welcome-to-tau.jpg"
 ---
 
 Welcome to the Tau blog! This is where I'll share product updates, timelapse tips, and everything going on behind the scenes with Tau.

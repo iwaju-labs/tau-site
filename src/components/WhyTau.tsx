@@ -4,9 +4,11 @@ type CellValue = true | false | 'partial' | null;
 
 const rows: { feature: string; tau: CellValue; obs: CellValue; capcut: CellValue; phone: CellValue }[] = [
 	{ feature: 'Purpose-built for timelapses',        tau: true,      obs: false,     capcut: false,     phone: 'partial' },
+	{ feature: 'Screen recording',                    tau: true,      obs: true,      capcut: false,     phone: false     },
+	{ feature: 'Camera recording',                    tau: true,      obs: true,      capcut: false,     phone: true      },
+	{ feature: 'Screen + camera simultaneously',      tau: true,      obs: 'partial', capcut: false,     phone: false     },
 	{ feature: 'Smart timer overlays',                tau: true,      obs: false,     capcut: 'partial',  phone: false     },
 	{ feature: 'Record + Edit + Export in one app',   tau: true,      obs: false,     capcut: false,     phone: false     },
-	{ feature: 'iPhone as camera source (macOS)',      tau: true,      obs: false,     capcut: false,     phone: null      },
 	{ feature: 'One-click export (MP4 / GIF / WEBM)', tau: true,      obs: false,     capcut: false,     phone: false     },
 	{ feature: 'Runs quietly in the background',      tau: true,      obs: false,     capcut: null,      phone: false     },
 ];

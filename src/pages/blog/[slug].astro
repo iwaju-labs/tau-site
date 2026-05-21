@@ -42,7 +42,7 @@ const readingTime = Math.max(1, Math.round(words / 200));
 <Layout
   title={`${post.data.title} - Tau Blog`}
   description={post.data.description}
-  ogImage={post.data.heroImage}
+  ogImage={`/api/og?title=${encodeURIComponent(post.data.title)}`}
   pubDate={post.data.pubDate.toISOString()}
   type="article"
   author={post.data.author}

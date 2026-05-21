@@ -10,6 +10,11 @@
             ],
             "destination": "https://trytau.app/:path",
             "permanent": true
+        },
+        {
+            "source": "/features/record-from-any-camera",
+            "destination": "/features/record-from-any-source",
+            "permanent": true
         }
     ],
     "headers": [

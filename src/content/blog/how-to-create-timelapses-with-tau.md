@@ -5,7 +5,6 @@ pubDate: "2026-03-22"
 author: "dom (@_dngi)"
 tags: ["tutorial", "timelapse", "how to", "record", "tau"]
 category: tofu
-heroImage: "/blogs/blog-og-images/how-to-create-timelapse.jpg"
 ---
 
 <img src="/blogs/blog-assets/timelapse-example.png" />

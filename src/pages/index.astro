@@ -29,24 +29,34 @@ const keywords = [
 	'timelapse recording software', 'timelapse recording app', 'timelapse creator', 'timelapse maker',
 	// Platform-specific (high intent)
 	'timelapse app for mac', 'timelapse app for windows', 'best timelapse app',
+	'timelapse software for mac', 'timelapse software for windows',
 	'how to record timelapse on mac', 'how to make a timelapse on mac',
-	// High-volume trending (from search data)
-	'video timelapse', 'timelapse video', 'timelapse camera', 'camera timelapse',
-	'construction timelapse', 'timelapse photography', 'ai timelapse',
-	// Long-tail / feature-specific
-	'timelapse with overlays', 'screen timelapse', 'timelapse for windows',
+	// Screen recording
+	'screen timelapse', 'screen recording timelapse', 'screen timelapse recorder',
+	'record screen as timelapse', 'screen capture timelapse', 'how to make a screen timelapse',
+	'screen recorder mac', 'screen recorder windows',
+	// Multi-source
+	'screen and camera recording', 'record screen and webcam', 'screen and webcam timelapse',
+	'multi source timelapse recorder',
+	// Use-case / audience (coding, design, creative)
+	'coding timelapse', 'programming timelapse', 'coding session recorder',
+	'design process timelapse', 'art timelapse', 'digital art timelapse',
+	'devlog timelapse', 'workflow timelapse',
+	// Feature-specific
+	'timelapse with overlays', 'timelapse with timer overlay',
+	'video timelapse', 'timelapse video',
 ];
 ---
 
 <Layout
-	title="Tau — Timelapse Recorder & Editor for Mac & Windows"
-	description="Create stunning timelapses on macOS and Windows. Record, edit, and export with customizable overlays, filters, and smooth editing tools. Download free today."
+	title="Tau — Screen & Camera Timelapse Recorder for Mac & Windows"
+	description="Record your screen, camera, or both at once — then edit and export stunning timelapses on macOS and Windows. Smart overlays, multi-source recording, and one-click export."
 	keywords={keywords}
 	jsonLdSchema="software"
 	faqItems={faqs}
 >
-	<PromoBanner currentPrice={solo} nextPrice={nextPrice} spotsLeft={spotsLeft} />
 	<Navbar />
+	<PromoBanner currentPrice={solo} nextPrice={nextPrice} spotsLeft={spotsLeft} />
 	<Hero spotsLeft={spotsLeft} nextPrice={nextPrice} />
 	<DemoSection client:load />
 	<WhyTau />

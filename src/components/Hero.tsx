@@ -16,14 +16,14 @@ export default function Hero({ spotsLeft, nextPrice }: HeroProps) {
 				height="192"
 				className="pointer-events-none invert -mb-4 select-none w-48 opacity-100 animate-[breathe_4s_ease-in-out_infinite]"
 			/>
-			<h1 className="max-w-3xl text-5xl font-bold tracking-tight text-white sm:text-7xl select-none">
-				Stop making <span className='text-red-700'>boring</span> timelapses
+			<h1 className="max-w-full text-7xl font-bold tracking-tight text-white sm:text-7xl md:text-7xl lg:text-7xl select-none">
+				Stop making <span className='text-[#aa1e0f]'>boring</span> timelapses.
 			</h1>
 			<p className="mt-3 text-sm text-zinc-500 tracking-wide">
-				You spent hours on it. Show people in seconds.
+				You spent hours on it. Show people your work in style.
 			</p>
 			<p className="mt-6 max-w-xl text-lg text-zinc-400">
-				Tau lets you record, edit, and export timelapses that people actually want to watch — with smart overlays/filters, and one-click export.
+				Tau lets you record your screen, your camera, or both at once — then edit and export timelapses that people actually want to watch, with smart overlays and one-click export.
 			</p>
 
 			{spotsLeft != null && spotsLeft > 0 && nextPrice && (

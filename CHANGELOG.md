@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to Tau will be documented here
+## [2.0.1] 2026-05-19
+- fixed issue with multi-source captures counting frames incorrectly
+
+## [2.0.0] 2026-05-14
+- SCREEN RECORDING INTRODUCED
+  - choose to your screen, camera, or both
 ## [1.4.0]
 ### new features
 - added new **IMPORT** feature

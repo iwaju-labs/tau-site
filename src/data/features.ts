@@ -30,29 +30,29 @@ export interface Feature {
 
 export const features: Feature[] = [
 	{
-		slug: 'record-from-any-camera',
+		slug: 'record-from-any-source',
 		icon: Video,
-		title: 'Record from any camera',
+		title: 'Record from any source',
 		description:
-			"Capture your work directly — whether it's a coding session, design process, or art piece. MacOS users can use iPhones as a camera input.",
+			"Record your screen, your camera, or both at once. Capture coding sessions, design work, creative processes — from any source your system supports.",
 		overview:
-			'Tau works with any camera your system recognises — built-in webcam, USB camera, or on macOS, your iPhone via Continuity Camera. Pick your source, set your frame rate, and start recording. No drivers, no setup friction.',
-		tags: ['recording', 'camera', 'setup'],
+			'Tau records from any source your system recognises — your screen, a built-in webcam, a USB camera, or on macOS, your iPhone via Continuity Camera. You can also record screen and camera simultaneously to show both your display and your face in the same timelapse. Pick your source, set your frame rate, and start recording.',
+		tags: ['recording', 'camera', 'screen recording', 'setup'],
 		benefits: [
+			{
+				title: 'Screen recording',
+				description:
+					'Record your screen as a timelapse — great for coding sessions, design work, 3D renders, or anything happening on your display.',
+			},
+			{
+				title: 'Multi-source recording (screen + camera)',
+				description:
+					'Capture your screen and camera at the same time. Show your work on-display alongside your face — great for tutorials, devlogs, or process videos.',
+			},
 			{
 				title: 'Any camera source',
 				description:
 					'Use your built-in webcam, a USB camera, or on macOS, your iPhone as a high-quality camera input through Continuity Camera.',
-			},
-			{
-				title: 'Screen capture support (Coming Soon)',
-				description:
-					'Record your screen as a timelapse instead of a camera feed — great for coding sessions, design work, or anything happening on your display.',
-			},
-			{
-				title: 'Live preview while recording',
-				description:
-					'See exactly what Tau is capturing before you commit. Adjust framing or lighting without stopping and restarting.',
 			},
 			{
 				title: 'Lightweight on resources',
@@ -66,9 +66,9 @@ export const features: Feature[] = [
 				description: 'Launch Tau and click "New Recording" from the main screen.',
 			},
 			{
-				title: 'Select your camera source',
+				title: 'Select your source',
 				description:
-					'Pick from any available camera input in the dropdown — webcam, iPhone, USB cam, or screen capture.',
+					'Pick from any available source in the dropdown — your screen, webcam, iPhone, USB cam, or enable both screen and camera for multi-source recording.',
 			},
 			{
 				title: 'Set your frame rate',
@@ -83,9 +83,9 @@ export const features: Feature[] = [
 		],
 		faq: [
 			{
-				question: 'Can I use multiple cameras at the same time?',
+				question: 'Can I record my screen and camera at the same time?',
 				answer:
-					'Not currently. Tau records from one source per session. If you need multiple angles, record separate sessions and combine in the editor.',
+					'Yes. Tau supports multi-source recording — you can capture your screen and camera simultaneously and they\'ll both appear in your timelapse.',
 			},
 			{
 				question: 'Does Tau work on Windows?',
@@ -98,9 +98,9 @@ export const features: Feature[] = [
 					'Any camera that your operating system recognises will appear in Tau\'s source list. This includes built-in webcams, most USB cameras, and on macOS, iPhones.',
 			},
 			{
-				question: 'Can I record my screen instead of a camera?',
+				question: 'Can I record my screen as a timelapse?',
 				answer:
-					'Not currently. I plan on working on that once the camera-based features are stable.',
+					'Yes. Select your screen as the recording source and Tau will capture it as a timelapse, just like a camera feed.',
 			},
 		],
 	},
