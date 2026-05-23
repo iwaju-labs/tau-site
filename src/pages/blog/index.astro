@@ -25,24 +25,8 @@ function readingTime(body: string) {
         {posts.map((post) => (
           <a
             href={`/blog/${post.id}`}
-            class="group flex gap-5 border border-zinc-800 rounded-2xl p-4 hover:border-zinc-600 transition-colors items-center"
+            class="group flex flex-col gap-2 border border-zinc-800 rounded-2xl p-5 hover:border-zinc-600 transition-colors"
           >
-            <div class="w-40 aspect-video shrink-0 rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-              {post.data.heroImage ? (
-                <img
-                  src={post.data.heroImage}
-                  alt={post.data.title}
-                  class="w-full h-full object-contain"
-                />
-              ) : (
-                <div class="w-full h-full flex items-center justify-center text-zinc-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 19.5h18M3.75 4.5h16.5A.75.75 0 0121 5.25v13.5a.75.75 0 01-.75.75H3.75A.75.75 0 013 18.75V5.25A.75.75 0 013.75 4.5z" />
-                  </svg>
-                </div>
-              )}
-            </div>
-
             <div class="flex flex-col gap-1.5 min-w-0">
               <h2 class="text-base font-semibold text-white group-hover:text-zinc-200 transition-colors leading-snug">
                 {post.data.title}

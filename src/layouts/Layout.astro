@@ -11,6 +11,7 @@ interface Props {
 	keywords?: string[];
 	jsonLdSchema?: 'website' | 'software';
 	faqItems?: { q: string; a: string }[];
+	noindex?: boolean;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
 	keywords,
 	jsonLdSchema = 'website',
 	faqItems,
+	noindex = false,
 } = Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
@@ -122,6 +124,7 @@ const faqLd = faqItems && faqItems.length > 0 ? {
 		<title>{title}</title>
 		<!-- Canonical -->
 		<link rel="canonical" href={canonicalURL} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<!-- RSS -->
 		<link rel="alternate" type="application/rss+xml" title="Tau Blog" href="/rss.xml" />
 		<!-- OG & Twitter -->
