@@ -1,11 +1,11 @@
 import type { APIRoute } from 'astro';
+import { Polar } from '@polar-sh/sdk';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { notifyDownload } from '../../lib/discord';
 
 export const prerender = false;
 
-// Create a new ratelimiter, that allows 10 requests per 10 seconds
 const ratelimit = new Ratelimit({
   redis: new Redis({
     url: import.meta.env.UPSTASH_REDIS_REST_URL || process.env.UPSTASH_REDIS_REST_URL || '',
@@ -15,54 +15,59 @@ const ratelimit = new Ratelimit({
   analytics: true,
 });
 
+const polar = new Polar({
+  accessToken: import.meta.env.POLAR_ACCESS_TOKEN || process.env.POLAR_ACCESS_TOKEN,
+});
+
 export const GET: APIRoute = async ({ request, redirect, clientAddress }) => {
   const url = new URL(request.url);
-  const os = url.searchParams.get('os'); // 'windows' or 'mac'
+  const os = url.searchParams.get('os');
+  const key = url.searchParams.get('key');
+
+  if (!key) {
+    return new Response('A valid license key is required to download. Please check your purchase email.', { status: 401 });
+  }
+
+  const organizationId = import.meta.env.POLAR_ORGANIZATION_ID || process.env.POLAR_ORGANIZATION_ID;
 
   try {
-    // Only attempt rate limiting if the env vars are available
+    await polar.licenseKeys.validate({ key, organizationId });
+  } catch {
+    return new Response('Invalid or unrecognised license key. Please check your purchase email and try again.', { status: 403 });
+  }
+
+  try {
     if (import.meta.env.UPSTASH_REDIS_REST_URL || process.env.UPSTASH_REDIS_REST_URL) {
-      // Use client IP as the identifier. clientAddress is provided by Astro.
       const identifier = clientAddress || request.headers.get("x-forwarded-for") || 'anonymous';
       const { success } = await ratelimit.limit(`download_${identifier}`);
-
       if (!success) {
         return new Response('Too many requests, please try again later.', { status: 429 });
       }
     }
-    let ymlUrl = '';
-    
-    if (os === 'mac') {
-      ymlUrl = 'https://releases.trytau.app/latest-mac.yml';
-    } else {
-      ymlUrl = 'https://releases.trytau.app/latest.yml';
-    }
+
+    const ymlUrl = os === 'mac'
+      ? 'https://releases.trytau.app/latest-mac.yml'
+      : 'https://releases.trytau.app/latest.yml';
 
     const response = await fetch(ymlUrl);
-    
     if (!response.ok) {
       console.error(`Failed to fetch ${ymlUrl}: ${response.statusText}`);
-      // Fallback for when no releases exist yet
       return new Response('No release found yet. Please check back later.', { status: 404 });
     }
 
     const ymlText = await response.text();
-    
-    // Parse the path line out of the YAML using Regex (efficient, no libraries needed)
-    // latest.yml typically contains a line like: "path: Tau-Setup-1.0.0.exe"
     const pathMatch = /^path:\s*(.+)$/m.exec(ymlText);
-    
+
     if (pathMatch?.[1]) {
       const filename = pathMatch[1].trim();
       const downloadUrl = `https://releases.trytau.app/${filename}`;
-
       notifyDownload({ os: os ?? 'unknown', filename }).catch(() => {});
       return redirect(downloadUrl, 302);
-    } else {
-      console.error('Could not parse path from yml:', ymlText);
-      return new Response('Error parsing release metadata.', { status: 500 });
     }
-    
+
+    console.error('Could not parse path from yml:', ymlText);
+    return new Response('Error parsing release metadata.', { status: 500 });
+
   } catch (error) {
     console.error('Download routing error:', error);
     return new Response('Error handling download.', { status: 500 });
