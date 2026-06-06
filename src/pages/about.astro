@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.tsx';
+import Footer from '../components/Footer.tsx';
+
+const personLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'Dominion Gbadamosi',
+	url: 'https://trytau.app/about',
+	sameAs: ['https://twitter.com/_dngi'],
+	jobTitle: 'Indie Developer',
+	worksFor: {
+		'@type': 'Organization',
+		name: 'Tau',
+		url: 'https://trytau.app',
+	},
+	knowsAbout: [
+		'timelapse recording',
+		'macOS development',
+		'Windows development',
+		'video production software',
+		'indie software',
+	],
+};
+---
+
+<Layout
+	title="About — Tau"
+	description="Tau is built by Dominion Gbadamosi — an indie developer making tools for creators who want to share their process."
+>
+	<script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+	<Navbar client:load />
+	<main class="pt-32 pb-24 px-6 min-h-screen">
+		<div class="mx-auto max-w-2xl">
+
+			<h1 class="text-4xl font-bold tracking-tight text-[#1a0f0d]">About</h1>
+
+			<div class="mt-12 space-y-8 text-[#6b4f47] leading-relaxed">
+				<p class="text-lg">
+					Hi — I'm <strong class="text-[#1a0f0d]">Dominion</strong>, an indie developer. I built Tau because I kept wanting to share my work — coding sessions, design explorations, side projects — but every tool I tried was either a 4GB video of me typing slowly, or a sped-up mess with no personality.
+				</p>
+
+				<p>
+					Timelapse should be easy. Record your screen or camera, export something worth sharing, move on. I couldn't find an app that did that cleanly, so I built one.
+				</p>
+
+				<p>
+					Tau is a one-person project. I build it, support it, and use it myself. When something breaks or doesn't work how it should, I hear about it directly — and I fix it.
+				</p>
+
+				<div class="border-l-2 border-[#aa1e0f] pl-6 py-1">
+					<p class="text-[#1a0f0d] font-medium">
+						"Stop making boring timelapses."
+					</p>
+					<p class="text-sm mt-1">That's the whole idea.</p>
+				</div>
+
+				<p>
+					Tau works on macOS and Windows. It records at frame intervals natively — not a sped-up video, but a proper timelapse. You can record your screen, your camera, or both at once. Edit, add overlays, attach audio, and export to MP4, GIF, or WEBM without touching another app.
+				</p>
+
+				<p>
+					One-time payment. No subscription. Free updates for the current major version.
+				</p>
+			</div>
+
+			<div class="mt-16 flex flex-wrap gap-4">
+				<a
+					href="/#pricing"
+					class="bg-[#aa1e0f] px-8 py-3 text-sm font-bold text-[#ede6de] hover:bg-[#8a1800] transition"
+				>
+					Get Tau
+				</a>
+				<a
+					href="https://twitter.com/_dngi"
+					class="px-8 py-3 text-sm font-semibold text-[#6b4f47] border border-[#cfc4ba] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Follow on X →
+				</a>
+			</div>
+
+			<div class="mt-16 border-t border-[#cfc4ba] pt-10">
+				<h2 class="text-sm font-semibold text-[#9b8880] uppercase tracking-widest mb-6">Contact</h2>
+				<p class="text-[#6b4f47] text-sm">
+					Questions, issues, or feedback — email <a href="mailto:hello@usetau.app" class="text-[#aa1e0f] hover:underline">hello@usetau.app</a>. I read every message.
+				</p>
+			</div>
+
+		</div>
+	</main>
+	<Footer />
+</Layout>

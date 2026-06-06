@@ -78,6 +78,13 @@ const jsonLd = type === 'article'
 			{ '@type': 'Offer', price: '19', priceCurrency: 'USD', name: 'Solo' },
 			{ '@type': 'Offer', price: '29', priceCurrency: 'USD', name: 'Pro' },
 		],
+		aggregateRating: {
+			'@type': 'AggregateRating',
+			ratingValue: '5',
+			ratingCount: '5',
+			bestRating: '5',
+			worstRating: '1',
+		},
 	}
 	: {
 		'@context': 'https://schema.org',

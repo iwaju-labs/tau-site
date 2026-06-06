@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.tsx';
+import Footer from '../../components/Footer.tsx';
+---
+
+<Layout
+  title="Timelapse Frame Interval Calculator — Free Tool | Tau"
+  description="Free frame interval calculator — find the perfect capture interval for your timelapse. Enter your session length and desired video length to get the right interval."
+  keywords={['timelapse frame interval', 'timelapse capture interval', 'timelapse calculator', 'frame rate calculator', 'timelapse settings']}
+>
+  <Navbar client:load />
+
+  <main class="pt-32 pb-24 px-6 min-h-screen">
+    <div class="mx-auto max-w-xl">
+      <a href="/blog" class="text-sm text-[#6b4f47] hover:text-[#aa1e0f] transition-colors mb-10 inline-block">
+        ← Back to blog
+      </a>
+
+      <h1 class="text-4xl font-bold tracking-tight text-[#1a0f0d] mb-3">Frame Interval Calculator</h1>
+      <p class="text-[#6b4f47] mb-10">Find the right capture interval so your timelapse ends up exactly as long as you want.</p>
+
+      <form id="calc-form" class="space-y-6">
+
+        <div>
+          <label for="session-length" class="block text-sm font-medium text-[#6b4f47] mb-2">Recording session length (minutes)</label>
+          <input
+            id="session-length"
+            type="number"
+            min="1"
+            step="any"
+            placeholder="e.g. 120"
+            class="w-full rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-3 text-[#1a0f0d] placeholder-[#9b8880] outline-none focus:border-[#aa1e0f] transition"
+            required
+          />
+          <p class="text-xs text-[#9b8880] mt-1">How long do you plan to record? e.g. 120 for a 2-hour session.</p>
+        </div>
+
+        <div>
+          <label for="target-length" class="block text-sm font-medium text-[#6b4f47] mb-2">Desired timelapse length (seconds)</label>
+          <div class="flex gap-2 mb-2">
+            <button type="button" data-secs="30" class="length-preset rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-2 text-sm text-[#6b4f47] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition">30s</button>
+            <button type="button" data-secs="60" class="length-preset rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-2 text-sm text-[#6b4f47] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition">60s</button>
+            <button type="button" data-secs="90" class="length-preset rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-2 text-sm text-[#6b4f47] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition">90s</button>
+          </div>
+          <input
+            id="target-length"
+            type="number"
+            min="1"
+            step="any"
+            placeholder="e.g. 60"
+            class="w-full rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-3 text-[#1a0f0d] placeholder-[#9b8880] outline-none focus:border-[#aa1e0f] transition"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="fps" class="block text-sm font-medium text-[#6b4f47] mb-2">Output FPS</label>
+          <div class="flex gap-2 mb-2">
+            <button type="button" data-fps="24" class="fps-preset rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-2 text-sm text-[#6b4f47] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition">24</button>
+            <button type="button" data-fps="30" class="fps-preset rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-2 text-sm text-[#6b4f47] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition">30</button>
+            <button type="button" data-fps="60" class="fps-preset rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-2 text-sm text-[#6b4f47] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition">60</button>
+          </div>
+          <input
+            id="fps"
+            type="number"
+            min="1"
+            step="any"
+            placeholder="e.g. 30"
+            class="w-full rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-3 text-[#1a0f0d] placeholder-[#9b8880] outline-none focus:border-[#aa1e0f] transition"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-[#aa1e0f] px-6 py-3.5 text-base font-bold text-[#ede6de] hover:bg-[#8a1800] transition shadow-lg shadow-[#aa1e0f]/20"
+        >
+          Calculate
+        </button>
+      </form>
+
+      <div id="result" class="mt-8 hidden rounded-lg border border-[#cfc4ba] bg-[#e0d8cf] p-6">
+        <p class="text-xs font-semibold uppercase tracking-widest text-[#9b8880] mb-4">Result</p>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-[#6b4f47]">Capture interval</span>
+            <span id="out-interval" class="text-2xl font-bold text-[#aa1e0f] tabular-nums"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-[#6b4f47]">Total frames captured</span>
+            <span id="out-frames" class="text-lg font-semibold text-[#1a0f0d] tabular-nums"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-[#6b4f47]">Actual timelapse length</span>
+            <span id="out-duration" class="text-lg font-semibold text-[#1a0f0d] tabular-nums"></span>
+          </div>
+        </div>
+        <p class="text-xs text-[#9b8880] mt-4">Formula: Interval = (Session × 60) ÷ (Target seconds × FPS)</p>
+      </div>
+
+      <!-- How it works -->
+      <div class="mt-12 space-y-4 text-sm text-[#6b4f47]">
+        <h2 class="text-base font-semibold text-[#1a0f0d]">How frame intervals work</h2>
+        <p>
+          A timelapse captures one frame every N seconds instead of recording continuously. The interval controls how fast time appears to move in the final video.
+        </p>
+        <p>
+          A 2-hour session at 1 frame every 5 seconds gives you 1,440 frames. At 30fps output, that's a 48-second video. Change the interval to 10 seconds and the same session becomes a 24-second video.
+        </p>
+        <p>
+          Shorter intervals = smoother motion, longer video. Longer intervals = faster time, shorter video.
+        </p>
+      </div>
+
+      <p class="mt-12 text-sm text-[#9b8880] text-center">
+        Built by <a href="https://www.trytau.app" class="text-[#aa1e0f] hover:text-[#8a1800] transition underline underline-offset-4">Tau</a> — the timelapse app that handles this automatically.
+      </p>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const form = document.getElementById('calc-form') as HTMLFormElement;
+  const sessionInput = document.getElementById('session-length') as HTMLInputElement;
+  const targetInput = document.getElementById('target-length') as HTMLInputElement;
+  const fpsInput = document.getElementById('fps') as HTMLInputElement;
+  const resultDiv = document.getElementById('result') as HTMLElement;
+  const outInterval = document.getElementById('out-interval') as HTMLElement;
+  const outFrames = document.getElementById('out-frames') as HTMLElement;
+  const outDuration = document.getElementById('out-duration') as HTMLElement;
+
+  function activatePreset(group: string, value: string, inputId: string) {
+    document.querySelectorAll(`.${group}`).forEach((b) => {
+      b.classList.remove('!border-[#aa1e0f]', '!text-[#aa1e0f]');
+    });
+    const btn = document.querySelector(`.${group}[data-${group === 'fps-preset' ? 'fps' : 'secs'}="${value}"]`);
+    btn?.classList.add('!border-[#aa1e0f]', '!text-[#aa1e0f]');
+    (document.getElementById(inputId) as HTMLInputElement).value = value;
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.fps-preset').forEach((btn) => {
+    btn.addEventListener('click', () => activatePreset('fps-preset', btn.dataset.fps!, 'fps'));
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.length-preset').forEach((btn) => {
+    btn.addEventListener('click', () => activatePreset('length-preset', btn.dataset.secs!, 'target-length'));
+  });
+
+  function formatSeconds(s: number): string {
+    const mins = Math.floor(s / 60);
+    const secs = Math.round(s % 60);
+    if (mins === 0) return `${secs}s`;
+    return secs > 0 ? `${mins}m ${secs}s` : `${mins}m`;
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const sessionMins = parseFloat(sessionInput.value);
+    const targetSecs = parseFloat(targetInput.value);
+    const fps = parseFloat(fpsInput.value);
+
+    if (isNaN(sessionMins) || isNaN(targetSecs) || isNaN(fps)) return;
+
+    const totalFramesNeeded = targetSecs * fps;
+    const sessionSeconds = sessionMins * 60;
+    const interval = sessionSeconds / totalFramesNeeded;
+    const actualDuration = totalFramesNeeded / fps;
+
+    outInterval.textContent = `${interval < 1 ? interval.toFixed(2) : Math.round(interval)}s`;
+    outFrames.textContent = Math.round(totalFramesNeeded).toLocaleString();
+    outDuration.textContent = formatSeconds(actualDuration);
+    resultDiv.classList.remove('hidden');
+  });
+</script>

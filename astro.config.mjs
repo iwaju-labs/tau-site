@@ -57,6 +57,14 @@ export default defineConfig({
         if (item.url.startsWith('https://trytau.app/tools/')) {
           return { ...item, changefreq: ChangeFreqEnum.MONTHLY, priority: 0.75 };
         }
+        // Competitor comparison pages — high purchase intent
+        if (item.url.startsWith('https://trytau.app/vs/')) {
+          return { ...item, changefreq: ChangeFreqEnum.MONTHLY, priority: 0.85 };
+        }
+        // About page
+        if (item.url === 'https://trytau.app/about') {
+          return { ...item, changefreq: ChangeFreqEnum.YEARLY, priority: 0.5 };
+        }
         // Changelog
         if (item.url === 'https://trytau.app/changelog') {
           return { ...item, changefreq: ChangeFreqEnum.WEEKLY, priority: 0.6, lastmod: new Date().toISOString() };

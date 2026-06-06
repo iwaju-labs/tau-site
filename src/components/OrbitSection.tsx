@@ -104,7 +104,7 @@ export default function OrbitSection({
 							loop
 							muted
 							playsInline
-							className="w-160 aspect-video animate-[border-glow_2.5s_ease-in-out_infinite]"
+							className="w-160 aspect-video rounded-2xl animate-[border-glow_2.5s_ease-in-out_infinite]"
 							onContextMenu={e => e.preventDefault()}
 						/>
 					</div>

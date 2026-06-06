@@ -9,7 +9,7 @@ export default function FAQ() {
 				</h2>
 				<dl className="mt-16 space-y-6">
 					{faqs.map((faq) => (
-						<div key={faq.q} className="border border-[#cfc4ba] bg-[#e0d8cf] p-6">
+						<div key={faq.q} className="border border-[#cfc4ba] bg-[#e0d8cf] p-6 rounded-2xl">
 							<dt className="font-semibold text-[#1a0f0d]">{faq.q}</dt>
 							<dd className="mt-2 text-sm text-[#6b4f47]">{faq.a}</dd>
 						</div>

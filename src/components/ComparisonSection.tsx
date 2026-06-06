@@ -19,7 +19,7 @@ export default function ComparisonSection() {
 							loop
 							muted
 							playsInline
-							className="w-full aspect-video border border-[#cfc4ba]"
+							className="w-full aspect-video rounded-2xl border border-[#cfc4ba]"
 							onContextMenu={e => e.preventDefault()}
 						/>
 					</div>
@@ -33,7 +33,7 @@ export default function ComparisonSection() {
 							loop
 							muted
 							playsInline
-							className="w-full aspect-video animate-[border-glow_2.5s_ease-in-out_infinite]"
+							className="w-full aspect-video rounded-2xl animate-[border-glow_2.5s_ease-in-out_infinite]"
 							onContextMenu={e => e.preventDefault()}
 						/>
 					</div>

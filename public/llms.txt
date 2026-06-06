@@ -1,0 +1,66 @@
+# Tau
+
+> Tau is a timelapse recorder and editor for macOS and Windows. It lets you record your screen, camera, or both at once — then trim, add overlays, and export timelapses directly without external tools.
+
+## What Tau is
+
+Tau is a purpose-built timelapse app. Unlike general screen recorders (OBS, QuickTime) or video editors (ScreenFlow, Camtasia), Tau is designed specifically for the timelapse workflow: frame-interval capture, built-in editing, and one-click export.
+
+It runs quietly in the background while you work, capturing one frame every N seconds. When your session is done, you open the editor, trim, optionally add a timer overlay or audio, and export.
+
+## Who it is for
+
+- Developers recording coding sessions as timelapses
+- Designers documenting their design process
+- Artists creating art timelapse videos
+- Content creators making process videos for YouTube, X, Instagram, TikTok
+- Anyone who wants to show their work in a compressed, shareable format
+
+## Key Features
+
+- **Frame interval recording**: Capture 1 frame every N seconds — not a sped-up full-rate video, but true timelapse capture
+- **Screen recording**: Record your screen as a timelapse
+- **Camera recording**: Record your webcam, USB camera, or iPhone (Continuity Camera, macOS only)
+- **Multi-source**: Record screen and camera simultaneously in the same timelapse
+- **Timer overlays**: Add stopwatch, clock, or countdown overlays with custom fonts and positioning — burned into the export automatically
+- **Built-in editor**: Trim start/end points, attach audio
+- **Multi-format export**: One-click export to MP4, GIF, or WEBM
+- **Lightweight**: Designed to run in the background without slowing down your work
+
+## Pricing
+
+- **Solo**: €9.99 one-time payment — 1 device, all features, free updates
+- **Pro**: €17.99 one-time payment — up to 3 devices, priority support, early access
+- No subscription. No trial. If it doesn't work for you, reach out and they'll make it right.
+
+## Platform support
+
+- macOS (Intel + Apple Silicon)
+- Windows
+
+## Comparison to alternatives
+
+- **vs OBS Studio**: OBS records full video for streaming. It has no native frame interval mode — making a timelapse requires post-processing with FFmpeg or a video editor. Tau records at frame intervals natively, includes editing, and is purpose-built for timelapse.
+- **vs ScreenFlow**: ScreenFlow is a full video editor for Mac ($149+). It can record your screen but has no frame interval mode. Export to GIF/WEBM requires workarounds. Tau costs less, is cross-platform, and is designed specifically for timelapse.
+- **vs Loom**: Loom is a SaaS tool for async screen sharing — it records and hosts full-rate video. It is not a timelapse tool. Tau is a one-time purchase, offline, and timelapse-focused.
+- **vs QuickTime**: QuickTime records full-rate video with no frame interval mode. Timelapse requires speeding up the video in iMovie or another editor. Tau handles the full workflow natively.
+
+## Key pages
+
+- Homepage: https://trytau.app
+- Blog: https://trytau.app/blog
+- Features overview: https://trytau.app/features
+- Record from any source: https://trytau.app/features/record-from-any-source
+- Smart timer overlays: https://trytau.app/features/smart-timer-overlays
+- Minimal editor: https://trytau.app/features/minimal-editor
+- Export to multiple formats: https://trytau.app/features/export-to-multiple-formats
+- Pricing / Buy: https://trytau.app/#pricing
+- Free tools: https://trytau.app/tools/timelapse-duration-calculator
+
+## Contact
+
+hello@usetau.app
+
+## Developer
+
+Made by Dominion Gbadamosi. Follow on X: https://twitter.com/_dngi

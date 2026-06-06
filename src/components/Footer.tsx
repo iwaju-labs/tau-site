@@ -12,12 +12,23 @@ const sections = [
 		label: 'Resources',
 		links: [
 			{ href: '/blog', label: 'Blog' },
-			{ href: '/tools/timelapse-duration-calculator', label: 'Timelapse Duration Calculator'}
+			{ href: '/tools/timelapse-duration-calculator', label: 'Duration Calculator' },
+			{ href: '/tools/frame-interval-calculator', label: 'Interval Calculator' },
+			{ href: '/tools/timelapse-file-size-estimator', label: 'File Size Estimator' },
 		],
 	},
 	{
-		label: 'Legal',
+		label: 'Compare',
 		links: [
+			{ href: '/vs/obs', label: 'Tau vs OBS' },
+			{ href: '/vs/screenflow', label: 'Tau vs ScreenFlow' },
+			{ href: '/vs/loom', label: 'Tau vs Loom' },
+		],
+	},
+	{
+		label: 'Company',
+		links: [
+			{ href: '/about', label: 'About' },
 			{ href: '/privacy', label: 'Privacy' },
 			{ href: '/terms', label: 'Terms' },
 			{ href: 'https://www.twitter.com/_dngi', label: 'Contact' },
@@ -29,7 +40,7 @@ export default function Footer() {
 	return (
 		<footer className="border-t border-[#cfc4ba] py-16 px-6">
 			<div className="mx-auto max-w-5xl">
-				<div className="flex flex-col gap-12 sm:flex-row sm:justify-between">
+				<div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
 					{sections.map((section) => (
 						<div key={section.label}>
 							<p className="text-xs font-semibold uppercase tracking-widest text-[#9b8880]">
