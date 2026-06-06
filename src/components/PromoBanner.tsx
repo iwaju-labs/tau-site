@@ -8,15 +8,15 @@ export default function PromoBanner({ currentPrice, nextPrice, spotsLeft }: Prom
 	if (!nextPrice || spotsLeft === null || spotsLeft <= 0) return null;
 
 	return (
-		<div className="w-full bg-zinc-950 border-b border-zinc-800 py-2 px-4 text-center text-xs text-zinc-300">
+		<div className="w-full bg-[#aa1e0f] border-b border-[#8a1800] py-2 px-4 text-center text-xs text-[#ede6de]">
 			<span className="mr-1.5">🔥</span>
-			<span className="font-semibold text-white">Early bird pricing:</span>
+			<span className="font-semibold">Early bird pricing:</span>
 			{' '}only {spotsLeft} spot{spotsLeft === 1 ? '' : 's'} left at{' '}
-			<span className="font-semibold text-white">{currentPrice}</span>
-			{' '}— rises to <span className="text-zinc-400">{nextPrice}</span> after this tier.{' '}
+			<span className="font-semibold">{currentPrice}</span>
+			{' '}— rises to <span className="opacity-80">{nextPrice}</span> after this tier.{' '}
 			<a
 				href="/#pricing"
-				className="ml-1 font-semibold text-white underline underline-offset-2 hover:text-zinc-300 transition"
+				className="ml-1 font-semibold underline underline-offset-2 hover:opacity-80 transition"
 			>
 				Get it now →
 			</a>

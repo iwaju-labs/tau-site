@@ -13,7 +13,7 @@ export const GET: APIRoute = async ({ request }) => {
 				style={{
 					width: '1200px',
 					height: '628px',
-					background: '#09090b',
+					background: '#ede6de',
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
@@ -40,14 +40,14 @@ export const GET: APIRoute = async ({ request }) => {
 						style={{
 							width: '48px',
 							height: '48px',
-							background: 'white',
+							background: '#aa1e0f',
 							borderRadius: '12px',
 							display: 'flex',
 							alignItems: 'center',
 							justifyContent: 'center',
 							fontSize: '24px',
 							fontWeight: 900,
-							color: '#09090b',
+							color: '#ede6de',
 							letterSpacing: '-1px',
 						}}
 					>
@@ -57,7 +57,7 @@ export const GET: APIRoute = async ({ request }) => {
 						style={{
 							fontSize: '22px',
 							fontWeight: 700,
-							color: '#71717a',
+							color: '#6b4f47',
 							letterSpacing: '-0.5px',
 						}}
 					>
@@ -80,7 +80,7 @@ export const GET: APIRoute = async ({ request }) => {
 						style={{
 							fontSize: title.length > 60 ? '52px' : '64px',
 							fontWeight: 800,
-							color: '#ffffff',
+							color: '#1a0f0d',
 							lineHeight: 1.15,
 							margin: 0,
 							letterSpacing: '-2px',
@@ -93,7 +93,7 @@ export const GET: APIRoute = async ({ request }) => {
 
 				{/* Bottom: URL */}
 				<div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingLeft: '6px' }}>
-					<span style={{ fontSize: '20px', color: '#52525b', fontWeight: 500 }}>
+					<span style={{ fontSize: '20px', color: '#9b8880', fontWeight: 500 }}>
 						trytau.app
 					</span>
 				</div>

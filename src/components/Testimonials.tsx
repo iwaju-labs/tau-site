@@ -37,16 +37,14 @@ const testimonials: Testimonial[] = [
 export default function Testimonials() {
 	if (testimonials.length === 0) return null;
 
-	// Repeat enough copies so the first half always exceeds the widest viewport (2560px).
-	// -50% animation then moves exactly one half, looping seamlessly.
-	const CARD_WIDTH = 312; // w-72 (288) + gap-6 (24)
+	const CARD_WIDTH = 312;
 	const copiesPerHalf = Math.max(2, Math.ceil(2560 / (testimonials.length * CARD_WIDTH)));
 	const repeated = Array.from({ length: copiesPerHalf * 2 }, () => testimonials).flat();
-	const duration = `${copiesPerHalf * 20}s`; // 20s per copy-width → consistent speed
+	const duration = `${copiesPerHalf * 20}s`;
 
 	return (
 		<section className="py-24 overflow-hidden marquee-section">
-			<p className="text-center text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-10">
+			<p className="text-center text-xs font-semibold uppercase tracking-widest text-[#9b8880] mb-10">
 				testimonials.
 			</p>
 			<div
@@ -60,21 +58,21 @@ export default function Testimonials() {
 				{repeated.map((t, i) => (
 					<div
 						key={`${t.quote}-${i}`}
-						className="w-72 shrink-0 border border-zinc-800 bg-zinc-900 p-6 rounded-md"
+						className="w-72 shrink-0 border border-[#cfc4ba] bg-[#e0d8cf] p-6 rounded-md"
 					>
 						<div className="flex gap-0.5 mb-3">
 							{Array.from({ length: 5 }).map((_, j) => (
-								<Star key={j} size={12} className="text-yellow-400" fill="currentColor" strokeWidth={0} />
+								<Star key={j} size={12} className="text-yellow-500" fill="currentColor" strokeWidth={0} />
 							))}
 						</div>
-						<p className="text-sm text-zinc-300 leading-relaxed">"{t.quote}"</p>
+						<p className="text-sm text-[#1a0f0d] leading-relaxed">"{t.quote}"</p>
 						<div className="mt-4 flex items-center gap-2">
 							{t.verified
-								? <BadgeCheck size={15} className="text-blue-400 shrink-0" />
-								: <span className="text-zinc-600 text-xs font-bold shrink-0">𝕏</span>
+								? <BadgeCheck size={15} className="text-blue-500 shrink-0" />
+								: <span className="text-[#9b8880] text-xs font-bold shrink-0">𝕏</span>
 							}
-							<p className="text-xs text-zinc-500">
-								{t.verified ? <span className="text-zinc-400">{t.author}</span> : t.author}
+							<p className="text-xs text-[#6b4f47]">
+								{t.verified ? <span className="text-[#6b4f47]">{t.author}</span> : t.author}
 							</p>
 						</div>
 					</div>

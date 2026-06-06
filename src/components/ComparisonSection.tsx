@@ -2,15 +2,15 @@ export default function ComparisonSection() {
 	return (
 		<section className="py-24 px-6">
 			<div className="mx-auto max-w-5xl">
-				<h2 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+				<h2 className="text-center text-3xl font-bold tracking-tight text-[#1a0f0d] sm:text-4xl">
 					See the difference
 				</h2>
-				<p className="mt-4 text-center text-zinc-400">
+				<p className="mt-4 text-center text-[#6b4f47]">
 					Regular timelapse vs. a timelapse made with Tau
 				</p>
 				<div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
 					<div className="flex flex-col gap-3">
-						<p className="text-xs font-semibold uppercase tracking-widest text-zinc-500 text-center">
+						<p className="text-xs font-semibold uppercase tracking-widest text-[#9b8880] text-center">
 							Without Tau
 						</p>
 						<video
@@ -19,12 +19,12 @@ export default function ComparisonSection() {
 							loop
 							muted
 							playsInline
-							className="w-full aspect-video border border-zinc-800"
+							className="w-full aspect-video border border-[#cfc4ba]"
 							onContextMenu={e => e.preventDefault()}
 						/>
 					</div>
 					<div className="flex flex-col gap-3">
-						<p className="text-xs font-semibold uppercase tracking-widest text-white text-center">
+						<p className="text-xs font-semibold uppercase tracking-widest text-[#aa1e0f] text-center">
 							With Tau
 						</p>
 						<video

@@ -127,7 +127,7 @@ export default function OrbitSection({
 							loading='lazy'
 							draggable={false}
 							onContextMenu={e => e.preventDefault()}
-							className="w-48 aspect-video rounded-md border border-white/10 shadow-2xl shadow-black/70 select-none"
+							className="w-48 aspect-video rounded-md border border-[#cfc4ba]/40 shadow-2xl shadow-[#1a0f0d]/20 select-none"
 						/>
 					</div>
 				))}

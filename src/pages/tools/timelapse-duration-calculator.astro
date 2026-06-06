@@ -12,35 +12,35 @@ import Footer from '../../components/Footer.tsx';
 
   <main class="pt-32 pb-24 px-6 min-h-screen">
     <div class="mx-auto max-w-xl">
-      <a href="/blog/free-tool-timelapse-duration-calculator" class="text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-10 inline-block">
+      <a href="/blog/free-tool-timelapse-duration-calculator" class="text-sm text-[#6b4f47] hover:text-[#aa1e0f] transition-colors mb-10 inline-block">
         ← Back to article
       </a>
 
-      <h1 class="text-4xl font-bold tracking-tight text-white mb-3">Timelapse Duration Calculator</h1>
-      <p class="text-zinc-400 mb-10">Enter your timelapse details to find out how much real time it represents.</p>
+      <h1 class="text-4xl font-bold tracking-tight text-[#1a0f0d] mb-3">Timelapse Duration Calculator</h1>
+      <p class="text-[#6b4f47] mb-10">Enter your timelapse details to find out how much real time it represents.</p>
 
       <form id="calc-form" class="space-y-6">
         <!-- Video Length -->
         <div>
-          <label for="video-length" class="block text-sm font-medium text-zinc-400 mb-2">Video length (seconds)</label>
+          <label for="video-length" class="block text-sm font-medium text-[#6b4f47] mb-2">Video length (seconds)</label>
           <input
             id="video-length"
             type="number"
             min="0.1"
             step="any"
             placeholder="e.g. 10"
-            class="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-zinc-600 transition"
+            class="w-full rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-3 text-[#1a0f0d] placeholder-[#9b8880] outline-none focus:border-[#aa1e0f] transition"
             required
           />
         </div>
 
         <!-- FPS -->
         <div>
-          <label for="fps" class="block text-sm font-medium text-zinc-400 mb-2">Frames per second (FPS)</label>
+          <label for="fps" class="block text-sm font-medium text-[#6b4f47] mb-2">Frames per second (FPS)</label>
           <div class="flex gap-2 mb-2">
-            <button type="button" data-fps="24" class="fps-preset rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm text-zinc-400 hover:border-zinc-600 hover:text-white transition">24</button>
-            <button type="button" data-fps="30" class="fps-preset rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm text-zinc-400 hover:border-zinc-600 hover:text-white transition">30</button>
-            <button type="button" data-fps="60" class="fps-preset rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm text-zinc-400 hover:border-zinc-600 hover:text-white transition">60</button>
+            <button type="button" data-fps="24" class="fps-preset rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-2 text-sm text-[#6b4f47] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition">24</button>
+            <button type="button" data-fps="30" class="fps-preset rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-2 text-sm text-[#6b4f47] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition">30</button>
+            <button type="button" data-fps="60" class="fps-preset rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-2 text-sm text-[#6b4f47] hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition">60</button>
           </div>
           <input
             id="fps"
@@ -48,51 +48,51 @@ import Footer from '../../components/Footer.tsx';
             min="1"
             step="any"
             placeholder="e.g. 30"
-            class="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-zinc-600 transition"
+            class="w-full rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-3 text-[#1a0f0d] placeholder-[#9b8880] outline-none focus:border-[#aa1e0f] transition"
             required
           />
         </div>
 
         <!-- Interval -->
         <div>
-          <label for="interval" class="block text-sm font-medium text-zinc-400 mb-2">Capture interval (seconds between frames)</label>
+          <label for="interval" class="block text-sm font-medium text-[#6b4f47] mb-2">Capture interval (seconds between frames)</label>
           <input
             id="interval"
             type="number"
             min="0.1"
             step="any"
             placeholder="e.g. 2"
-            class="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 text-white placeholder-zinc-600 outline-none focus:border-zinc-600 transition"
+            class="w-full rounded-lg border border-[#cfc4ba] bg-[#ede6de] px-4 py-3 text-[#1a0f0d] placeholder-[#9b8880] outline-none focus:border-[#aa1e0f] transition"
             required
           />
         </div>
 
         <button
           type="submit"
-          class="w-full bg-white px-6 py-3.5 text-base font-bold text-zinc-900 hover:bg-zinc-200 transition shadow-lg shadow-white/10"
+          class="w-full bg-[#aa1e0f] px-6 py-3.5 text-base font-bold text-[#ede6de] hover:bg-[#8a1800] transition shadow-lg shadow-[#aa1e0f]/20"
         >
           Calculate
         </button>
       </form>
 
       <!-- Result -->
-      <div id="result" class="mt-8 hidden rounded-lg border border-zinc-800 bg-zinc-900 p-6">
-        <p class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">Result</p>
+      <div id="result" class="mt-8 hidden rounded-lg border border-[#cfc4ba] bg-[#e0d8cf] p-6">
+        <p class="text-xs font-semibold uppercase tracking-widest text-[#9b8880] mb-4">Result</p>
         <div class="space-y-3">
           <div class="flex items-center justify-between">
-            <span class="text-sm text-zinc-400">Total frames</span>
-            <span id="out-frames" class="text-lg font-semibold text-white tabular-nums"></span>
+            <span class="text-sm text-[#6b4f47]">Total frames</span>
+            <span id="out-frames" class="text-lg font-semibold text-[#1a0f0d] tabular-nums"></span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-sm text-zinc-400">Real recording time</span>
-            <span id="out-time" class="text-lg font-semibold text-white tabular-nums"></span>
+            <span class="text-sm text-[#6b4f47]">Real recording time</span>
+            <span id="out-time" class="text-lg font-semibold text-[#1a0f0d] tabular-nums"></span>
           </div>
         </div>
-        <p class="text-xs text-zinc-600 mt-4">Formula: Video Length &times; FPS &times; Interval = Real Time</p>
+        <p class="text-xs text-[#9b8880] mt-4">Formula: Video Length &times; FPS &times; Interval = Real Time</p>
       </div>
 
-      <p class="mt-12 text-sm text-zinc-600 text-center">
-        Built by <a href="https://www.trytau.app" class="text-zinc-400 hover:text-white transition underline underline-offset-4 decoration-zinc-700">Tau</a> — the timelapse recorder that remembers all this for you.
+      <p class="mt-12 text-sm text-[#9b8880] text-center">
+        Built by <a href="https://www.trytau.app" class="text-[#aa1e0f] hover:text-[#8a1800] transition underline underline-offset-4">Tau</a> — the timelapse recorder that remembers all this for you.
       </p>
     </div>
   </main>
@@ -109,14 +109,13 @@ import Footer from '../../components/Footer.tsx';
   const outFrames = document.getElementById('out-frames') as HTMLElement;
   const outTime = document.getElementById('out-time') as HTMLElement;
 
-  // FPS preset buttons
   document.querySelectorAll<HTMLButtonElement>('.fps-preset').forEach((btn) => {
     btn.addEventListener('click', () => {
       fpsInput.value = btn.dataset.fps!;
       document.querySelectorAll('.fps-preset').forEach((b) => {
-        b.classList.remove('!border-zinc-500', '!text-white');
+        b.classList.remove('!border-[#aa1e0f]', '!text-[#aa1e0f]');
       });
-      btn.classList.add('!border-zinc-500', '!text-white');
+      btn.classList.add('!border-[#aa1e0f]', '!text-[#aa1e0f]');
     });
   });
 

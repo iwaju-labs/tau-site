@@ -27,12 +27,12 @@ const sections = [
 
 export default function Footer() {
 	return (
-		<footer className="border-t border-zinc-800 py-16 px-6">
+		<footer className="border-t border-[#cfc4ba] py-16 px-6">
 			<div className="mx-auto max-w-5xl">
 				<div className="flex flex-col gap-12 sm:flex-row sm:justify-between">
 					{sections.map((section) => (
 						<div key={section.label}>
-							<p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">
+							<p className="text-xs font-semibold uppercase tracking-widest text-[#9b8880]">
 								{section.label}
 							</p>
 							<ul className="mt-4 space-y-3">
@@ -40,7 +40,7 @@ export default function Footer() {
 									<li key={link.href}>
 										<a
 											href={link.href}
-											className="text-sm text-zinc-400 hover:text-white transition"
+											className="text-sm text-[#6b4f47] hover:text-[#aa1e0f] transition"
 										>
 											{link.label}
 										</a>
@@ -50,7 +50,7 @@ export default function Footer() {
 						</div>
 					))}
 				</div>
-				<p className="mt-16 text-sm text-zinc-600">
+				<p className="mt-16 text-sm text-[#9b8880]">
 					&copy; {new Date().getFullYear()} Tau. All rights reserved.
 				</p>
 			</div>

@@ -53,15 +53,15 @@ const readingTime = Math.max(1, Math.round(words / 200));
     <div class="mx-auto max-w-3xl xl:max-w-6xl xl:flex xl:gap-12">
       <!-- TOC: sticky sidebar, only visible on xl+ -->
       <nav id="toc" class="sticky top-36 hidden xl:flex flex-col gap-1 w-52 shrink-0 self-start">
-        <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">On this page</p>
-        <ul id="toc-list" class="space-y-0.5 text-sm border-l border-zinc-800 pl-3"></ul>
+        <p class="text-xs font-semibold text-[#9b8880] uppercase tracking-widest mb-2">On this page</p>
+        <ul id="toc-list" class="space-y-0.5 text-sm border-l border-[#cfc4ba] pl-3"></ul>
       </nav>
       <div class="max-w-3xl w-full">
-      <a href="/blog" class="text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-10 inline-block">
+      <a href="/blog" class="text-sm text-[#6b4f47] hover:text-[#aa1e0f] transition-colors mb-10 inline-block">
         ← Back to blog
       </a>
 
-      <div class="flex items-center gap-3 text-sm text-zinc-500 mb-4">
+      <div class="flex items-center gap-3 text-sm text-[#9b8880] mb-4">
         <time datetime={post.data.pubDate.toISOString()}>
           {post.data.pubDate.toLocaleDateString('en-US', {
             year: 'numeric',
@@ -72,7 +72,7 @@ const readingTime = Math.max(1, Math.round(words / 200));
         {post.data.author && (
           <>
             <span>·</span>
-            <span class="flex items-center gap-1 hover:text-white transition">
+            <span class="flex items-center gap-1 hover:text-[#aa1e0f] transition">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
@@ -89,7 +89,7 @@ const readingTime = Math.max(1, Math.round(words / 200));
       {post.data.tags && post.data.tags.length > 0 && (
         <div class="flex gap-2 mb-8 flex-wrap">
           {post.data.tags.map((tag) => (
-            <span class="text-xs text-zinc-500 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-full">
+            <span class="text-xs text-[#6b4f47] bg-[#e0d8cf] border border-[#cfc4ba] px-2.5 py-1 rounded-full">
               {tag}
             </span>
           ))}
@@ -101,9 +101,9 @@ const readingTime = Math.max(1, Math.round(words / 200));
       </div>
 
       <!-- Inline TOC: only visible below xl -->
-      <nav id="toc-inline" class="xl:hidden mb-8 border border-zinc-800 rounded-lg px-5 py-4 hidden">
-        <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-3">On this page</p>
-        <ul id="toc-inline-list" class="space-y-1 text-sm border-l border-zinc-800 pl-3"></ul>
+      <nav id="toc-inline" class="xl:hidden mb-8 border border-[#cfc4ba] rounded-lg px-5 py-4 hidden">
+        <p class="text-xs font-semibold text-[#9b8880] uppercase tracking-widest mb-3">On this page</p>
+        <ul id="toc-inline-list" class="space-y-1 text-sm border-l border-[#cfc4ba] pl-3"></ul>
       </nav>
 
       <article class="markdown-content max-w-none">
@@ -114,17 +114,17 @@ const readingTime = Math.max(1, Math.round(words / 200));
       </article>
 
       {otherPosts.length > 0 && (
-        <aside class="mt-20 border-t border-zinc-800 pt-12">
-          <h2 class="text-lg font-semibold text-white">Related posts</h2>
+        <aside class="mt-20 border-t border-[#cfc4ba] pt-12">
+          <h2 class="text-lg font-semibold text-[#1a0f0d]">Related posts</h2>
           <ul class="mt-6 grid gap-4 sm:grid-cols-3">
             {relatedPosts.map((p) => (
               <li>
                 <a
                   href={`/blog/${p.id}`}
-                  class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900 overflow-hidden hover:border-zinc-600 transition-colors p-4 gap-1.5"
+                  class="group flex flex-col rounded-2xl border border-[#cfc4ba] bg-[#e0d8cf] overflow-hidden hover:border-[#aa1e0f] transition-colors p-4 gap-1.5"
                 >
-                  <span class="text-sm font-semibold text-white leading-snug group-hover:text-zinc-200 transition-colors">{p.data.title}</span>
-                  <span class="text-xs text-zinc-500 leading-relaxed line-clamp-2">{p.data.description}</span>
+                  <span class="text-sm font-semibold text-[#1a0f0d] leading-snug group-hover:text-[#aa1e0f] transition-colors">{p.data.title}</span>
+                  <span class="text-xs text-[#6b4f47] leading-relaxed line-clamp-2">{p.data.description}</span>
                 </a>
               </li>
             ))}
@@ -150,7 +150,6 @@ const readingTime = Math.max(1, Math.round(words / 200));
     toc?.remove();
     tocInline?.remove();
   } else {
-    // Assign IDs and populate both lists
     headings.forEach((h) => {
       if (!h.id) {
         h.id = h.textContent!
@@ -162,8 +161,8 @@ const readingTime = Math.max(1, Math.round(words / 200));
 
       const linkClass =
         h.tagName === 'H3'
-          ? 'block pl-3 text-zinc-600 hover:text-zinc-300 transition-colors py-0.5 leading-snug'
-          : 'block text-zinc-500 hover:text-zinc-200 transition-colors py-0.5 leading-snug';
+          ? 'block pl-3 text-[#9b8880] hover:text-[#aa1e0f] transition-colors py-0.5 leading-snug'
+          : 'block text-[#6b4f47] hover:text-[#aa1e0f] transition-colors py-0.5 leading-snug';
 
       for (const list of [tocList, tocInlineList]) {
         if (!list) continue;
@@ -178,25 +177,22 @@ const readingTime = Math.max(1, Math.round(words / 200));
       }
     });
 
-    // Show inline TOC now that it's populated
     tocInline?.classList.remove('hidden');
 
-    // Highlight active heading on scroll (both lists)
     const allLinks = document.querySelectorAll<HTMLAnchorElement>('a[data-toc-id]');
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          allLinks.forEach((l) => l.classList.remove('!text-white'));
+          allLinks.forEach((l) => l.classList.remove('!text-[#aa1e0f]'));
           document.querySelectorAll<HTMLAnchorElement>(`a[data-toc-id="${entry.target.id}"]`)
-            .forEach((l) => l.classList.add('!text-white'));
+            .forEach((l) => l.classList.add('!text-[#aa1e0f]'));
         });
       },
       { rootMargin: '-20% 0px -70% 0px' }
     );
 
     headings.forEach((h) => observer.observe(h));
-
   }
 </script>

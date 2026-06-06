@@ -68,30 +68,30 @@ export default function Pricing() {
 	return (
 		<section id="pricing" className="py-24 px-6">
 			<div className="mx-auto max-w-3xl text-center">
-				<h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+				<h2 className="text-3xl font-bold tracking-tight text-[#1a0f0d] sm:text-4xl">
 					Simple, one-time pricing.
 				</h2>
-				<p className="mt-4 text-zinc-400">Pay once. Own it forever. Free updates included.</p>
+				<p className="mt-4 text-[#6b4f47]">Pay once. Own it forever. Free updates included.</p>
 			</div>
 
 			<div className="mx-auto mt-16 grid max-w-3xl gap-8 sm:grid-cols-2">
 				{/* Solo */}
-				<div className="border border-zinc-800 bg-zinc-900 p-8 flex flex-col relative overflow-hidden rounded-2xl">
-					<h3 className="text-lg font-semibold text-white">Solo</h3>
-					<p className="mt-1 text-sm text-zinc-400">Best for personal use</p>
+				<div className="border border-[#cfc4ba] bg-[#e0d8cf] p-8 flex flex-col relative overflow-hidden rounded-2xl">
+					<h3 className="text-lg font-semibold text-[#1a0f0d]">Solo</h3>
+					<p className="mt-1 text-sm text-[#6b4f47]">Best for personal use</p>
 
 					<div className="mt-6">
-						<span className="text-5xl font-bold text-white">{data.solo}</span>
+						<span className="text-5xl font-bold text-[#1a0f0d]">{data.solo}</span>
 						{nextPrices && (
-							<p className="mt-1.5 text-xs text-amber-400">↑ Rises to {nextPrices.solo} next tier</p>
+							<p className="mt-1.5 text-xs text-amber-600">↑ Rises to {nextPrices.solo} next tier</p>
 						)}
 					</div>
-					<p className="mt-2 text-sm text-zinc-400">1 device</p>
-					<p className="mt-1 text-xs text-zinc-600">+ applicable taxes</p>
+					<p className="mt-2 text-sm text-[#6b4f47]">1 device</p>
+					<p className="mt-1 text-xs text-[#9b8880]">+ applicable taxes</p>
 
 					<ul className="mt-6 space-y-2 flex-1">
 						{soloFeatures.map(f => (
-							<li key={f} className="flex items-start gap-2 text-sm text-zinc-300">
+							<li key={f} className="flex items-start gap-2 text-sm text-[#1a0f0d]">
 								<CheckIcon />
 								{f}
 							</li>
@@ -100,16 +100,16 @@ export default function Pricing() {
 
 					{data.spotsLeft !== null && capacity !== null && fillPct !== null && (
 						<div className="mt-8">
-							<div className="flex items-center gap-1.5 text-xs text-zinc-400 mb-1.5">
+							<div className="flex items-center gap-1.5 text-xs text-[#6b4f47] mb-1.5">
 								<span className="relative flex h-2 w-2">
-									<span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-50 animate-ping" />
-									<span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+									<span className="absolute inline-flex h-full w-full rounded-full bg-[#aa1e0f] opacity-50 animate-ping" />
+									<span className="relative inline-flex h-2 w-2 rounded-full bg-[#aa1e0f]" />
 								</span>
 								{data.spotsLeft} spot{data.spotsLeft === 1 ? '' : 's'} left at this price
 							</div>
-							<div className="w-full h-1 bg-zinc-800 overflow-hidden">
+							<div className="w-full h-1 bg-[#cfc4ba] overflow-hidden">
 								<div
-									className="h-full bg-white transition-all duration-1000"
+									className="h-full bg-[#aa1e0f] transition-all duration-1000"
 									style={{ width: `${fillPct}%` }}
 								/>
 							</div>
@@ -118,33 +118,33 @@ export default function Pricing() {
 
 					<a
 						href="/api/checkout?plan=solo"
-						className="mt-4 py-3 text-center text-sm font-semibold bg-white text-zinc-900 hover:bg-zinc-200 transition"
+						className="mt-4 py-3 text-center text-sm font-semibold bg-[#aa1e0f] text-[#ede6de] hover:bg-[#8a1800] transition"
 					>
 						Buy Solo — {data.solo}
 					</a>
 				</div>
 
 				{/* Pro */}
-				<div className="border border-white bg-white text-zinc-900 p-8 flex flex-col relative overflow-hidden rounded-2xl">
+				<div className="border border-[#1a0f0d] bg-[#1a0f0d] text-[#ede6de] p-8 flex flex-col relative overflow-hidden rounded-2xl">
 					<div className="absolute top-4 right-4 text-right">
-						<span className="bg-zinc-900 text-white text-xs font-bold px-3 py-1 block">Best Value</span>
-						<span className="text-zinc-500 text-xs mt-0.5 block">3 devices · less than 2×</span>
+						<span className="bg-[#aa1e0f] text-[#ede6de] text-xs font-bold px-3 py-1 block">Best Value</span>
+						<span className="text-[#ede6de]/50 text-xs mt-0.5 block">3 devices · less than 2×</span>
 					</div>
 					<h3 className="text-lg font-semibold">Pro</h3>
-					<p className="mt-1 text-sm text-zinc-600">Best for creators with multiple machines</p>
+					<p className="mt-1 text-sm text-[#ede6de]/70">Best for creators with multiple machines</p>
 
 					<div className="mt-6">
 						<span className="text-5xl font-bold">{data.pro}</span>
 						{nextPrices && (
-							<p className="mt-1.5 text-xs text-amber-600">↑ Rises to {nextPrices.pro} next tier</p>
+							<p className="mt-1.5 text-xs text-amber-400">↑ Rises to {nextPrices.pro} next tier</p>
 						)}
 					</div>
-					<p className="mt-2 text-sm text-zinc-600">Up to 3 devices</p>
-					<p className="mt-1 text-xs text-zinc-400">+ applicable taxes</p>
+					<p className="mt-2 text-sm text-[#ede6de]/70">Up to 3 devices</p>
+					<p className="mt-1 text-xs text-[#ede6de]/50">+ applicable taxes</p>
 
 					<ul className="mt-6 space-y-2 flex-1">
 						{proFeatures.map(f => (
-							<li key={f} className="flex items-start gap-2 text-sm text-zinc-700">
+							<li key={f} className="flex items-start gap-2 text-sm text-[#ede6de]/90">
 								<CheckIcon />
 								{f}
 							</li>
@@ -153,16 +153,16 @@ export default function Pricing() {
 
 					{data.spotsLeft !== null && capacity !== null && fillPct !== null && (
 						<div className="mt-8">
-							<div className="flex items-center gap-1.5 text-xs text-zinc-500 mb-1.5">
+							<div className="flex items-center gap-1.5 text-xs text-[#ede6de]/60 mb-1.5">
 								<span className="relative flex h-2 w-2">
-									<span className="absolute inline-flex h-full w-full rounded-full bg-zinc-900 opacity-50 animate-ping" />
-									<span className="relative inline-flex h-2 w-2 rounded-full bg-zinc-900" />
+									<span className="absolute inline-flex h-full w-full rounded-full bg-[#ede6de] opacity-50 animate-ping" />
+									<span className="relative inline-flex h-2 w-2 rounded-full bg-[#ede6de]" />
 								</span>
 								{data.spotsLeft} spot{data.spotsLeft === 1 ? '' : 's'} left at this price
 							</div>
-							<div className="w-full h-1 bg-zinc-200 overflow-hidden">
+							<div className="w-full h-1 bg-[#cfc4ba]/20 overflow-hidden">
 								<div
-									className="h-full bg-zinc-900 transition-all duration-1000"
+									className="h-full bg-[#ede6de] transition-all duration-1000"
 									style={{ width: `${fillPct}%` }}
 								/>
 							</div>
@@ -171,7 +171,7 @@ export default function Pricing() {
 
 					<a
 						href="/api/checkout?plan=pro"
-						className="mt-4 py-3 text-center text-sm font-semibold bg-zinc-900 text-white hover:bg-zinc-700 transition"
+						className="mt-4 py-3 text-center text-sm font-semibold bg-[#aa1e0f] text-[#ede6de] hover:bg-[#8a1800] transition"
 					>
 						Buy Pro — {data.pro}
 					</a>

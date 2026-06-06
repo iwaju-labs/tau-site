@@ -5,21 +5,21 @@ export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<header className="fixed top-0 inset-x-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
+		<header className="fixed top-0 inset-x-0 z-50 border-b border-[#cfc4ba] bg-[#ede6de]/80 backdrop-blur-sm">
 			<div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
 				<a href="/" className="flex hover:scale-110 transition-transform items-center gap-2">
-					<img src="/tau-assets/tau-logo-transparent.png" alt="Tau" className="h-12 w-auto invert" />
-					<span className="text-lg font-bold -ml-2 text-white">tau</span>
+					<img src="/tau-assets/tau-logo-transparent.png" alt="Tau" className="h-12 w-auto" />
+					<span className="text-lg font-bold -ml-2 text-[#1a0f0d]">tau</span>
 				</a>
 
 				{/* Desktop Nav */}
-				<nav className="hidden md:flex items-center gap-8 text-sm text-zinc-400">
-					<a href="/#features" className="hover:text-white transition">Features</a>
-					<a href="/#pricing" className="hover:text-white transition">Pricing</a>
-					<a href="/#faq" className="hover:text-white transition">FAQ</a>
+				<nav className="hidden md:flex items-center gap-8 text-sm text-[#6b4f47]">
+					<a href="/#features" className="hover:text-[#aa1e0f] transition">Features</a>
+					<a href="/#pricing" className="hover:text-[#aa1e0f] transition">Pricing</a>
+					<a href="/#faq" className="hover:text-[#aa1e0f] transition">FAQ</a>
 					<a
 						href="/#pricing"
-						className="border border-zinc-700 px-4 py-1.5 text-zinc-100 font-semibold hover:border-zinc-400 transition"
+						className="border border-[#cfc4ba] px-4 py-1.5 text-[#1a0f0d] font-semibold hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition"
 					>
 						Buy Now
 					</a>
@@ -27,7 +27,7 @@ export default function Navbar() {
 
 				{/* Mobile Menu Button */}
 				<button
-					className="md:hidden text-zinc-400 hover:text-white"
+					className="md:hidden text-[#6b4f47] hover:text-[#aa1e0f]"
 					onClick={() => setIsOpen(!isOpen)}
 					aria-label="Toggle menu"
 				>
@@ -37,15 +37,15 @@ export default function Navbar() {
 
 			{/* Mobile Nav Overlay */}
 			{isOpen && (
-				<div className="md:hidden absolute inset-x-0 top-[69px] border-b border-zinc-800 bg-zinc-950 px-6 py-8 shadow-2xl">
-					<nav className="flex flex-col gap-6 text-lg text-zinc-400">
-						<a href="/#features" onClick={() => setIsOpen(false)} className="hover:text-white transition">Features</a>
-						<a href="/#pricing" onClick={() => setIsOpen(false)} className="hover:text-white transition">Pricing</a>
-						<a href="/#faq" onClick={() => setIsOpen(false)} className="hover:text-white transition">FAQ</a>
+				<div className="md:hidden absolute inset-x-0 top-17.25 border-b border-[#cfc4ba] bg-[#ede6de] px-6 py-8 shadow-2xl">
+					<nav className="flex flex-col gap-6 text-lg text-[#6b4f47]">
+						<a href="/#features" onClick={() => setIsOpen(false)} className="hover:text-[#aa1e0f] transition">Features</a>
+						<a href="/#pricing" onClick={() => setIsOpen(false)} className="hover:text-[#aa1e0f] transition">Pricing</a>
+						<a href="/#faq" onClick={() => setIsOpen(false)} className="hover:text-[#aa1e0f] transition">FAQ</a>
 						<a
 							href="/#pricing"
 							onClick={() => setIsOpen(false)}
-							className="inline-block w-full border border-zinc-700 py-3 text-center text-zinc-100 font-semibold hover:border-zinc-400 transition"
+							className="inline-block w-full border border-[#cfc4ba] py-3 text-center text-[#1a0f0d] font-semibold hover:border-[#aa1e0f] hover:text-[#aa1e0f] transition"
 						>
 							Buy Now
 						</a>
