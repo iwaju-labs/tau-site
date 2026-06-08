@@ -2,23 +2,23 @@ import { useState, useRef } from 'react';
 
 // ─── Drop in real video files here when ready ────────────────────────────────
 
-const BEFORE_SRC: string | null = null; // e.g. '/tau-assets/before.mp4'
+const BEFORE_SRC = { webm: '/tau-assets/comp-before.webm', mp4: '/tau-assets/comp-before.mp4' };
 
 const AFTER_EXAMPLES: { webm?: string; mp4: string; label: string }[] = [
-	// { webm: '/tau-assets/after-example-1.webm', mp4: '/tau-assets/after-example-1.mp4', label: 'Example 1' },
-	// { webm: '/tau-assets/after-example-2.webm', mp4: '/tau-assets/after-example-2.mp4', label: 'Example 2' },
-	// { webm: '/tau-assets/after-example-3.webm', mp4: '/tau-assets/after-example-3.mp4', label: 'Example 3' },
+	{ webm: '/tau-assets/comp-after1.webm', mp4: '/tau-assets/comp-after1.mp4', label: 'Example 1' },
+	{ webm: '/tau-assets/comp-after2.webm', mp4: '/tau-assets/comp-after2.mp4', label: 'Example 2' },
+	{ webm: '/tau-assets/comp-after3.webm', mp4: '/tau-assets/comp-after3.mp4', label: 'Example 3' },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SWIPE_THRESHOLD = 72;
+const SWIPE_THRESHOLD = 40;
 
-function VideoCard({ src }: { src: { webm?: string; mp4: string } }) {
+function VideoCard({ src }: { readonly src: { webm?: string; mp4: string } }) {
 	return (
 		<video
 			autoPlay loop muted playsInline
-			className="w-full h-full object-cover rounded-2xl select-none"
+			className="w-full h-full object-cover rounded-2xl select-none pointer-events-none"
 			onContextMenu={e => e.preventDefault()}
 			draggable={false}
 		>
@@ -40,55 +40,68 @@ function Placeholder({ label }: { readonly label: string }) {
 export default function ComparisonSection() {
 	const total = AFTER_EXAMPLES.length;
 	const [topIdx, setTopIdx] = useState(0);
-	const [dragX, setDragX] = useState(0);
-	const [dragging, setDragging] = useState(false);
-	const [exiting, setExiting] = useState(false);
+	const [exiting, setExiting] = useState<'left' | 'right' | null>(null);
+
+	// Refs — updated without triggering re-renders during drag
+	const cardRef = useRef<HTMLDivElement>(null);
+	const isDragging = useRef(false);
 	const startX = useRef(0);
+	const currentDX = useRef(0);
 
 	const at = (offset: number) => AFTER_EXAMPLES[(topIdx + offset) % total];
 
 	const advance = (direction: 'left' | 'right') => {
-		setExiting(true);
-		const flyX = direction === 'right' ? 700 : -700;
-		// CSS picks this up via the exiting + dragX state
-		setDragX(flyX);
+		setExiting(direction);
 		setTimeout(() => {
 			setTopIdx(i => (i + 1) % total);
-			setExiting(false);
-			setDragX(0);
-		}, 380);
+			setExiting(null);
+			// Reset inline styles set during drag so next card starts clean
+			if (cardRef.current) {
+				cardRef.current.style.transform = '';
+				cardRef.current.style.transition = '';
+				cardRef.current.style.opacity = '';
+			}
+		}, 400);
 	};
 
 	const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-		if (total <= 1 || exiting) return;
-		setDragging(true);
+		if (exiting || total <= 1) return;
+		isDragging.current = true;
 		startX.current = e.clientX;
-		(e.currentTarget).setPointerCapture(e.pointerId);
+		currentDX.current = 0;
+		e.currentTarget.setPointerCapture(e.pointerId);
+		if (cardRef.current) cardRef.current.style.transition = 'none';
 	};
 
 	const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-		if (!dragging || exiting) return;
-		setDragX(e.clientX - startX.current);
-	};
-
-	const onPointerUp = () => {
-		if (!dragging) return;
-		setDragging(false);
-		if (Math.abs(dragX) > SWIPE_THRESHOLD) {
-			advance(dragX > 0 ? 'right' : 'left');
-		} else {
-			setDragX(0);
+		if (!isDragging.current) return;
+		const dx = e.clientX - startX.current;
+		currentDX.current = dx;
+		// Directly mutate DOM — no React re-render, no lag
+		if (cardRef.current) {
+			cardRef.current.style.transform = `translateX(${dx}px) rotate(${dx * 0.04}deg)`;
 		}
 	};
 
-	const topCardStyle: React.CSSProperties = {
-		transform: `translateX(${dragX}px) rotate(${dragX * 0.03}deg)`,
-		transition: dragging ? 'none' : exiting ? 'transform 0.38s ease-in, opacity 0.38s ease-in' : 'transform 0.3s ease-out',
-		opacity: exiting ? 0 : 1,
-		cursor: total > 1 ? (dragging ? 'grabbing' : 'grab') : 'default',
-		zIndex: 3,
-		userSelect: 'none',
+	const onPointerUp = () => {
+		if (!isDragging.current) return;
+		isDragging.current = false;
+		const dx = currentDX.current;
+		if (Math.abs(dx) > SWIPE_THRESHOLD) {
+			advance(dx > 0 ? 'right' : 'left');
+		} else if (cardRef.current) {
+			cardRef.current.style.transition = 'transform 0.3s ease-out';
+			cardRef.current.style.transform = '';
+		}
 	};
+
+	const exitStyle: React.CSSProperties = exiting
+		? {
+			transform: `translateX(${exiting === 'right' ? 700 : -700}px) rotate(${exiting === 'right' ? 20 : -20}deg)`,
+			transition: 'transform 0.4s ease-in, opacity 0.4s ease-in',
+			opacity: 0,
+		}
+		: {};
 
 	return (
 		<section className="py-24 px-6">
@@ -107,17 +120,14 @@ export default function ComparisonSection() {
 						<p className="text-xs font-semibold uppercase tracking-widest text-[#9b8880] text-center">
 							Without Tau
 						</p>
-						{BEFORE_SRC ? (
-							<video
-								autoPlay loop muted playsInline
-								className="w-full aspect-video rounded-2xl border border-[#cfc4ba]"
-								onContextMenu={e => e.preventDefault()}
-							>
-								<source src={BEFORE_SRC} type="video/mp4" />
-							</video>
-						) : (
-							<Placeholder label="before" />
-						)}
+						<video
+							autoPlay loop muted playsInline
+							className="w-full aspect-video rounded-2xl border border-[#cfc4ba]"
+							onContextMenu={e => e.preventDefault()}
+						>
+							<source src={BEFORE_SRC.webm} type="video/webm" />
+							<source src={BEFORE_SRC.mp4} type="video/mp4" />
+						</video>
 					</div>
 
 					{/* After — swipeable card stack */}
@@ -130,16 +140,15 @@ export default function ComparisonSection() {
 							<Placeholder label="after examples" />
 						) : (
 							<>
-								{/* Stack container — overflow hidden clips mid-flight cards cleanly */}
 								<div className="relative w-full aspect-video overflow-hidden rounded-2xl">
 
-									{/* Back card (furthest behind) */}
+									{/* Back card */}
 									{total > 2 && (
 										<div
 											className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
 											style={{ transform: 'rotate(-2.5deg) scale(0.91) translateY(12px)', zIndex: 1 }}
 										>
-											<VideoCard src={at(2)} />
+											<VideoCard key={at(2).mp4} src={at(2)} />
 										</div>
 									)}
 
@@ -149,20 +158,29 @@ export default function ComparisonSection() {
 											className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
 											style={{ transform: 'rotate(1.5deg) scale(0.96) translateY(6px)', zIndex: 2 }}
 										>
-											<VideoCard src={at(1)} />
+											<VideoCard key={at(1).mp4} src={at(1)} />
 										</div>
 									)}
 
-									{/* Top card — interactive */}
+									{/* Top card */}
 									<div
+										ref={cardRef}
 										className="absolute inset-0 rounded-2xl overflow-hidden"
-										style={topCardStyle}
-										onPointerDown={onPointerDown}
-										onPointerMove={onPointerMove}
-										onPointerUp={onPointerUp}
-										onPointerLeave={onPointerUp}
+										style={{ zIndex: 3, ...exitStyle }}
 									>
-										<VideoCard src={at(0)} />
+										<VideoCard key={at(0).mp4} src={at(0)} />
+
+										{/* Transparent overlay captures all pointer events above the video */}
+										{!exiting && total > 1 && (
+											<div
+												className="absolute inset-0 cursor-grab active:cursor-grabbing"
+												style={{ touchAction: 'none' }}
+												onPointerDown={onPointerDown}
+												onPointerMove={onPointerMove}
+												onPointerUp={onPointerUp}
+												onPointerCancel={onPointerUp}
+											/>
+										)}
 									</div>
 								</div>
 
