@@ -31,12 +31,16 @@ It runs quietly in the background while you work, capturing one frame every N se
 
 - **Solo**: €9.99 one-time payment — 1 device, all features, free updates
 - **Pro**: €17.99 one-time payment — up to 3 devices, priority support, early access
-- No subscription. No trial. If it doesn't work for you, reach out and they'll make it right.
+- No subscription. No recurring fees. 14-day money-back guarantee, no questions asked.
 
 ## Platform support
 
 - macOS (Intel + Apple Silicon)
 - Windows
+
+## Account & License
+
+Users can create a free account at trytau.app to link their license key. Once linked, the account remembers the key for future downloads — no need to retrieve it from email each time. Sign in at https://trytau.app/sign-in. License keys are purchased through Polar and delivered by email at time of purchase.
 
 ## Comparison to alternatives
 
@@ -56,6 +60,7 @@ It runs quietly in the background while you work, capturing one frame every N se
 - Export to multiple formats: https://trytau.app/features/export-to-multiple-formats
 - Pricing / Buy: https://trytau.app/#pricing
 - Free tools: https://trytau.app/tools/timelapse-duration-calculator
+- Account: https://trytau.app/account
 
 ## Contact
 

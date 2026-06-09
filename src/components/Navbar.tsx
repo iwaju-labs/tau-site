@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
-export default function Navbar() {
+interface NavbarProps {
+	readonly isSignedIn?: boolean;
+}
+
+export default function Navbar({ isSignedIn }: NavbarProps) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -23,6 +27,15 @@ export default function Navbar() {
 					>
 						Buy Now
 					</a>
+					{isSignedIn ? (
+						<a href="/account" className="text-sm text-[#6b4f47] hover:text-[#aa1e0f] transition">
+							Account
+						</a>
+					) : (
+						<a href="/sign-in" className="text-sm text-[#6b4f47] hover:text-[#aa1e0f] transition">
+							Sign in
+						</a>
+					)}
 				</nav>
 
 				{/* Mobile Menu Button */}
@@ -49,6 +62,11 @@ export default function Navbar() {
 						>
 							Buy Now
 						</a>
+						{isSignedIn ? (
+							<a href="/account" onClick={() => setIsOpen(false)} className="hover:text-[#aa1e0f] transition">Account</a>
+						) : (
+							<a href="/sign-in" onClick={() => setIsOpen(false)} className="hover:text-[#aa1e0f] transition">Sign in</a>
+						)}
 					</nav>
 				</div>
 			)}

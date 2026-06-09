@@ -1,10 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { FaApple, FaWindows } from 'react-icons/fa';
+import { useAuth } from '@clerk/astro/react';
 
 export default function ThankYou() {
 	const [key, setKey] = useState('');
 	const trimmedKey = key.trim();
+	const { isSignedIn, isLoaded } = useAuth();
+	const [autoLinked, setAutoLinked] = useState(false);
+
+	useEffect(() => {
+		if (!isLoaded || !isSignedIn || !trimmedKey || autoLinked) return;
+		fetch('/api/account/link-key', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ key: trimmedKey }),
+		})
+			.then(r => r.ok && setAutoLinked(true))
+			.catch(() => {});
+	}, [isLoaded, isSignedIn, trimmedKey, autoLinked]);
 
 	return (
 		<section className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
@@ -33,6 +47,12 @@ export default function ThankYou() {
 						placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 						className="w-full bg-[#ede6de] border border-[#cfc4ba] text-[#1a0f0d] placeholder-[#9b8880] px-4 py-3 text-sm font-mono focus:outline-none focus:border-[#aa1e0f] transition"
 					/>
+					{autoLinked && (
+						<p className="mt-2 text-xs text-green-700">
+							✓ Key linked to your account — find it anytime in{' '}
+							<a href="/account" className="underline hover:text-[#aa1e0f]">Account</a>.
+						</p>
+					)}
 				</div>
 
 				<div className="mt-4 grid gap-4 grid-cols-1 sm:grid-cols-2">

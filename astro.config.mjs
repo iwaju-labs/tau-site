@@ -4,6 +4,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 import react from '@astrojs/react';
+import clerk from '@clerk/astro';
 
 import vercel from '@astrojs/vercel';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
@@ -14,6 +15,7 @@ import { internalLinks } from './src/data/internalLinks.ts';
 export default defineConfig({
   site: 'https://trytau.app',
   trailingSlash: 'never',
+  output: 'server',
 
   vite: {
     plugins: [tailwindcss()]
@@ -30,8 +32,15 @@ export default defineConfig({
   },
 
   integrations: [
+    clerk(),
     react(),
     sitemap({
+      filter: (page) => ![
+        'https://trytau.app/sign-in',
+        'https://trytau.app/sign-up',
+        'https://trytau.app/account',
+        'https://trytau.app/thank-you',
+      ].includes(page),
       serialize(item) {
         // Homepage — highest priority, checked frequently
         if (item.url === 'https://trytau.app/') {

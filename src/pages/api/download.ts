@@ -3,6 +3,7 @@ import { Polar } from '@polar-sh/sdk';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { notifyDownload } from '../../lib/discord';
+import { redis } from '../../lib/redis';
 
 export const prerender = false;
 
@@ -19,16 +20,23 @@ const polar = new Polar({
   accessToken: import.meta.env.POLAR_ACCESS_TOKEN || process.env.POLAR_ACCESS_TOKEN,
 });
 
-export const GET: APIRoute = async ({ request, redirect, clientAddress }) => {
+export const GET: APIRoute = async ({ request, redirect, clientAddress, locals }) => {
   const url = new URL(request.url);
   const os = url.searchParams.get('os');
-  const key = url.searchParams.get('key');
+
+  const organizationId = import.meta.env.POLAR_ORGANIZATION_ID || process.env.POLAR_ORGANIZATION_ID;
+
+  // Resolve key: session-linked key takes priority over ?key= param
+  let key = url.searchParams.get('key') ?? '';
+  const { userId } = locals.auth?.() ?? {};
+  if (userId) {
+    const sessionKey = await redis.get<string>(`user:${userId}:licenseKey`);
+    if (sessionKey) key = sessionKey;
+  }
 
   if (!key) {
     return new Response('A valid license key is required to download. Please check your purchase email.', { status: 401 });
   }
-
-  const organizationId = import.meta.env.POLAR_ORGANIZATION_ID || process.env.POLAR_ORGANIZATION_ID;
 
   try {
     await polar.licenseKeys.validate({ key, organizationId });

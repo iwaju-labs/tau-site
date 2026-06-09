@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/Navbar.tsx';
 import Footer from '../../components/Footer.tsx';
 import { competitors } from '../../data/competitors';
 import { Check, X, Minus } from 'lucide-react';
@@ -17,7 +16,6 @@ const { competitor: c } = Astro.props;
 	description={c.metaDescription}
 	keywords={['tau', c.name.toLowerCase(), 'timelapse', 'comparison', 'vs', 'alternative']}
 >
-	<Navbar client:load />
 	<main class="pt-32 pb-24 px-6 min-h-screen">
 		<div class="mx-auto max-w-3xl">
 

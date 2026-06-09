@@ -72,6 +72,14 @@ export default function Pricing() {
 					Simple, one-time pricing.
 				</h2>
 				<p className="mt-4 text-[#6b4f47]">Pay once. Own it forever. Free updates included.</p>
+				<div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
+					{['No subscription', '14-day money-back guarantee', 'Free updates'].map(label => (
+						<span key={label} className="inline-flex items-center gap-1.5 text-xs font-medium text-[#6b4f47] border border-[#cfc4ba] bg-[#e0d8cf] px-3 py-1.5 rounded-full">
+							<CheckIcon />
+							{label}
+						</span>
+					))}
+				</div>
 			</div>
 
 			<div className="mx-auto mt-16 grid max-w-3xl gap-8 sm:grid-cols-2">

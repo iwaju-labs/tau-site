@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/Navbar.tsx';
 import Footer from '../../components/Footer.tsx';
 
 const posts = (await getCollection('blog')).sort(
@@ -15,7 +14,6 @@ function readingTime(body: string) {
 ---
 
 <Layout title="Blog - Tau" description="Updates, tips, and behind-the-scenes from the Tau team.">
-  <Navbar client:load />
   <main class="pt-32 pb-24 px-6 min-h-screen">
     <div class="mx-auto max-w-3xl">
       <h1 class="text-4xl font-bold tracking-tight text-[#1a0f0d] mb-3">Blog</h1>

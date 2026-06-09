@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.tsx';
 import Hero from '../components/Hero.tsx';
 import DemoSection from '../components/DemoSection.tsx';
 import ComparisonSection from '../components/ComparisonSection.tsx';
@@ -46,6 +45,17 @@ const keywords = [
 	'timelapse with overlays', 'timelapse with timer overlay',
 	'video timelapse', 'timelapse video',
 ];
+
+const videoLd = {
+	'@context': 'https://schema.org',
+	'@type': 'VideoObject',
+	name: 'Tau — Timelapse Recorder Demo',
+	description: 'See Tau in action: record your screen and camera as a timelapse, add smart overlays, and export in one click on macOS or Windows.',
+	thumbnailUrl: 'https://trytau.app/tau-assets/demo-preload-poster.png',
+	uploadDate: '2025-06-01',
+	contentUrl: 'https://trytau.app/tau-assets/tau2demo.mp4',
+	publisher: { '@type': 'Organization', name: 'Tau', url: 'https://trytau.app' },
+};
 ---
 
 <Layout
@@ -55,7 +65,7 @@ const keywords = [
 	jsonLdSchema="software"
 	faqItems={faqs}
 >
-	<Navbar />
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(videoLd)} />
 	<PromoBanner currentPrice={solo} nextPrice={nextPrice} spotsLeft={spotsLeft} />
 	<Hero spotsLeft={spotsLeft} nextPrice={nextPrice} />
 	<DemoSection client:load />
