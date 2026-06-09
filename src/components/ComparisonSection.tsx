@@ -7,7 +7,6 @@ const BEFORE_SRC = { webm: '/tau-assets/comp-before.webm', mp4: '/tau-assets/com
 const AFTER_EXAMPLES: { webm?: string; mp4: string; label: string }[] = [
 	{ webm: '/tau-assets/comp-after1.webm', mp4: '/tau-assets/comp-after1.mp4', label: 'Example 1' },
 	{ webm: '/tau-assets/comp-after2.webm', mp4: '/tau-assets/comp-after2.mp4', label: 'Example 2' },
-	{ webm: '/tau-assets/comp-after3.webm', mp4: '/tau-assets/comp-after3.mp4', label: 'Example 3' },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
