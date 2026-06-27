@@ -4,6 +4,8 @@ import Footer from '../../components/Footer.tsx';
 import { useCases } from '../../data/useCases';
 import { features } from '../../data/features';
 
+export const prerender = true;
+
 export function getStaticPaths() {
 	return useCases.map((u) => ({ params: { slug: u.slug } }));
 }

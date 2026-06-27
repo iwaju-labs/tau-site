@@ -5,6 +5,8 @@ import FeatureIcon from '../../components/FeatureIcon';
 import { features } from '../../data/features';
 import { getCollection } from 'astro:content';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
 	return features.map((feature) => ({
 		params: { slug: feature.slug },
