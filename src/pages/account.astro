@@ -1,30 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import AccountPanel from '../components/AccountPanel.tsx';
-import { clerkClient } from '@clerk/astro/server';
-import { redis } from '../lib/redis';
+// import AccountPanel from '../components/AccountPanel.tsx'; // disabled: not configured for prod yet
+// import { clerkClient } from '@clerk/astro/server';
+// import { redis } from '../lib/redis';
 
-const { userId } = Astro.locals.auth();
-if (!userId) return Astro.redirect('/sign-in');
+// const { userId } = Astro.locals.auth();
+// if (!userId) return Astro.redirect('/sign-in');
 
-const user = await clerkClient(Astro).users.getUser(userId);
-const email = user.emailAddresses[0]?.emailAddress ?? '';
-const name = [user.firstName, user.lastName].filter(Boolean).join(' ') || email;
+// const user = await clerkClient(Astro).users.getUser(userId);
+// const email = user.emailAddresses[0]?.emailAddress ?? '';
+// const name = [user.firstName, user.lastName].filter(Boolean).join(' ') || email;
 
-const linkedKey = await redis.get<string>(`user:${userId}:licenseKey`);
-const plan = await redis.get<string>(`user:${userId}:plan`);
+// const linkedKey = await redis.get<string>(`user:${userId}:licenseKey`);
+// const plan = await redis.get<string>(`user:${userId}:plan`);
 ---
 
 <Layout title="Account — Tau" description="Manage your Tau account." noindex={true}>
 	<main class="min-h-screen pt-32 pb-24 px-6">
-		<div class="mx-auto max-w-xl">
-			<div class="mb-8">
-				<h1 class="text-3xl font-bold tracking-tight text-[#1a0f0d]">Account</h1>
-				{name && <p class="mt-1 text-[#6b4f47]">{name}</p>}
-				{email && name !== email && <p class="text-sm text-[#9b8880]">{email}</p>}
-			</div>
-
-			<AccountPanel client:load linkedKey={linkedKey} plan={plan} />
+		<div class="mx-auto max-w-xl text-center">
+			<h1 class="text-3xl font-bold tracking-tight text-[#1a0f0d]">Account</h1>
+			<p class="mt-4 text-[#6b4f47]">Accounts are coming soon.</p>
 		</div>
 	</main>
 </Layout>

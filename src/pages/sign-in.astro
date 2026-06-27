@@ -1,10 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { SignIn } from '@clerk/astro/components';
+// import { SignIn } from '@clerk/astro/components'; // disabled: not configured for prod yet
 ---
 
 <Layout title="Sign In — Tau" description="Sign in to your Tau account." noindex={true}>
 	<main class="min-h-screen flex items-center justify-center px-6 pt-24 pb-16">
-		<SignIn />
+		<div class="text-center">
+			<h1 class="text-3xl font-bold tracking-tight text-[#1a0f0d]">Sign In</h1>
+			<p class="mt-4 text-[#6b4f47]">Accounts are coming soon.</p>
+		</div>
 	</main>
 </Layout>

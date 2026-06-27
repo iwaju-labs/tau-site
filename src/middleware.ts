@@ -1,12 +1,16 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/astro/server';
+import type { MiddlewareHandler } from 'astro';
 
-const isProtected = createRouteMatcher(['/account(.*)']);
+// import { clerkMiddleware, createRouteMatcher } from '@clerk/astro/server'; // disabled: not configured for prod yet
+// const isProtected = createRouteMatcher(['/account(.*)']);
 
-export const onRequest = clerkMiddleware((auth, context) => {
-	if (isProtected(context.request)) {
-		const { userId } = auth();
-		if (!userId) {
-			return Response.redirect(new URL('/sign-in', context.request.url));
-		}
-	}
-});
+// Disabled: not configured for prod yet (no Clerk-backed auth).
+export const onRequest: MiddlewareHandler = (_context, next) => next();
+
+// export const onRequest = clerkMiddleware((auth, context) => {
+// 	if (isProtected(context.request)) {
+// 		const { userId } = auth();
+// 		if (!userId) {
+// 			return Response.redirect(new URL('/sign-in', context.request.url));
+// 		}
+// 	}
+// });

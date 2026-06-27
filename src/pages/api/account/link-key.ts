@@ -20,6 +20,12 @@ const PRO_PRODUCT_IDS = new Set([
   import.meta.env.POLAR_PRO_PRODUCT_ID_T3 || process.env.POLAR_PRO_PRODUCT_ID_T3,
 ]);
 
+// Disabled: not configured for prod yet (depends on Clerk auth via middleware).
+export const POST: APIRoute = async () => {
+  return new Response(JSON.stringify({ error: 'Account linking is temporarily unavailable.' }), { status: 503 });
+};
+
+/*
 export const POST: APIRoute = async ({ request, locals }) => {
   const { userId } = locals.auth();
   if (!userId) {
@@ -65,3 +71,4 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   return new Response(JSON.stringify({ success: true, plan }), { status: 200 });
 };
+*/

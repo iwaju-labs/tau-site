@@ -1,24 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { FaApple, FaWindows } from 'react-icons/fa';
-import { useAuth } from '@clerk/astro/react';
+// import { useAuth } from '@clerk/astro/react'; // disabled: not configured for prod yet
 
 export default function ThankYou() {
 	const [key, setKey] = useState('');
 	const trimmedKey = key.trim();
-	const { isSignedIn, isLoaded } = useAuth();
-	const [autoLinked, setAutoLinked] = useState(false);
-
-	useEffect(() => {
-		if (!isLoaded || !isSignedIn || !trimmedKey || autoLinked) return;
-		fetch('/api/account/link-key', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ key: trimmedKey }),
-		})
-			.then(r => r.ok && setAutoLinked(true))
-			.catch(() => {});
-	}, [isLoaded, isSignedIn, trimmedKey, autoLinked]);
+	// Auto-link to account disabled until Clerk is configured for prod.
+	const autoLinked = false;
 
 	return (
 		<section className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">

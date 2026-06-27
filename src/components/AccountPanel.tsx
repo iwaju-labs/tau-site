@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SignOutButton } from '@clerk/astro/react';
+// import { SignOutButton } from '@clerk/astro/react'; // disabled: not configured for prod yet; unused (account.astro no longer renders this component)
 
 interface AccountPanelProps {
 	readonly linkedKey: string | null;
@@ -115,7 +115,7 @@ export default function AccountPanel({ linkedKey: initialKey, plan: initialPlan 
 				)}
 			</div>
 
-			{/* Sign Out */}
+			{/* Sign Out - disabled: not configured for prod yet
 			<div className="flex justify-end">
 				<SignOutButton redirectUrl="/">
 					<button className="text-sm text-[#9b8880] hover:text-[#aa1e0f] transition underline">
@@ -123,6 +123,7 @@ export default function AccountPanel({ linkedKey: initialKey, plan: initialPlan 
 					</button>
 				</SignOutButton>
 			</div>
+			*/}
 		</div>
 	);
 }

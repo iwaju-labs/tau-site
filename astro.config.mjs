@@ -4,7 +4,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 import react from '@astrojs/react';
-import clerk from '@clerk/astro';
+// import clerk from '@clerk/astro'; // disabled: not configured for prod yet
 
 import vercel from '@astrojs/vercel';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
@@ -32,7 +32,7 @@ export default defineConfig({
   },
 
   integrations: [
-    clerk(),
+    // clerk(), // disabled: not configured for prod yet
     react(),
     sitemap({
       filter: (page) => ![
