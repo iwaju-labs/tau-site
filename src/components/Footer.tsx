@@ -3,7 +3,7 @@ const sections = [
 		label: 'Product',
 		links: [
 			{ href: '/features', label: 'Features' },
-			{ href: '/#pricing', label: 'Pricing' },
+			{ href: '/pricing', label: 'Pricing' },
 			{ href: '/#faq', label: 'FAQ' },
 			{ href: '/changelog', label: 'Changelog' },
 		],
@@ -23,6 +23,18 @@ const sections = [
 			{ href: '/vs/obs', label: 'Tau vs OBS' },
 			{ href: '/vs/screenflow', label: 'Tau vs ScreenFlow' },
 			{ href: '/vs/loom', label: 'Tau vs Loom' },
+			{ href: '/vs/cleanshot-x', label: 'Tau vs CleanShot X' },
+			{ href: '/vs/screenstudio', label: 'Tau vs Screen Studio' },
+			{ href: '/vs/camtasia', label: 'Tau vs Camtasia' },
+		],
+	},
+	{
+		label: 'Use Cases',
+		links: [
+			{ href: '/for/coding', label: 'For Coding' },
+			{ href: '/for/design', label: 'For Design' },
+			{ href: '/for/digital-art', label: 'For Digital Art' },
+			{ href: '/for/devlogs', label: 'For Devlogs' },
 		],
 	},
 	{

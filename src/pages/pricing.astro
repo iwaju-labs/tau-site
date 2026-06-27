@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.tsx';
+import PricingSection from '../components/Pricing.tsx';
+import FAQ from '../components/FAQ.tsx';
+import { faqs } from '../data/faqs';
+---
+
+<Layout
+	title="Tau Pricing — One-Time Payment, No Subscription"
+	description="Tau costs €9.99 for Solo (1 device) or €17.99 for Pro (3 devices) — one-time payment, free updates, 14-day money-back guarantee. No subscription."
+	keywords={['tau pricing', 'tau cost', 'tau price', 'timelapse app price', 'timelapse software cost']}
+	faqItems={faqs}
+>
+	<main class="pt-32">
+		<!-- Breadcrumb -->
+		<nav class="mx-auto max-w-3xl px-6 flex items-center gap-2 text-sm text-[#9b8880]">
+			<a href="/" class="hover:text-[#aa1e0f] transition">Home</a>
+			<span>/</span>
+			<span class="text-[#1a0f0d]">Pricing</span>
+		</nav>
+		<PricingSection client:load />
+		<FAQ />
+	</main>
+	<Footer />
+</Layout>
