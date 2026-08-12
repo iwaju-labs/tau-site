@@ -1,11 +1,34 @@
-# Changelog
+# changelog
 
-All notable changes to Tau will be documented here
+all notable changes to Tau will be documented here
+## [2.1.0] 2026-08-13
+### updates
+- checking for updates now works on the first click
+- macOS users will now be properly notified of new updates (was failing silently)
+- download progress will show size and speed. uses dock/taskbar on macOS/windows respectively
+## safely quit
+- frames will be saved mid capture before closing
+- captures are checkpointed to disk as they run, so random shutdowns wont risk full session
+- quitting during session will give a prompt, cancels cleanly, and removes the half finished timelapse
+- warns before any unsaved edits are discarded
+- on macOS, quit actually closes the process instead of closing the window and leaving Tau running
+## exporting
+- fixed portrait mode (9:16) exports failing to produce a valid output
+## diagnostics
+- log window now shows all important info/errors - user can copy/send bug reports
+## big wins
+- now much faster and more responsive during long captures
+- identical overlay -> export rendering
+
+## [2.0.3] 2026-08-12
+- fixed issue where users were having licenses revoked due to extended periods offline
+- explicit error handling added for license activations
+## [2.0.2] 2026-06-14
+- fixed screen-only captures showing/exporting no frames
 ## [2.0.1] 2026-05-19
 - fixed issue with multi-source captures counting frames incorrectly
-
 ## [2.0.0] 2026-05-14
-- SCREEN RECORDING INTRODUCED
+- screen recording introduced!!!
   - choose to your screen, camera, or both
 ## [1.4.0]
 ### new features
@@ -79,7 +102,7 @@ All notable changes to Tau will be documented here
 - improvements made to update flow
 ## [1.0.6] - 2026-03-17
 - fixed a critical issue with timelapse capture
-- we all good 🫡
+  - we all good 🫡
 ## [1.0.5] - 2026-03-17
 - performance updates
 ## [1.0.4] - 2026-03-17
@@ -93,4 +116,4 @@ All notable changes to Tau will be documented here
 - fixed issues with macOS build
 - added the changelog 🙏🏾
 ## [1.0.0] - 2026-03-15
-- Initial release of Tau
+- initial release of Tau
