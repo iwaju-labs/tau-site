@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { redis } from "../../../lib/redis";
-import { notifySale, notifyTierChange, getTierIndexForCount } from "../../../lib/discord";
+import { notifySale } from "../../../lib/discord";
 
 export const prerender = false;
 
@@ -12,14 +12,12 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const payload = JSON.parse(await request.text());
-    const eventType = payload.type;
 
-    if (eventType === 'order.created') {
-      const prevTotal = (await redis.get<number>('tau:total_sold')) ?? 0;
-      const newTotal = await redis.incr('tau:total_sold');
-
-      const prevTier = getTierIndexForCount(prevTotal);
-      const newTier = getTierIndexForCount(newTotal);
+    if (payload.type === 'order.created') {
+      // Still counted, but only as a statistic for the notification below.
+      // It used to select a pricing tier, which made this counter something
+      // that could not be lost without silently changing what people paid.
+      const totalSold = await redis.incr('tau:total_sold');
 
       const data = payload.data ?? {};
       await notifySale({
@@ -27,13 +25,8 @@ export const POST: APIRoute = async ({ request }) => {
         email: data.customer?.email ?? 'Unknown',
         amountCents: data.totalAmount ?? 0,
         currency: data.currency ?? 'eur',
-        totalSold: newTotal,
-        tierIndex: newTier,
+        totalSold,
       });
-
-      if (newTier > prevTier) {
-        await notifyTierChange({ newTierIndex: newTier, totalSold: newTotal });
-      }
     }
 
     return new Response(JSON.stringify({ received: true }), {
