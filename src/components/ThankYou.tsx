@@ -86,7 +86,7 @@ export default function ThankYou() {
 						</li>
 						<li className="flex gap-3">
 							<span className="flex h-6 w-6 shrink-0 items-center justify-center border border-[#cfc4ba] text-xs font-mono text-[#6b4f47]">3</span>
-							<span>Go to <span className="text-[#aa1e0f]">Settings</span> and paste your license key to activate.</span>
+							<span>Paste your license key on the activation screen — it's the first thing Tau shows you. That's it; it works on all your devices.</span>
 						</li>
 					</ol>
 				</div>
