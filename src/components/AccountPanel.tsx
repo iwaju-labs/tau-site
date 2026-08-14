@@ -3,20 +3,11 @@ import { useState } from 'react';
 
 interface AccountPanelProps {
 	readonly linkedKey: string | null;
-	readonly plan: string | null;
 }
 
-function getPlanLabel(plan: string | null): string | null {
-	if (plan === 'solo') return 'Solo';
-	if (plan === 'pro') return 'Pro';
-	if (plan === 'active' || plan === 'unknown') return 'Licensed';
-	return null;
-}
-
-export default function AccountPanel({ linkedKey: initialKey, plan: initialPlan }: AccountPanelProps) {
+export default function AccountPanel({ linkedKey: initialKey }: AccountPanelProps) {
 	const [key, setKey] = useState('');
 	const [linkedKey, setLinkedKey] = useState(initialKey);
-	const [plan, setPlan] = useState(initialPlan);
 	const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 	const [errorMsg, setErrorMsg] = useState('');
 
@@ -36,7 +27,6 @@ export default function AccountPanel({ linkedKey: initialKey, plan: initialPlan 
 
 			if (res.ok) {
 				setLinkedKey(key);
-				setPlan(data.plan);
 				setKey('');
 				setStatus('success');
 			} else {
@@ -48,8 +38,6 @@ export default function AccountPanel({ linkedKey: initialKey, plan: initialPlan 
 			setErrorMsg('Network error. Please try again.');
 		}
 	};
-
-	const planLabel = getPlanLabel(plan);
 
 	return (
 		<div className="space-y-8">
@@ -63,17 +51,15 @@ export default function AccountPanel({ linkedKey: initialKey, plan: initialPlan 
 							<span className="text-sm font-mono text-[#1a0f0d] bg-[#ede6de] border border-[#cfc4ba] px-3 py-1.5 rounded">
 								{linkedKey}
 							</span>
-							{planLabel && (
-								<span className="text-xs font-semibold bg-[#aa1e0f] text-[#ede6de] px-2.5 py-1 rounded-full">
-									{planLabel}
-								</span>
-							)}
+							<span className="text-xs font-semibold bg-[#aa1e0f] text-[#ede6de] px-2.5 py-1 rounded-full">
+								Unlimited devices
+							</span>
 						</div>
 						<p className="text-xs text-[#9b8880]">
 							Key linked.{' '}
 							<button
 								className="underline hover:text-[#aa1e0f] transition"
-								onClick={() => { setLinkedKey(null); setPlan(null); setStatus('idle'); }}
+								onClick={() => { setLinkedKey(null); setStatus('idle'); }}
 							>
 								Link a different key
 							</button>

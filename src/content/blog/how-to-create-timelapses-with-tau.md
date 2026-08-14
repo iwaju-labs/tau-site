@@ -10,7 +10,7 @@ category: tofu
 <img src="/blogs/blog-assets/timelapse-example.png" />
 
 ## Payment
-Before getting started with Tau, payment is required. Full access to Tau is available with a single purchase. There are 2 available plans: The **Solo** plan for one device and the **Pro** plan for up to 3 devices. After payment you'll be able to download Tau for either macOS or Windows, and you'll receive a license key via email to activate the app.
+Before getting started with Tau, payment is required. Full access to Tau is available with a single purchase of **€25**, and one licence works on all of your devices. After payment you'll be able to download Tau for either macOS or Windows, and you'll receive a license key via email to activate the app.
 
 ## Activation
 <img src="/blogs/blog-assets/product-activation.png" />

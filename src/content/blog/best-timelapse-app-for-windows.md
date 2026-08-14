@@ -49,7 +49,7 @@ Tau is built specifically for timelapse recording and handles the full workflow 
 - One-click to MP4, GIF, or WEBM
 - No external tools
 
-**Pricing:** One-time payment. Solo (1 device): €9.99. Pro (3 devices): €17.99.
+**Pricing:** €25, one-time. One licence covers all your devices.
 
 ## The honest verdict
 
