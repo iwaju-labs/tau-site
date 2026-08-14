@@ -1,11 +1,6 @@
 import { FaApple, FaWindows } from 'react-icons/fa';
 
-interface HeroProps {
-	readonly spotsLeft?: number | null;
-	readonly nextPrice?: string | null;
-}
-
-export default function Hero({ spotsLeft, nextPrice }: HeroProps) {
+export default function Hero() {
 	return (
 		<section className="relative flex flex-col items-center justify-center px-6 pt-32 pb-2 text-center overflow-hidden">
 			<img
@@ -26,15 +21,6 @@ export default function Hero({ spotsLeft, nextPrice }: HeroProps) {
 				Tau lets you record your screen, your camera, or both at once — then edit and export timelapses that people actually want to watch, with smart overlays and one-click export.
 			</p>
 
-			{spotsLeft != null && spotsLeft > 0 && nextPrice && (
-				<p className="mt-6 text-xs text-amber-600 font-medium tracking-wide">
-					<span className="relative mr-1.5 inline-flex h-1.5 w-1.5 align-middle">
-						<span className="absolute inline-flex h-full w-full rounded-full bg-amber-600 opacity-75 animate-ping" />
-						<span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-600" />
-					</span>
-					Early bird: {spotsLeft} spot{spotsLeft === 1 ? '' : 's'} left before price rises to {nextPrice}
-				</p>
-			)}
 
 			<div className="mt-8 flex flex-wrap items-center justify-center gap-4">
 				<a

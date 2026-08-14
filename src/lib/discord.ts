@@ -1,16 +1,3 @@
-const TIERS = [
-  { limit: 3,        solo: "€9.99",  pro: "€17.99" },
-  { limit: 13,       solo: "€18.99", pro: "€40.99" },
-  { limit: Infinity, solo: "€24.99", pro: "€50.99" },
-];
-
-export function getTierIndexForCount(count: number): number {
-  for (let i = 0; i < TIERS.length; i++) {
-    if (count < TIERS[i].limit) return i + 1;
-  }
-  return 3;
-}
-
 async function send(payload: object): Promise<void> {
   const url = import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL;
   if (!url) return;
@@ -31,7 +18,6 @@ export async function notifySale(opts: {
   amountCents: number;
   currency: string;
   totalSold: number;
-  tierIndex: number;
 }): Promise<void> {
   const price = `${(opts.amountCents / 100).toFixed(2)} ${opts.currency.toUpperCase()}`;
   await send({
@@ -43,45 +29,17 @@ export async function notifySale(opts: {
         { name: 'Price', value: price, inline: true },
         { name: 'Customer', value: opts.email || 'Unknown', inline: true },
         { name: 'Total Sold', value: String(opts.totalSold), inline: true },
-        { name: 'Tier', value: `T${opts.tierIndex}`, inline: true },
       ],
       timestamp: new Date().toISOString(),
     }],
   });
 }
 
-export async function notifyTierChange(opts: {
-  newTierIndex: number;
-  totalSold: number;
-}): Promise<void> {
-  const prev = TIERS[opts.newTierIndex - 2]; // tier before the new one
-  const curr = TIERS[opts.newTierIndex - 1];
-  await send({
-    embeds: [{
-      title: '🔺 Price Tier Unlocked',
-      color: 0xFEE75C,
-      description: `Tau hit **${opts.totalSold} sales** — prices have moved to **Tier ${opts.newTierIndex}**!`,
-      fields: [
-        { name: 'Solo', value: `~~${prev.solo}~~ → **${curr.solo}**`, inline: true },
-        { name: 'Pro', value: `~~${prev.pro}~~ → **${curr.pro}**`, inline: true },
-      ],
-      timestamp: new Date().toISOString(),
-    }],
-  });
-}
-
-export async function notifyCheckout(opts: {
-  plan: string;
-  tierIndex: number;
-}): Promise<void> {
+export async function notifyCheckout(): Promise<void> {
   await send({
     embeds: [{
       title: '🛒 Checkout Started',
       color: 0x5865F2,
-      fields: [
-        { name: 'Plan', value: opts.plan.charAt(0).toUpperCase() + opts.plan.slice(1), inline: true },
-        { name: 'Tier', value: `T${opts.tierIndex}`, inline: true },
-      ],
       timestamp: new Date().toISOString(),
     }],
   });

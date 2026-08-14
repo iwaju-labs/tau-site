@@ -10,17 +10,7 @@ import Pricing from '../components/Pricing.tsx';
 import FAQ from '../components/FAQ.tsx';
 import Footer from '../components/Footer.tsx';
 import { faqs } from '../data/faqs';
-import { getPricingTier } from '../lib/redis';
-import PromoBanner from '../components/PromoBanner.tsx';
 
-const { solo, spotsLeft, tierIndex } = await getPricingTier();
-
-const TIER_NEXT_PRICES: Record<number, { solo: string; pro: string } | null> = {
-	1: { solo: '€18.99', pro: '€40.99' },
-	2: { solo: '€24.99', pro: '€50.99' },
-	3: null,
-};
-const nextPrice = TIER_NEXT_PRICES[tierIndex]?.solo ?? null;
 
 const keywords = [
 	// Core product
@@ -66,8 +56,7 @@ const videoLd = {
 	faqItems={faqs}
 >
 	<script is:inline type="application/ld+json" set:html={JSON.stringify(videoLd)} />
-	<PromoBanner currentPrice={solo} nextPrice={nextPrice} spotsLeft={spotsLeft} />
-	<Hero spotsLeft={spotsLeft} nextPrice={nextPrice} />
+	<Hero />
 	<DemoSection client:load />
 	<WhyTau />
 	<Features />
