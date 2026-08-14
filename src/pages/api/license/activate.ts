@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Polar } from '@polar-sh/sdk';
 import { notifyLicenseActivation } from '../../../lib/discord';
+import { json, polarErrorResponse, type PolarConditions } from '../../../lib/polarError';
 
 export const prerender = false;
 
@@ -12,42 +13,48 @@ export const POST: APIRoute = async ({ request }) => {
   const organizationId = import.meta.env.POLAR_ORGANIZATION_ID || process.env.POLAR_ORGANIZATION_ID;
 
   if (!organizationId) {
-    return new Response(JSON.stringify({ error: 'Server configuration error: Missing Organization ID' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    console.error('License activation: POLAR_ORGANIZATION_ID is not set');
+    return json({ error: 'Server configuration error', code: 'misconfigured' }, 500);
   }
 
+  let key: string;
+  let label: string;
+  let conditions: PolarConditions | undefined;
   try {
     const body = await request.json();
-    const { key, label, conditions } = body;
+    key = body?.key;
+    label = body?.label;
+    conditions = body?.conditions;
+  } catch {
+    return json({ error: 'Invalid request body', code: 'bad_request' }, 400);
+  }
 
-    if (!key || !label) {
-      return new Response(JSON.stringify({ error: 'Missing required parameters: key, label' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
+  if (!key || !label) {
+    return json({ error: 'Missing required parameters: key, label', code: 'bad_request' }, 400);
+  }
 
-    const result = await polar.licenseKeys.activate({
+  let result: Awaited<ReturnType<typeof polar.licenseKeys.activate>>;
+  try {
+    result = await polar.licenseKeys.activate({
       key,
       organizationId,
       label,
       conditions: conditions || {},
     });
-
-    const keyMasked = key.length > 8 ? `${key.slice(0, 4)}…${key.slice(-4)}` : key;
-    notifyLicenseActivation({ keyMasked, label }).catch(() => {});
-
-    return new Response(JSON.stringify(result), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  } catch (error: any) {
-    console.error('License activation error:', error);
-    return new Response(JSON.stringify({ error: error.message || 'Activation failed' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+  } catch (error) {
+    // Same fix as validate: an unknown key is a 404 and a hit activation limit
+    // is a 4xx, both of which the client can act on. They were arriving as 500s
+    // carrying Polar's raw text, which is why the app had to match on the body
+    // to tell a bad key from a server fault.
+    return polarErrorResponse(
+      error,
+      'License activation error',
+      'That license key was not recognised.',
+    );
   }
+
+  const keyMasked = key.length > 8 ? `${key.slice(0, 4)}…${key.slice(-4)}` : key;
+  notifyLicenseActivation({ keyMasked, label }).catch(() => {});
+
+  return json(result, 200);
 };
