@@ -45,7 +45,7 @@ Set your interval (1 frame every 5 seconds, every 10 seconds, whatever fits your
 - Attach background audio if you want it
 - Export to MP4, GIF, or WEBM — no additional tools
 
-Tau works on both macOS and Windows. It costs €9.99 for a Solo license (1 device) or €17.99 for Pro (3 devices). One-time payment.
+Tau works on both macOS and Windows. It costs €25 for a licence that works on all your devices. One-time payment.
 
 ## The honest comparison
 
@@ -60,7 +60,7 @@ Tau works on both macOS and Windows. It costs €9.99 for a Solo license (1 devi
 | Export to GIF | ✅ | ❌ |
 | Export to WEBM | ✅ | ❌ |
 | Windows support | ✅ | ❌ |
-| Price | €9.99 | $149 |
+| Price | €25 | $149 |
 | Full timeline video editing | ❌ | ✅ |
 | Annotations and callouts | ❌ | ✅ |
 
@@ -72,4 +72,4 @@ Tau works on both macOS and Windows. It costs €9.99 for a Solo license (1 devi
 
 They're genuinely built for different things. The overlap is that both record your screen. The difference is everything that happens after.
 
-[Try Tau at trytau.app](https://trytau.app) — available for macOS and Windows, from €9.99.
+[Try Tau at trytau.app](https://trytau.app) — available for macOS and Windows, €25 one-time.

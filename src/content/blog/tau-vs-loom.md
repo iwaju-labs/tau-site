@@ -70,4 +70,4 @@ One-time payment. No subscription. No cloud dependency.
 
 The simplest way to think about it: Loom replaces a Slack message. Tau makes content worth posting.
 
-[Get Tau at trytau.app](https://trytau.app) — macOS and Windows, from €9.99.
+[Get Tau at trytau.app](https://trytau.app) — macOS and Windows, €25 one-time.

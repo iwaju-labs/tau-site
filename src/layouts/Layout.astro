@@ -77,10 +77,12 @@ const jsonLd = type === 'article'
 		operatingSystem: 'macOS, Windows',
 		description,
 		url: 'https://trytau.app',
-		offers: [
-			{ '@type': 'Offer', price: '19', priceCurrency: 'USD', name: 'Solo' },
-			{ '@type': 'Offer', price: '29', priceCurrency: 'USD', name: 'Pro' },
-		],
+		offers: {
+			'@type': 'Offer',
+			price: '25',
+			priceCurrency: 'EUR',
+			name: 'Tau License',
+		},
 		aggregateRating: {
 			'@type': 'AggregateRating',
 			ratingValue: '5',
