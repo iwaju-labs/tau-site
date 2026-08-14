@@ -13,22 +13,31 @@ async function send(payload: object): Promise<void> {
 }
 
 export async function notifySale(opts: {
-  plan: string;
+  product: string;
   email: string;
   amountCents: number;
   currency: string;
+  orderId: string;
+  discounted: boolean;
   totalSold: number;
 }): Promise<void> {
-  const price = `${(opts.amountCents / 100).toFixed(2)} ${opts.currency.toUpperCase()}`;
+  const price =
+    opts.amountCents === 0
+      ? 'Free'
+      : `${(opts.amountCents / 100).toFixed(2)} ${opts.currency.toUpperCase()}`;
+
   await send({
     embeds: [{
-      title: '💰 New Sale',
-      color: 0x57F287,
+      // A €0 order is almost always a test or a comped licence, and it should
+      // not look like revenue at a glance.
+      title: opts.discounted ? '🏷️ New Sale (discounted)' : '💰 New Sale',
+      color: opts.discounted ? 0xFEE75C : 0x57F287,
       fields: [
-        { name: 'Plan', value: opts.plan || 'Unknown', inline: true },
+        { name: 'Product', value: opts.product || 'Unknown', inline: true },
         { name: 'Price', value: price, inline: true },
-        { name: 'Customer', value: opts.email || 'Unknown', inline: true },
-        { name: 'Total Sold', value: String(opts.totalSold), inline: true },
+        { name: 'Sale #', value: String(opts.totalSold), inline: true },
+        { name: 'Customer', value: opts.email || 'Unknown', inline: false },
+        { name: 'Order', value: `\`${opts.orderId}\``, inline: false },
       ],
       timestamp: new Date().toISOString(),
     }],
