@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { redis } from "../../../lib/redis";
 import { notifySale } from "../../../lib/discord";
-import { isSignatureValid } from "../../../lib/webhookSignature";
+import { isFromPolar } from "../../../lib/verifyPolarWebhook";
 
 export const prerender = false;
 
@@ -17,17 +17,7 @@ export const POST: APIRoute = async ({ request }) => {
   // This used to check only that the secret was *set* and then trust the body,
   // so anyone who knew the URL could post fake orders — inflating the sales
   // counter and firing Discord notifications.
-  const signed = isSignatureValid(
-    secret,
-    {
-      id: request.headers.get('webhook-id'),
-      timestamp: request.headers.get('webhook-timestamp'),
-      signature: request.headers.get('webhook-signature'),
-    },
-    body,
-  );
-
-  if (!signed) {
+  if (!isFromPolar(body, request.headers, secret)) {
     console.warn('[Polar Webhook] Rejected a request with a missing or invalid signature');
     return new Response('Invalid signature', { status: 401 });
   }
